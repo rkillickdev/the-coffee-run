@@ -50,7 +50,7 @@ def get_menu_choice(ingredient):
 
     item = (data[int(selected_code)][1])
     unit_cost = (data[int(selected_code)][2])
-    return item, unit_cost
+    return item, float(unit_cost)
     
 
 def validate_data(user_input, expected_values):
@@ -73,3 +73,10 @@ print("So you need some coffee... and fast?! Here's what we offer:\n")
 coffee_selection = get_menu_choice("coffee")
 print("Great, now let's get your coffee just how you like it!\n")
 milk_selection = get_menu_choice("milk")
+user_selections = [coffee_selection, milk_selection]
+sum = 0
+items = []
+for i in user_selections:
+    items.append(i[0])
+    sum = sum + i[1]
+
