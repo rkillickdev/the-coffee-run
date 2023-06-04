@@ -48,7 +48,10 @@ def get_menu_choice(ingredient):
         if validate_data(selected_code, code_options):
             break
 
-    return selected_code
+    item = (data[int(selected_code)][1])
+    unit_cost = (data[int(selected_code)][2])
+    return item, unit_cost
+    
 
 def validate_data(user_input, expected_values):
     """
@@ -67,6 +70,6 @@ def validate_data(user_input, expected_values):
     return True
 
 print("So you need some coffee... and fast?! Here's what we offer:\n")
-get_menu_choice("coffee")
+coffee_selection = get_menu_choice("coffee")
 print("Great, now let's get your coffee just how you like it!\n")
-get_menu_choice("milk")
+milk_selection = get_menu_choice("milk")
