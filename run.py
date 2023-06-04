@@ -13,37 +13,42 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('the_coffee_run')
 
-def get_coffee_type():
+def get_menu_choice(ingredient):
     """
-    Pulls data from the sheet "coffee" and assigns to variable "coffee_data".
-    Assigns index 0 of the list "coffee_data" to the variable "header_names.
-    Assigns remaining indexes of list to the variable menu_content  
+    Pulls data from whatever sheet name is passed as an argument to the function.
+    Assigns values to the variable data.
+    Assigns index 0 of the variable data to the variable header_names.
+    Assigns remaining indexes of variable data to the variable menu_content.  
     """
 
-    print("So you need some coffee... and fast?! Here's what we offer:\n")
-    coffee_menu = SHEET.worksheet("coffee")
-    coffee_data = coffee_menu.get_all_values()
-
-    # Set first row of 'coffee' sheet as header names
-    header_names = coffee_data[0]
-
-    # Assign rows from coffe_data to variable menu_content 
-    menu_content = coffee_data[-4:]
+    menu = SHEET.worksheet(f"{ingredient}")
+    data = menu.get_all_values()
     
-    # Print coffee menu as a table
+    # Set first row of specified sheet as header names.
+    header_names = data[0]
+
+    # Assign rows from data to variable menu_content. 
+    menu_content = data[1:]
+
+    # Generate a list of code options to validate input against.
+    code_options = []
+    for row in menu_content:
+        code = row[0]
+        code_options.append(code)
+    
+    # Print menu as a table
     print(tabulate(menu_content, headers=header_names, tablefmt='fancy_grid')
      + "\n")
-    # Assign user input to variable coffee_code and check if valid
+    # Assign user input to variable selected_code and check if valid.
     while True:
-        print("Please select you coffee by entering the code (1-4)\n")
+        print(f"Please select your {ingredient} by entering the code (1-4)\n")
 
-        coffee_code = input("Enter your choice here: ")
+        selected_code = input("Enter your choice here: ")
 
-        if validate_data(coffee_code, ["1", "2", "3", "4"]):
-            print("Great, now let's get your coffee just how you like it!")
+        if validate_data(selected_code, code_options):
             break
 
-    return coffee_code
+    return selected_code
 
 def validate_data(user_input, expected_values):
     """
@@ -61,4 +66,7 @@ def validate_data(user_input, expected_values):
 
     return True
 
-get_coffee_type()
+print("So you need some coffee... and fast?! Here's what we offer:\n")
+get_menu_choice("coffee")
+print("Great, now let's get your coffee just how you like it!\n")
+get_menu_choice("milk")
