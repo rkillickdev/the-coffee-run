@@ -80,3 +80,11 @@ for i in user_selections:
     items.append(i[0])
     sum = sum + i[1]
 
+order = {
+    "Coffee" : items[0],
+    "Milk" : items[1],
+    "Price" : sum
+}
+
+print(order)
+
