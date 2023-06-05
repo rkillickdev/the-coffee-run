@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+import pandas as pd
 from tabulate import tabulate
 
 SCOPE = [
@@ -91,11 +92,41 @@ def view_order():
 
     if selected_code == 'y':
         main()
+    else:
+        return False
+    
+        
+def display_final_order(order):
+    """
+    Accepts an instance of the class CompleteOrder as an argument.
+
+    """
+
+    # header_names = ["Coffee", "Milk", "Price"]
+    # menu_content = order.items
+
+    df = pd.DataFrame(order.items)
+
+    print("Here is a summary of your order:\n")
+
+    # print(menu_content)
+
+    # Print final order as a table
+    print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
+     + "\n")
     
 def main():
     """
     Run all program functions.
     """
+
+    class CompleteOrder:
+        """
+        Defines the class CompleteOrder.
+        """
+
+        def __init__(self, items):
+            self.items = items
 
     print("So you need some coffee... and fast?! Here's what we offer:\n")
     coffee_selection = get_menu_choice("coffee")
@@ -117,7 +148,20 @@ def main():
     order_list.append(order)
     view_order()
 
+    if view_order() == False:
+        # Create a dictionary of all ordered items
+        keys = []
+        for i in range(len(order_list)):
+            i = i + 1
+            keys.append(i)
+        order_dict = dict(zip(keys, order_list))
+
+        # Create an instance of the class CompleteOrder
+        user_order = CompleteOrder(order_dict)
+
+        display_final_order(user_order)
+
 main()
-print(order_list)
+
 
 
