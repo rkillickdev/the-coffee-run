@@ -13,6 +13,8 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('the_coffee_run')
 
+order_list = []
+
 def get_menu_choice(ingredient):
     """
     Pulls data from whatever sheet name is passed as an argument to the function.
@@ -79,35 +81,43 @@ def view_order():
     for order in order_list:
         print(f"1 X {order.get('Coffee')} with {order.get('Milk')} milk: £{order.get('Price')}")
 
-print("So you need some coffee... and fast?! Here's what we offer:\n")
-coffee_selection = get_menu_choice("coffee")
-print("Great, now let's get your coffee just how you like it!\n")
-milk_selection = get_menu_choice("milk")
-user_selections = [coffee_selection, milk_selection]
-sum = 0
-items = []
-for i in user_selections:
-    items.append(i[0])
-    sum = sum + i[1]
+    while True:
+        print(f"Would you like to add any more drinks to your order?\n")
 
-order = {
-    "Coffee" : items[0],
-    "Milk" : items[1],
-    "Price" : sum
-}
+        selected_code = input("Enter y/n here: ")
 
-order_list = []
-order_list.append(order)
-# print(order_list)
-view_order()
+        if validate_data(selected_code, ["y", "n"]):
+            break
 
-# while True:
-#     print(f"Please select your {ingredient} by entering the code (1-4)\n")
+    if selected_code == 'y':
+        main()
+    
+def main():
+    """
+    Run all program functions.
+    """
 
-#     selected_code = input("Enter your choice here: ")
+    print("So you need some coffee... and fast?! Here's what we offer:\n")
+    coffee_selection = get_menu_choice("coffee")
+    print("Great, now let's get your coffee just how you like it!\n")
+    milk_selection = get_menu_choice("milk")
+    user_selections = [coffee_selection, milk_selection]
+    sum = 0
+    items = []
+    for i in user_selections:
+        items.append(i[0])
+        sum = sum + i[1]
 
-#     if validate_data(selected_code, code_options):
-#         break
+    order = {
+        "Coffee" : items[0],
+        "Milk" : items[1],
+        "Price" : sum
+    }
 
-# print(order)
+    order_list.append(order)
+    view_order()
+
+main()
+print(order_list)
+
 
