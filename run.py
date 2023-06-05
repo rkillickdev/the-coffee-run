@@ -69,6 +69,16 @@ def validate_data(user_input, expected_values):
 
     return True
 
+def view_order():
+    """
+    Iterates over each dictionary stored in order_list and uses f string to
+    print items currently in the order.
+    """
+
+    print("You're order currently contains the following:\n")
+    for order in order_list:
+        print(f"1 X {order.get('Coffee')} with {order.get('Milk')} milk: £{order.get('Price')}")
+
 print("So you need some coffee... and fast?! Here's what we offer:\n")
 coffee_selection = get_menu_choice("coffee")
 print("Great, now let's get your coffee just how you like it!\n")
@@ -86,5 +96,18 @@ order = {
     "Price" : sum
 }
 
-print(order)
+order_list = []
+order_list.append(order)
+# print(order_list)
+view_order()
+
+# while True:
+#     print(f"Please select your {ingredient} by entering the code (1-4)\n")
+
+#     selected_code = input("Enter your choice here: ")
+
+#     if validate_data(selected_code, code_options):
+#         break
+
+# print(order)
 
