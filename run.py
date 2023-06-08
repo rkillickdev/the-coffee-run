@@ -46,7 +46,7 @@ def get_menu_choice(ingredient):
     while True:
         print(f"Please select your {ingredient} by entering the code (1-4)\n")
 
-        selected_code = input("Enter your choice here: ")
+        selected_code = input("Enter your choice here:\n")
 
         if validate_data(selected_code, code_options):
             break
@@ -85,7 +85,7 @@ def view_order():
     while True:
         print(f"Would you like to add any more drinks to your order?\n")
 
-        selected_code = input("Enter y/n here: ")
+        selected_code = input("Enter y/n here:\n")
 
         if validate_data(selected_code, ["y", "n"]):
             break
