@@ -103,6 +103,12 @@ ___
 
 <br>
 
+## **Flow Charts**
+
+<br>
+
+![Flow Chart displaying stages and logic of the program](docs/flow-charts/the-coffee-run-flowchart.png)
+
 # **Technologies Used**
 
 ## **Languages Used**
