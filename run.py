@@ -14,7 +14,18 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('the_coffee_run')
 
-order_list = []
+# order_list = []
+
+class Order:
+        """
+        Defines the class Order.
+        """
+
+        def __init__(self):
+            self.items = []
+
+        def update_item(self, item):
+            self.items.append(item)
 
 def get_menu_choice(ingredient):
     """
@@ -141,14 +152,6 @@ def main():
     Run all program functions.
     """
 
-    class CompleteOrder:
-        """
-        Defines the class CompleteOrder.
-        """
-
-        def __init__(self, items):
-            self.items = items
-    
     order_list.append(order)
     view_order()
 
