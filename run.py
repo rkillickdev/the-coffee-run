@@ -72,6 +72,15 @@ def validate_data(user_input, expected_values):
 
     return True
 
+def collect_elements(coffee, milk):
+    """
+    Adds elements of an order item to the list user_selection and returns list.
+    """
+    user_selection = []
+    user_selection.append(coffee)
+    user_selection.append(milk)
+    return user_selection
+
 def view_order():
     """
     Iterates over each dictionary stored in order_list and uses f string to
@@ -127,11 +136,7 @@ def main():
 
         def __init__(self, items):
             self.items = items
-
-    print("So you need some coffee... and fast?! Here's what we offer:\n")
-    coffee_selection = get_menu_choice("coffee")
-    print("Great, now let's get your coffee just how you like it!\n")
-    milk_selection = get_menu_choice("milk")
+      
     user_selections = [coffee_selection, milk_selection]
     sum = 0
     items = []
@@ -161,7 +166,12 @@ def main():
 
         display_final_order(user_order)
 
-main()
+# main()
+
+print("So you need some coffee... and fast?! Here's what we offer:\n")
+elements = collect_elements(get_menu_choice("coffee"), get_menu_choice("milk"))
+# print("Great, now let's get your coffee just how you like it!\n")
+print(elements)
 
 
 
