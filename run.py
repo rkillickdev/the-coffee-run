@@ -53,8 +53,29 @@ def get_menu_choice(ingredient):
 
     item = (data[int(selected_code)][1])
     unit_cost = (data[int(selected_code)][2])
+    if ingredient == "coffee":
+        print("Great, now let's get your coffee just how you like it!\n")
     return item, float(unit_cost)
-    
+
+def get_quantity():
+    """
+    Takes quantity input from user and returns as an integer.
+    """
+
+    # Assign user input to variable selected_quantity and check if valid.
+    while True:
+
+        print("Please select a quantity between 1 and 10\n")
+
+        selected_quantity = input("Enter your choice here:\n")
+        
+        # Create a list of integers to pass as the expected_values argument.
+        quantity_options = range(1, 11)
+
+        if validate_data(selected_quantity, list(map(str, quantity_options))):
+            break
+
+    return int(selected_quantity)
 
 def validate_data(user_input, expected_values):
     """
@@ -72,7 +93,7 @@ def validate_data(user_input, expected_values):
 
     return True
 
-def collect_elements(coffee, milk):
+def collect_elements(coffee, milk, quantity):
     """
     Adds elements of an order item to the list user_selection and returns list.
     """
@@ -169,8 +190,8 @@ def main():
 # main()
 
 print("So you need some coffee... and fast?! Here's what we offer:\n")
-elements = collect_elements(get_menu_choice("coffee"), get_menu_choice("milk"))
-# print("Great, now let's get your coffee just how you like it!\n")
+elements = collect_elements(get_menu_choice("coffee"), get_menu_choice("milk"), get_quantity())
+
 print(elements)
 
 
