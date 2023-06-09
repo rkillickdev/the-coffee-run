@@ -165,10 +165,11 @@ def main():
 
 # main()
 
+user_order = Order()
 print("So you need some coffee... and fast?! Here's what we offer:\n")
 user_choices = [get_menu_choice("coffee"), get_menu_choice("milk"), get_quantity()]
-
-print(user_choices)
+user_order.update_item(user_choices)
+print(user_order.items)
 
 #     sum = 0
 #     elements = []
