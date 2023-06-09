@@ -93,15 +93,6 @@ def validate_data(user_input, expected_values):
 
     return True
 
-def collect_elements(coffee, milk, quantity):
-    """
-    Adds elements of an order item to the list user_selection and returns list.
-    """
-    user_selection = []
-    user_selection.append(coffee)
-    user_selection.append(milk)
-    return user_selection
-
 def view_order():
     """
     Iterates over each dictionary stored in order_list and uses f string to
@@ -157,30 +148,12 @@ def main():
 
         def __init__(self, items):
             self.items = items
-      
-    user_selections = [coffee_selection, milk_selection]
-    sum = 0
-    items = []
-    for i in user_selections:
-        items.append(i[0])
-        sum = sum + i[1]
-
-    order = {
-        "Coffee" : items[0],
-        "Milk" : items[1],
-        "Price" : sum
-    }
-
+    
     order_list.append(order)
     view_order()
 
     if view_order() == False:
-        # Create a dictionary of all ordered items
-        keys = []
-        for i in range(len(order_list)):
-            i = i + 1
-            keys.append(i)
-        order_dict = dict(zip(keys, order_list))
+       
 
         # Create an instance of the class CompleteOrder
         user_order = CompleteOrder(order_dict)
@@ -190,9 +163,29 @@ def main():
 # main()
 
 print("So you need some coffee... and fast?! Here's what we offer:\n")
-elements = collect_elements(get_menu_choice("coffee"), get_menu_choice("milk"), get_quantity())
+user_choices = [get_menu_choice("coffee"), get_menu_choice("milk"), get_quantity()]
 
-print(elements)
+print(user_choices)
+
+#     sum = 0
+#     elements = []
+#     for i in user_selection:
+#         elements.append(i[0])
+#         sum = sum + i[1]
+
+#     item = {
+#         "Coffee" : elements[0],
+#         "Milk" : elements[1],
+#         "Quantity" : elements[2],
+#         "Price" : sum
+#     }
+
+    # Create a dictionary of all ordered items
+        # keys = []
+        # for i in range(len(order_list)):
+        #     i = i + 1
+        #     keys.append(i)
+        # order_dict = dict(zip(keys, order_list))
 
 
 
