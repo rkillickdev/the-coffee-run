@@ -30,6 +30,7 @@ class Order:
 
 def get_user_name():
     """
+    Takes user_name input from user and validates.
     """
 
     # Assign user input to variable selected_quantity and check if valid.
@@ -211,7 +212,7 @@ def main():
     Run all program functions.
     """
     
-    print("So you need some coffee... and fast?! Here's what we offer:\n")
+    print(f"Hi {user_order.name} So you need some coffee... and fast?! Here's what we offer:\n")
     item = create_item_dict()
     user_order.update_item(item)
     print(user_order.items)
