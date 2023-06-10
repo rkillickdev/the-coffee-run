@@ -32,6 +32,12 @@ class Order:
             """
             self.items.append(item)
 
+        def remove_item(self, item):
+            """
+            """
+
+            self.items.pop(item)
+
         def get_order_total(self):
             """
             Iterates over items list and for each dictionary sums the value 
@@ -222,8 +228,22 @@ def view_order():
     if selected_code == 'y':
         main()
     else:
-        return False                           
+        while True:
+            print("Would you like to remove any items from your order?\n")
 
+            selected_code = input("Enter y/n here:\n")
+
+            if validate_data(selected_code, ["y", "n"]):
+                break
+    if selected_code == 'y':
+        edit_order()     
+    else:
+        return False
+
+def edit_order():
+    """
+    """
+    
 def get_date():
     # Returns current date 
     now = datetime.now()
