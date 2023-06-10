@@ -25,6 +25,8 @@ class Order:
             self.items = []
 
         def update_item(self, item):
+            """
+            """
             self.items.append(item)
 
 def get_menu_choice(ingredient):
@@ -106,25 +108,26 @@ def validate_data(user_input, expected_values):
 
 def create_item_dict():
     """
+    Stores user_choices by calling the get_menu_choice and get_quantity functions"
     """
 
     user_choices = [get_menu_choice("coffee"), get_menu_choice("milk"), get_quantity()]
-    print(user_choices)
 
-    # sum = 0
-    # elements = []
-    # for i in range(0, 1(user_choices)):
-    #     elements.append(i[0])
-    #     sum = sum + i[1]
-
-    item = {
+    # user_choices converted from a list to a dictionary
+    item = [{
         "Coffee" : user_choices[0][0],
         "Milk" : user_choices[1][0],
         "Quantity" : user_choices[2],
         "Price" : (user_choices[0][1] + user_choices[1][1]) * user_choices[2]
-    }
+    }]
 
-    return item
+    # Generates a key based on the number of items already in the order
+    key = [len(user_order.items) + 1]
+
+    # Creates a dictionary using the item dictionary as the value.
+    item_dict = dict(zip(key, item))
+
+    return item_dict
 
 
 def view_order():
@@ -196,12 +199,13 @@ print(user_order.items)
 
 
 
-    # Create a dictionary of all ordered items
-        # keys = []
-        # for i in range(len(order_list)):
-        #     i = i + 1
-        #     keys.append(i)
-        # order_dict = dict(zip(keys, order_list))
+    
 
 
-
+    # OLD CODE
+    
+    # sum = 0
+                # elements = []
+                # for i in range(0, 1(user_choices)):
+                #     elements.append(i[0])
+                #     sum = sum + i[1]
