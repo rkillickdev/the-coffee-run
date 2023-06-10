@@ -217,28 +217,64 @@ def view_order():
     print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
      + "\n")
 
+    view_order_options()
+
+def view_order_options():
+    """
+    Create a data frame from the options dictionary.
+    Display user options using tabulate.
+    Accept user input, validate and pass this as an argument 
+    to the function next_step.
+    """
+
+    options = {
+        1 : {
+            "Action" : "Add an item to order"
+        },
+        2 : {
+            "Action" : "Remove an item from order"
+        },
+        3 : {
+            "Action" : "Edit Quantities" 
+        },
+        4 : {
+            "Action" : "Finalise Order"
+        }
+    }
+
+    # Generate a list of code options to validate input against.
+    code_options = list(options.keys())
+
+    print("What would you like to do next?\n")
+
+    df = pd.DataFrame(options)
+    print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
+     + "\n")
+
     while True:
-        print(f"Would you like to add any more drinks to your order?\n")
+        print("Please choose your next step by entering the code (1-4)\n")
 
-        selected_code = input("Enter y/n here:\n")
+        selected_code = int(input("Enter your choice here:\n"))
 
-        if validate_data(selected_code, ["y", "n"]):
+        if validate_data(selected_code, code_options):
             break
 
-    if selected_code == 'y':
+    next_step(selected_code)
+
+def next_step(user_choice):
+    """
+    Check value of the parameter user_choice and run 
+    associated function based on this value.
+    """
+
+    if user_choice == 1:
         main()
-    else:
-        while True:
-            print("Would you like to remove any items from your order?\n")
-
-            selected_code = input("Enter y/n here:\n")
-
-            if validate_data(selected_code, ["y", "n"]):
-                break
-    if selected_code == 'y':
-        edit_order()     
-    else:
-        return False
+    elif user_choice == 2:
+        remove_options()
+    elif user_choice == 3:
+        edit_options()
+    elif user_choice == 4:
+        view_final()
 
 def edit_order():
     """
@@ -266,7 +302,6 @@ def main():
     user_order.update_item(item)
     view_order()
        
-    # if view_order() == False:
 
 # Create an instance of the class Order
 user_order = Order()
