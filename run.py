@@ -21,11 +21,50 @@ class Order:
 
         def __init__(self):
             self.items = []
+            self.name = get_user_name()
 
         def update_item(self, item):
             """
             """
             self.items.append(item)
+
+def get_user_name():
+    """
+    """
+
+    # Assign user input to variable selected_quantity and check if valid.
+    while True:
+
+        print("Please enter your name\n")
+
+        user_name = input("Enter your choice here:\n")
+
+        if validate_name(user_name):
+            break
+
+    return user_name
+
+def validate_name(user_input):
+    """
+    Raises ValueError if user_input is not all letters or is greater than 10 characters.
+    """
+
+    try:
+        if len(user_input) > 10:
+            raise ValueError(
+                "You cannot enter more than 10 characters"
+            )
+
+        elif not user_input.isalpha():
+            raise ValueError(
+                "You must enter all letters"
+            )
+    except ValueError as e:
+            print(f"Something went wrong. {e}. Please try again.")
+            return False
+
+    return True
+
 
 def get_menu_choice(ingredient):
     """
@@ -95,9 +134,14 @@ def validate_data(user_input, expected_values):
 
     try:
         if user_input not in expected_values:
-            raise ValueError(
-                "This code is not valid"
-            )
+            if user_input == selected_code:
+                raise ValueError(
+                    "This code is not valid"
+                )
+            elif user_input == selected_quantity:
+                raise ValueError(
+                    "This value is not valid, please enter a number between 1 and 10"
+                )                                       
     except ValueError as e:
             print(f"Something went wrong. {e}. Please try again.")
             return False
