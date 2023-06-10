@@ -28,11 +28,14 @@ class Order:
 
         def update_item(self, item):
             """
+            Appends item to the items list.
             """
             self.items.append(item)
 
         def get_order_total(self):
             """
+            Iterates over items list and for each dictionary sums the value 
+            of all 'price' keys.
             """
 
             order_total = 0
