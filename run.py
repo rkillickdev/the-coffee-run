@@ -21,8 +21,8 @@ class Order:
         """
 
         def __init__(self):
-            self.items = []
             self.name = get_user_name()
+            self.items = [] 
             self.date = get_date()
             self.time = get_time()
 
@@ -30,6 +30,18 @@ class Order:
             """
             """
             self.items.append(item)
+
+        def get_order_total(self):
+            """
+            """
+
+            order_total = 0
+
+            for dict in self.items:
+                for key, value in dict.items():
+                    subtotal = value.get('Price')
+                    order_total += subtotal
+            print(f"The total cost of your order is: £{order_total}") 
 
 def get_user_name():
     """
@@ -175,7 +187,6 @@ def create_item_dict():
 
     return item_dict
 
-
 def view_order():
     """
     Iterates over each dictionary stored in user_order items list and uses f string to
@@ -230,14 +241,14 @@ def main():
     print(f"Hi {user_order.name} So you need some coffee... and fast?! Here's what we offer:\n")
     item = create_item_dict()
     user_order.update_item(item)
-    print(user_order.items)
     view_order()
        
-
     # if view_order() == False:
 
 # Create an instance of the class Order
 user_order = Order()
 main()
+user_order.get_order_total()
+
 
 
