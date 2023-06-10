@@ -263,9 +263,9 @@ def view_order_options():
         if validate_data(selected_code, code_options):
             break
 
-    os.system('cls' if os.name == 'nt' else 'clear')
-    
     next_step(selected_code)
+
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def next_step(user_choice):
     """
@@ -283,6 +283,24 @@ def next_step(user_choice):
         view_final()
 
 def remove_options():
+    """
+    """
+
+    options = list(range(len(user_order.items)))
+    print(options)
+
+    while True:
+
+        print("Which item of your order you would like to remove?")
+
+        selected_code = int(input("Enter a number here:\n"))
+
+        if validate_data(selected_code, options):
+            break
+
+    index = selected_code - 1
+    print(index)
+    user_order.remove_item(index)
     view_order()
 
 def edit_order():
