@@ -2,6 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 import pandas as pd
 from tabulate import tabulate
+from datetime import datetime
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -22,6 +23,8 @@ class Order:
         def __init__(self):
             self.items = []
             self.name = get_user_name()
+            self.date = get_date()
+            self.time = get_time()
 
         def update_item(self, item):
             """
@@ -206,7 +209,19 @@ def view_order():
         main()
     else:
         return False                           
-    
+
+def get_date():
+    # Returns current date 
+    now = datetime.now()
+    date = now.strftime("%d/%m/%Y")
+    return date
+
+def get_time():
+    # Returns current time
+    now = datetime.now()
+    time = now.strftime("%H:%M:%S") 
+    return time
+
 def main():
     """
     Run all program functions.
@@ -224,4 +239,5 @@ def main():
 # Create an instance of the class Order
 user_order = Order()
 main()
+
 
