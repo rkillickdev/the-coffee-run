@@ -14,8 +14,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('the_coffee_run')
 
-# order_list = []
-
 class Order:
         """
         Defines the class Order.
@@ -132,13 +130,15 @@ def create_item_dict():
 
 def view_order():
     """
-    Iterates over each dictionary stored in order_list and uses f string to
+    Iterates over each dictionary stored in user_order items list and uses f string to
     print items currently in the order.
     """
 
     print("You're order currently contains the following:\n")
-    for order in order_list:
-        print(f"1 X {order.get('Coffee')} with {order.get('Milk')} milk: £{order.get('Price')}")
+
+    for dict in user_order.items:
+        for key, value in dict.items():
+            print(f"{value.get('Quantity')} X {value.get('Coffee')} with {value.get('Milk')} milk: £{value.get('Price')}")
 
     while True:
         print(f"Would you like to add any more drinks to your order?\n")
@@ -177,35 +177,17 @@ def main():
     """
     Run all program functions.
     """
-
-    order_list.append(order)
+    
+    print("So you need some coffee... and fast?! Here's what we offer:\n")
+    item = create_item_dict()
+    user_order.update_item(item)
+    print(user_order.items)
     view_order()
+    # display_final_order(user_order)   
 
-    if view_order() == False:
-       
+    # if view_order() == False:
 
-        # Create an instance of the class CompleteOrder
-        user_order = CompleteOrder(order_dict)
-
-        display_final_order(user_order)
-
-# main()
-
+# Create an instance of the class Order
 user_order = Order()
-print("So you need some coffee... and fast?! Here's what we offer:\n")
-item = create_item_dict()
-user_order.update_item(item)
-print(user_order.items)
+main()
 
-
-
-    
-
-
-    # OLD CODE
-    
-    # sum = 0
-                # elements = []
-                # for i in range(0, 1(user_choices)):
-                #     elements.append(i[0])
-                #     sum = sum + i[1]
