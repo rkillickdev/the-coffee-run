@@ -136,9 +136,18 @@ def view_order():
 
     print("You're order currently contains the following:\n")
 
-    for dict in user_order.items:
-        for key, value in dict.items():
-            print(f"{value.get('Quantity')} X {value.get('Coffee')} with {value.get('Milk')} milk: £{value.get('Price')}")
+    # Turn the user_order items list into a single dictionary.
+    # Used the following article to learn about this:
+    # https://blog.finxter.com/merge-dictionaries/
+    order_dict = {k:v for item in user_order.items for k,v in item.items()}
+    
+    # Print order summary as a table using pandas data frames.
+    # I used the following article to learn about data frames:
+    # https://tutorial.eyehunts.com/python/python-tabulate-dictionary-example-code/
+    df = pd.DataFrame(order_dict)
+
+    print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
+     + "\n")
 
     while True:
         print(f"Would you like to add any more drinks to your order?\n")
@@ -151,27 +160,7 @@ def view_order():
     if selected_code == 'y':
         main()
     else:
-        return False
-    
-        
-def display_final_order(order):
-    """
-    Accepts an instance of the class CompleteOrder as an argument.
-
-    """
-
-    # header_names = ["Coffee", "Milk", "Price"]
-    # menu_content = order.items
-
-    df = pd.DataFrame(order.items)
-
-    print("Here is a summary of your order:\n")
-
-    # print(menu_content)
-
-    # Print final order as a table
-    print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
-     + "\n")
+        return False                           
     
 def main():
     """
@@ -183,7 +172,7 @@ def main():
     user_order.update_item(item)
     print(user_order.items)
     view_order()
-    # display_final_order(user_order)   
+       
 
     # if view_order() == False:
 
