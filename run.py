@@ -104,6 +104,29 @@ def validate_data(user_input, expected_values):
 
     return True
 
+def create_item_dict():
+    """
+    """
+
+    user_choices = [get_menu_choice("coffee"), get_menu_choice("milk"), get_quantity()]
+    print(user_choices)
+
+    # sum = 0
+    # elements = []
+    # for i in range(0, 1(user_choices)):
+    #     elements.append(i[0])
+    #     sum = sum + i[1]
+
+    item = {
+        "Coffee" : user_choices[0][0],
+        "Milk" : user_choices[1][0],
+        "Quantity" : user_choices[2],
+        "Price" : (user_choices[0][1] + user_choices[1][1]) * user_choices[2]
+    }
+
+    return item
+
+
 def view_order():
     """
     Iterates over each dictionary stored in order_list and uses f string to
@@ -167,22 +190,11 @@ def main():
 
 user_order = Order()
 print("So you need some coffee... and fast?! Here's what we offer:\n")
-user_choices = [get_menu_choice("coffee"), get_menu_choice("milk"), get_quantity()]
-user_order.update_item(user_choices)
+item = create_item_dict()
+user_order.update_item(item)
 print(user_order.items)
 
-#     sum = 0
-#     elements = []
-#     for i in user_selection:
-#         elements.append(i[0])
-#         sum = sum + i[1]
 
-#     item = {
-#         "Coffee" : elements[0],
-#         "Milk" : elements[1],
-#         "Quantity" : elements[2],
-#         "Price" : sum
-#     }
 
     # Create a dictionary of all ordered items
         # keys = []
