@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import pandas as pd
+import os
 from tabulate import tabulate
 from datetime import datetime
 
@@ -126,6 +127,8 @@ def get_menu_choice(ingredient):
         if validate_data(selected_code, code_options):
             break
 
+    os.system('cls' if os.name == 'nt' else 'clear')
+    
     item = (data[int(selected_code)][1])
     unit_cost = (data[int(selected_code)][2])
     if ingredient == "coffee":
@@ -149,6 +152,7 @@ def get_quantity():
 
         if validate_data(selected_quantity, list(map(str, quantity_options))):
             break
+    os.system('cls' if os.name == 'nt' else 'clear')
 
     return int(selected_quantity)
 
@@ -259,6 +263,8 @@ def view_order_options():
         if validate_data(selected_code, code_options):
             break
 
+    os.system('cls' if os.name == 'nt' else 'clear')
+    
     next_step(selected_code)
 
 def next_step(user_choice):
@@ -275,6 +281,9 @@ def next_step(user_choice):
         edit_options()
     elif user_choice == 4:
         view_final()
+
+def remove_options():
+    view_order()
 
 def edit_order():
     """
@@ -296,9 +305,10 @@ def main():
     """
     Run all program functions.
     """
-    
+    os.system('cls' if os.name == 'nt' else 'clear')
     print(f"Hi {user_order.name} So you need some coffee... and fast?! Here's what we offer:\n")
     item = create_item_dict()
+    os.system('cls' if os.name == 'nt' else 'clear')
     user_order.update_item(item)
     view_order()
        
