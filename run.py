@@ -53,7 +53,7 @@ class Order:
                 for key, value in dict.items():
                     subtotal = value.get('Price')
                     order_total += subtotal
-            print(f"The total cost of your order is: £{order_total}")
+            return order_total
 
         def complete_order(self):
             self.is_complete = True  
@@ -152,7 +152,7 @@ def get_menu_choice(ingredient):
 
         selected_code = input("Enter your choice here:\n")
 
-        if validate_data(selected_code, code_options):
+        if validate_data(selected_code, code_options, "coffee_code"):
             break
 
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -178,26 +178,30 @@ def get_quantity():
         # Create a list of integers to pass as the expected_values argument.
         quantity_options = range(1, 11)
 
-        if validate_data(selected_quantity, list(map(str, quantity_options))):
+        if validate_data(selected_quantity, list(map(str, quantity_options)), "coffee_quantity"):
             break
     os.system('cls' if os.name == 'nt' else 'clear')
 
     return int(selected_quantity)
 
-def validate_data(user_input, expected_values):
+def validate_data(user_input, expected_values, selection):
     """
     Raises ValueError if user_input is not found in list of expected_values.
     """
 
     try:
         if user_input not in expected_values:
-            if user_input == selected_code:
+            if selection == "coffee_code":
                 raise ValueError(
                     "This code is not valid"
                 )
-            elif user_input == selected_quantity:
+            elif selection == "coffee_quantity":
                 raise ValueError(
                     "This value is not valid, please enter a number between 1 and 10"
+                )
+            elif selection == "next_step":
+                raise ValueError(
+                    "This code is not valid.  Please select a number from the menu"
                 )                                       
     except ValueError as e:
             print(f"Something went wrong. {e}. Please try again.")
@@ -234,7 +238,10 @@ def view_order():
     print items currently in the order.
     """
 
-    print("You're order currently contains the following:\n")
+    if not user_order.is_complete:
+        print("You're order currently contains the following:\n")
+    else:
+        print("Here is a summary of your order:\n") 
 
     # Turn the user_order items list into a single dictionary.
     # Used the following article to learn about this:
@@ -249,7 +256,11 @@ def view_order():
     print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
      + "\n")
 
-    view_order_options()
+    if not user_order.is_complete:
+        view_order_options()
+    else:
+        print(f"Your order total is £{user_order.get_order_total()}\n"  
+              f"Your reference number is {user_order.order_ref}")
 
 def view_order_options():
     """
@@ -288,12 +299,10 @@ def view_order_options():
 
         selected_code = int(input("Enter your choice here:\n"))
 
-        if validate_data(selected_code, code_options):
+        if validate_data(selected_code, code_options, "next_step"):
             break
 
     next_step(selected_code)
-
-    os.system('cls' if os.name == 'nt' else 'clear')
 
 def next_step(user_choice):
     """
@@ -308,8 +317,8 @@ def next_step(user_choice):
     elif user_choice == 3:
         edit_options()
     elif user_choice == 4:
-        view_final()
-
+        complete_order()
+        
 def remove_options():
     """
     """
@@ -347,6 +356,16 @@ def get_time():
     time = now.strftime("%H:%M:%S") 
     return time
 
+def complete_order():
+    """
+    """
+    
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+    
+    user_order.complete_order()
+    view_order()
+
 def main():
     """
     Run all program functions.
@@ -361,8 +380,7 @@ def main():
 
 # Create an instance of the class Order
 user_order = Order()
-# main()
-# user_order.get_order_total()
+main()
 
 
 

@@ -29,3 +29,27 @@ for dict in user_order.items:
         edit_order()     
     else:
         return False
+
+# This validation code was causing a bug "selected_code not defined."
+# Fixed by adding a third parameter to the function.  See new code
+
+def validate_data(user_input, expected_values):
+    """
+    Raises ValueError if user_input is not found in list of expected_values.
+    """
+
+    try:
+        if user_input not in expected_values:
+            if user_input == selected_code:
+                raise ValueError(
+                    "This code is not valid"
+                )
+            elif user_input == selected_quantity:
+                raise ValueError(
+                    "This value is not valid, please enter a number between 1 and 10"
+                )                                       
+    except ValueError as e:
+            print(f"Something went wrong. {e}. Please try again.")
+            return False
+
+    return True
