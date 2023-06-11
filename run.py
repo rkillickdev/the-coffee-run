@@ -78,10 +78,13 @@ class Order:
             prep time based on the estimation that each coffee will take
             3 minutes to prepare.
             """
+            recent_orders = []
+            orders = SHEET.worksheet("orders")
+            total_drinks = orders.col_values(5)
+            recent_orders.append(total_drinks[-5:])
+            print(recent_orders)
 
             self.prep_time = self.total_drinks * 3
-
-            
 
         def get_date(self):
             # Returns current date 
@@ -450,8 +453,10 @@ def main():
 
 # Create an instance of the class Order
 user_order = Order()
-main()
-print(user_order.prep_time)
+# main()
+# print(user_order.prep_time)
+
+user_order.calculate_prep()
 
 
 
