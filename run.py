@@ -367,6 +367,12 @@ def complete_order():
     user_order.get_date()
     user_order.get_time()
     user_order.complete_order()
+
+    order_details = [user_order.order_ref, user_order.name, user_order.items,
+                    user_order.total_price, user_order.date, user_order.time]
+
+    print(order_details)
+
     view_order()
 
 def main():
