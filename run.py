@@ -27,6 +27,7 @@ class Order:
             self.date = get_date()
             self.time = get_time()
             self.order_ref = create_order_ref(get_orders())
+            self.is_complete = False
 
         def update_item(self, item):
             """
@@ -52,7 +53,10 @@ class Order:
                 for key, value in dict.items():
                     subtotal = value.get('Price')
                     order_total += subtotal
-            print(f"The total cost of your order is: £{order_total}") 
+            print(f"The total cost of your order is: £{order_total}")
+
+        def complete_order(self):
+            self.is_complete = True  
 
 def get_orders():
     """
