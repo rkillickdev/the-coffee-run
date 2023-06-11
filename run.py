@@ -26,6 +26,7 @@ class Order:
             self.items = [] 
             self.date = get_date()
             self.time = get_time()
+            self.total_price = 0
             self.order_ref = create_order_ref(get_orders())
             self.is_complete = False
 
@@ -53,7 +54,7 @@ class Order:
                 for key, value in dict.items():
                     subtotal = value.get('Price')
                     order_total += subtotal
-            return order_total
+            self.total_price = order_total
 
         def complete_order(self):
             self.is_complete = True  
@@ -259,7 +260,7 @@ def view_order():
     if not user_order.is_complete:
         view_order_options()
     else:
-        print(f"Your order total is £{user_order.get_order_total()}\n"  
+        print(f"Your order total is £{user_order.total_price}\n"  
               f"Your reference number is {user_order.order_ref}")
 
 def view_order_options():
@@ -362,7 +363,7 @@ def complete_order():
     
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    
+    user_order.get_order_total()
     user_order.complete_order()
     view_order()
 
