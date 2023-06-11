@@ -23,7 +23,8 @@ class Order:
 
         def __init__(self):
             self.name = get_user_name()
-            self.items = [] 
+            self.items = []
+            self.total_drinks = 0
             self.date = ""
             self.time = ""
             self.total_price = 0
@@ -45,7 +46,7 @@ class Order:
         def get_order_total(self):
             """
             Iterates over items list and for each dictionary sums the value 
-            of all 'price' keys.
+            of all 'Price' keys.
             """
 
             order_total = 0
@@ -55,6 +56,21 @@ class Order:
                     subtotal = value.get('Price')
                     order_total += subtotal
             self.total_price = order_total
+
+        def get_drinks_total(self):
+            """
+            Iterates over items list and for each dictionary sums the value 
+            of all 'Quantity' keys.
+            """
+
+            drinks_total = 0
+
+            for dict in self.items:
+                for key, value in dict.items():
+                    subtotal = value.get('Quantity')
+                    drinks_total += subtotal
+            self.total_drinks = drinks_total
+            
 
         def get_date(self):
             # Returns current date 
@@ -366,10 +382,11 @@ def complete_order():
     user_order.get_order_total()
     user_order.get_date()
     user_order.get_time()
+    user_order.get_drinks_total()
     user_order.complete_order()
 
     order_details = [user_order.order_ref, user_order.name, items_to_string(),
-                    user_order.total_price, user_order.date, user_order.time]
+                    user_order.total_price, user_order.total_drinks, user_order.date, user_order.time]
 
     send_data(order_details, "orders")
     items_to_string()
