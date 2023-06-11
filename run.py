@@ -28,6 +28,7 @@ class Order:
             self.date = ""
             self.time = ""
             self.total_price = 0
+            self.prep_time = 0
             self.order_ref = create_order_ref(get_orders())
             self.is_complete = False
 
@@ -70,6 +71,16 @@ class Order:
                     subtotal = value.get('Quantity')
                     drinks_total += subtotal
             self.total_drinks = drinks_total
+
+        def calculate_prep(self):
+            """
+            Takes the total number of drinks for the order and calculates
+            prep time based on the estimation that each coffee will take
+            3 minutes to prepare.
+            """
+
+            self.prep_time = self.total_drinks * 3
+
             
 
         def get_date(self):
@@ -383,6 +394,7 @@ def complete_order():
     user_order.get_date()
     user_order.get_time()
     user_order.get_drinks_total()
+    user_order.calculate_prep()
     user_order.complete_order()
 
     order_details = [user_order.order_ref, user_order.name, items_to_string(),
@@ -439,6 +451,7 @@ def main():
 # Create an instance of the class Order
 user_order = Order()
 main()
+print(user_order.prep_time)
 
 
 
