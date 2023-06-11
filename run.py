@@ -26,6 +26,7 @@ class Order:
             self.items = [] 
             self.date = get_date()
             self.time = get_time()
+            self.order_ref = create_order_ref(get_orders())
 
         def update_item(self, item):
             """
@@ -53,6 +54,29 @@ class Order:
                     order_total += subtotal
             print(f"The total cost of your order is: £{order_total}") 
 
+def get_orders():
+    """
+    Pulls data from "orders" sheet and returns the data without the headers
+    as orders_list.
+    """
+
+    orders = SHEET.worksheet("orders")
+    data = orders.get_all_values()
+    orders_list = data[1:]
+    return orders_list
+
+def create_order_ref(orders_list):
+    """
+    Filters only order references from the orders_list, finds the next 
+    avaialable number based on the length of the order_refs list, and 
+    assigns this to new_order_ref.  The function then returns this value.
+    """
+    order_refs = []
+    for order in orders_list:
+        order_refs.append(order[0])
+    new_order_ref = len(order_refs) + 1
+    return new_order_ref
+        
 def get_user_name():
     """
     Takes user_name input from user and validates.
@@ -333,8 +357,8 @@ def main():
 
 # Create an instance of the class Order
 user_order = Order()
-main()
-user_order.get_order_total()
+# main()
+# user_order.get_order_total()
 
 
 
