@@ -368,11 +368,10 @@ def complete_order():
     user_order.get_time()
     user_order.complete_order()
 
-    order_details = [user_order.order_ref, user_order.name, user_order.items,
+    order_details = [user_order.order_ref, user_order.name, items_to_string(),
                     user_order.total_price, user_order.date, user_order.time]
 
-    # send_data(order_details, "orders")
-    print(order_details)
+    send_data(order_details, "orders")
     items_to_string()
 
     view_order()
@@ -405,7 +404,7 @@ def items_to_string():
             summary = f"{item[2]} X {item[0]} with {item[1]} milk"
             details_list.append(summary)
     
-    details_string = "\n".join(details_list)
+    details_string = '\n'.join(details_list)
     return details_string
     
 def main():
