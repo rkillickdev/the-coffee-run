@@ -3,7 +3,7 @@ from google.oauth2.service_account import Credentials
 import pandas as pd
 import os
 from tabulate import tabulate
-from datetime import datetime
+from datetime import datetime, timedelta
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -71,19 +71,14 @@ class Order:
                     subtotal = value.get('Quantity')
                     drinks_total += subtotal
             self.total_drinks = drinks_total
-
+        
         def calculate_prep(self):
             """
             Takes the total number of drinks for the order and calculates
             prep time based on the estimation that each coffee will take
             3 minutes to prepare.
             """
-            recent_orders = []
-            orders = SHEET.worksheet("orders")
-            total_drinks = orders.col_values(5)
-            recent_orders.append(total_drinks[-5:])
-            print(recent_orders)
-
+            
             self.prep_time = self.total_drinks * 3
 
         def get_date(self):
@@ -100,6 +95,35 @@ class Order:
 
         def complete_order(self):
             self.is_complete = True  
+
+def get_recent():
+    """
+    """
+    orders = SHEET.worksheet("orders")
+    total_drinks = orders.col_values(5)
+    times = orders.col_values(7)
+    recent_orders = total_drinks[-5:]
+    recent_times = times[-5:]
+
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    current = datetime.strptime(current_time, "%H:%M:%S")
+    recent = []
+    total_recent = 0
+
+    for order, time in zip(recent_orders, recent_times):
+        max_time = timedelta(minutes=15) 
+        past = datetime.strptime(time, "%H:%M:%S") 
+        difference = current - past
+        
+        if difference <= max_time:
+            recent.append(order)
+
+    for num in recent:
+        total_recent += int(num)
+    print(f"Recent Orders: {recent}")
+    print(f"Total number of drinks is {total_recent}")
+    return total_recent
 
 def get_orders():
     """
@@ -454,9 +478,10 @@ def main():
 # Create an instance of the class Order
 user_order = Order()
 # main()
-# print(user_order.prep_time)
+print(user_order.prep_time)
 
-user_order.calculate_prep()
+# user_order.calculate_prep()
 
+get_recent()
 
 
