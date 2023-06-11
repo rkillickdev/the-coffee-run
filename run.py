@@ -24,8 +24,8 @@ class Order:
         def __init__(self):
             self.name = get_user_name()
             self.items = [] 
-            self.date = get_date()
-            self.time = get_time()
+            self.date = ""
+            self.time = ""
             self.total_price = 0
             self.order_ref = create_order_ref(get_orders())
             self.is_complete = False
@@ -55,6 +55,18 @@ class Order:
                     subtotal = value.get('Price')
                     order_total += subtotal
             self.total_price = order_total
+
+        def get_date(self):
+            # Returns current date 
+            now = datetime.now()
+            date = now.strftime("%d/%m/%Y")
+            self.date = date
+
+        def get_time(self):
+            # Returns current time
+            now = datetime.now()
+            time = now.strftime("%H:%M:%S") 
+            self.time = time
 
         def complete_order(self):
             self.is_complete = True  
@@ -344,26 +356,16 @@ def remove_options():
 def edit_order():
     """
     """
-    
-def get_date():
-    # Returns current date 
-    now = datetime.now()
-    date = now.strftime("%d/%m/%Y")
-    return date
-
-def get_time():
-    # Returns current time
-    now = datetime.now()
-    time = now.strftime("%H:%M:%S") 
-    return time
 
 def complete_order():
     """
     """
-    
+
     os.system('cls' if os.name == 'nt' else 'clear')
 
     user_order.get_order_total()
+    user_order.get_date()
+    user_order.get_time()
     user_order.complete_order()
     view_order()
 
