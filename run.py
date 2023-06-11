@@ -371,10 +371,43 @@ def complete_order():
     order_details = [user_order.order_ref, user_order.name, user_order.items,
                     user_order.total_price, user_order.date, user_order.time]
 
+    # send_data(order_details, "orders")
     print(order_details)
+    items_to_string()
 
     view_order()
 
+def send_data(data, worksheet):
+    """
+    Receives a list to be inserted into a worksheet.
+    Update the relevant worksheet with the data provided.
+    """
+    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update.append_row(data)
+    print("Your order has been submitted!")
+
+def items_to_string():
+    """
+    Iterates over items in instance of the Class Order.
+    Nested loop used to get the values of each dictionary.
+    A summary string is created for each item and appended
+    to the details_list.
+    The summary strings are joined and saved as details_string. 
+    """
+    details_list = []
+    
+    for dict in user_order.items:
+        item = []    
+        for key, value in dict.items():
+            details = value
+            for key, value in details.items():
+                item.append(value)
+            summary = f"{item[2]} X {item[0]} with {item[1]} milk"
+            details_list.append(summary)
+    
+    details_string = "\n".join(details_list)
+    return details_string
+    
 def main():
     """
     Run all program functions.
