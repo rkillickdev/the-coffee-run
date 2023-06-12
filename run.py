@@ -280,11 +280,34 @@ def get_quantity():
         # Create a list of integers to pass as the expected_values argument.
         quantity_options = range(1, 11)
 
-        if validate_data(selected_quantity, list(map(str, quantity_options)), "coffee_quantity"):
+        if validate_data(selected_quantity, list(map(str, quantity_options)),
+                        "coffee_quantity"):
             break
+
+    if not validate_drinks(selected_quantity):
+        print("here are your options")
+        view_order_options()
+
     os.system('cls' if os.name == 'nt' else 'clear')
 
     return int(selected_quantity)
+
+def validate_drinks(user_input):
+    """
+    Checks sum of user input and total number of drinks currently in the order.
+    If sum is greater than 10 return False.
+    """
+    try:
+        if int(user_input) + user_order.total_drinks >10:
+            raise ValueError(
+                "You can only order a maximum of 10 drinks per order" 
+            )
+
+    except ValueError as e:
+        print(f"Something went wrong. {e}. Please try again.")
+        return False
+
+    return True
 
 def validate_data(user_input, expected_values, selection):
     """
