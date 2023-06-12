@@ -107,18 +107,19 @@ class Order:
 
         def calculate_pickup(self):
             """
+            Creates a datetime object for the current time and a timedelta
+            object using the value stored in the order attribute 'prep_time'.
+            These objects are added and then converted to a string which is
+            assigned to the orderattribute 'pickup'. 
             """
+            # I read the following article for adding minutes to datetime:
+            # https://thispointer.com/how-to-add-minutes-to-datetime-in-python/
+
             time_now = datetime.strptime(self.time, "%H:%M:%S")
-            print(time_now)
             duration = timedelta(minutes=self.prep_time)
-            print(duration)
             pickup_time = time_now + duration
             pickup_string = pickup_time.strftime("%H:%M:%S")
-            print(pickup_string)
             self.pickup = pickup_string
-
-            
-
 
         def complete_order(self):
             self.is_complete = True  
@@ -134,6 +135,8 @@ def get_recent():
     drinks = total_drinks[1:]
     order_times = time[1:]
 
+    # I used the following article to learn about manipulating datetime:
+    # https://www.dataquest.io/blog/python-datetime-tutorial/
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     current = datetime.strptime(current_time, "%H:%M:%S")
