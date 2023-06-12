@@ -98,12 +98,14 @@ class Order:
 
 def get_recent():
     """
+    Gets the column data for total drink and time from "orders" sheet.
+    Filters and returns total drinks ordered in the last 15 minutes. 
     """
     orders = SHEET.worksheet("orders")
     total_drinks = orders.col_values(5)
-    times = orders.col_values(7)
-    recent_orders = total_drinks[-5:]
-    recent_times = times[-5:]
+    time = orders.col_values(7)
+    drinks = total_drinks[1:]
+    order_times = time[1:]
 
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
@@ -111,18 +113,21 @@ def get_recent():
     recent = []
     total_recent = 0
 
-    for order, time in zip(recent_orders, recent_times):
+    # Iterates over order times and calculates difference between current time.
+    for order, time in zip(drinks, order_times):
         max_time = timedelta(minutes=15) 
         past = datetime.strptime(time, "%H:%M:%S") 
         difference = current - past
         
+        # Appends total drinks placed in last 15 minutes to recent list
         if difference <= max_time:
             recent.append(order)
 
+    # Calculates total number of recent drinks ordered
     for num in recent:
         total_recent += int(num)
     print(f"Recent Orders: {recent}")
-    print(f"Total number of drinks is {total_recent}")
+    print(f"Total number of recent drinks is {total_recent}")
     return total_recent
 
 def get_orders():
