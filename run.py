@@ -358,6 +358,9 @@ def view_order():
     print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
      + "\n")
 
+    # Updates user_order total_drinks attribute.
+    user_order.get_drinks_total()
+
     if not user_order.is_complete:
         view_order_options()
     else:
@@ -455,7 +458,6 @@ def complete_order():
     user_order.get_order_total()
     user_order.get_date()
     user_order.get_time()
-    user_order.get_drinks_total()
     user_order.calculate_prep()
     user_order.calculate_pickup()
     user_order.complete_order()
