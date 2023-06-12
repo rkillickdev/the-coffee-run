@@ -83,7 +83,7 @@ class Order:
             additional_time = 0
             if recent_drinks >= 10:
                 additional_time = 15
-            elif recent_drinks <10:
+            elif 0< recent_drinks <10:
                 additional_time = 10   
 
             self.prep_time = (self.total_drinks * 2) + additional_time   
