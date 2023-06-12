@@ -76,10 +76,17 @@ class Order:
             """
             Takes the total number of drinks for the order and calculates
             prep time based on the estimation that each coffee will take
-            3 minutes to prepare.
+            2 minutes to prepare.  The number of recent drinks orders is
+            also used to estimate the additional time required to prepare.
             """
-            
-            self.prep_time = self.total_drinks * 3
+            recent_drinks = get_recent()
+            additional_time = 0
+            if recent_drinks >= 10:
+                additional_time = 15
+            elif recent_drinks <10:
+                additional_time = 10   
+
+            self.prep_time = (self.total_drinks * 2) + additional_time   
 
         def get_date(self):
             # Returns current date 
@@ -482,11 +489,10 @@ def main():
 
 # Create an instance of the class Order
 user_order = Order()
-# main()
+main()
 print(user_order.prep_time)
 
-# user_order.calculate_prep()
 
-get_recent()
+
 
 
