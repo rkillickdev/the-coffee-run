@@ -29,6 +29,7 @@ class Order:
             self.time = ""
             self.total_price = 0
             self.prep_time = 0
+            self.pickup = ""
             self.order_ref = create_order_ref(get_orders())
             self.is_complete = False
 
@@ -89,16 +90,35 @@ class Order:
             self.prep_time = (self.total_drinks * 2) + additional_time   
 
         def get_date(self):
-            # Returns current date 
+            """
+            Returns current date
+            """ 
             now = datetime.now()
             date = now.strftime("%d/%m/%Y")
             self.date = date
 
         def get_time(self):
-            # Returns current time
+            """
+            Returns current time
+            """
             now = datetime.now()
             time = now.strftime("%H:%M:%S") 
             self.time = time
+
+        def calculate_pickup(self):
+            """
+            """
+            time_now = datetime.strptime(self.time, "%H:%M:%S")
+            print(time_now)
+            duration = timedelta(minutes=self.prep_time)
+            print(duration)
+            pickup_time = time_now + duration
+            pickup_string = pickup_time.strftime("%H:%M:%S")
+            print(pickup_string)
+            self.pickup = pickup_string
+
+            
+
 
         def complete_order(self):
             self.is_complete = True  
@@ -434,6 +454,7 @@ def complete_order():
     user_order.get_time()
     user_order.get_drinks_total()
     user_order.calculate_prep()
+    user_order.calculate_pickup()
     user_order.complete_order()
 
     order_details = [user_order.order_ref, user_order.name, items_to_string(),
@@ -491,6 +512,7 @@ def main():
 user_order = Order()
 main()
 print(user_order.prep_time)
+print(user_order.pickup)
 
 
 
