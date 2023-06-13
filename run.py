@@ -309,7 +309,7 @@ def validate_drinks(user_input):
 
     return True
 
-def validate_data(user_input, expected_values, selection):
+def validate_data(user_input, expected_values, selection = ""):
     """
     Raises ValueError if user_input is not found in list of expected_values.
     """
@@ -441,7 +441,11 @@ def next_step(user_choice):
     if user_choice == 1:
         main()
     elif user_choice == 2:
-        remove_options()
+        if not user_order.items:
+            print("I'm sorry there are no more items to remove")
+            main()
+        else:
+            remove_options()
     elif user_choice == 3:
         edit_options()
     elif user_choice == 4:
@@ -451,8 +455,34 @@ def remove_options():
     """
     """
 
-    options = list(range(len(user_order.items)))
-    print(options)
+    keys = list(range(len(user_order.items)))
+    # Generates a key based on the number of items already in the order
+    # key = [len(user_order.items) + 1]
+    print(keys)
+
+    # Creates a dictionary using the item dictionary as the value.
+    for item in user_order.items:
+        updated_dict = dict(zip(keys, item.values()))
+        print(updated_dict)
+    new_list = []
+    # for i, item in zip(options, user_order.items):
+    # for item in user_order.items:
+        # key = i+1
+        # value = item.values()
+        # item = dict.fromkeys(i, item.values())
+        # new_list.append(item)
+        # print(key)
+        # print(value)
+        # updated_dict = dict(key, value)
+        # print(updated_dict)
+    # print(new_list)
+        # index = i
+        # print(index)
+        # key = item[index]
+        # print(key)
+
+
+    # print(options)
 
     while True:
 
