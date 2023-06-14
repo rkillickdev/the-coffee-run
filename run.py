@@ -390,6 +390,34 @@ def view_order():
         print(f"Your order total is £{user_order.total_price}\n"  
               f"Your reference number is {user_order.order_ref}")
 
+def update_order_dict():
+    """
+    """
+
+    print(user_order.items)
+
+    options = list(range(len(user_order.items)))
+    keys = [i + 1 for i in options]
+    updated_order_list = [] 
+
+    for k, item in zip(keys, user_order.items):
+        dict_key = list(item.keys())
+        value = dict_key[0]
+        print(dict_key)
+        print(value)
+        print(k)
+        print(item)
+        new_dict = {k : item[value]}
+        updated_order_list.append(new_dict)
+        print(new_dict)
+    print(updated_order_list)
+    user_order.items = updated_order_list
+    print(user_order.items)
+    # return updated_order_list
+
+
+
+
 def view_order_options():
     """
     Create a data frame from the options dictionary.
@@ -397,7 +425,7 @@ def view_order_options():
     Accept user input, validate and pass this as an argument 
     to the function next_step.
     """
-
+    
     options = {
         1 : {
             "Action" : "Add an item to order"
@@ -459,16 +487,18 @@ def remove_options():
     # Generates a key based on the number of items already in the order
     # key = [len(user_order.items) + 1]
     keys = [i + 1 for i in options]
-    print(options)
-    print(keys)
+    # print(options)
+    # print(keys)
 
     # Creates a dictionary using the item dictionary as the value.
-    for k, item in zip(keys, user_order.items):
-        print(k)
-        print(item)
-        # updated_dict = dict(zip(k, item.values()))
-        # print(updated_dict)
-    new_list = []
+
+    # new_dict = {k:v for item in user_order.items for k,v in item.items()}
+    # for k, item in zip(keys, user_order.items):
+    #     print(k)
+    #     print(item)
+    #     updated_dict = dict.fromkeys(keys, item.values())
+    #     print(updated_dict)
+    # new_list = []
     # for i, item in zip(options, user_order.items):
     # for item in user_order.items:
         # key = i+1
@@ -500,6 +530,7 @@ def remove_options():
     index = selected_code - 1
     print(index)
     user_order.remove_item(index)
+    update_order_dict()
     view_order()
 
 def edit_order():
