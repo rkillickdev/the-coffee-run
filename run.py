@@ -324,7 +324,7 @@ def validate_data(user_input, expected_values, selection = ""):
                 raise ValueError(
                     "This value is not valid, please enter a number between 1 and 10"
                 )
-            elif selection == "next_step":
+            elif selection == "next_step" or "remove_options":
                 raise ValueError(
                     "This code is not valid.  Please select a number from the menu"
                 )                                       
@@ -503,7 +503,7 @@ def remove_options(keys):
 
         selected_code = int(input("Enter a number here:\n"))
 
-        if validate_data(selected_code, keys):
+        if validate_data(selected_code, keys, "remove_options"):
             break
 
     index = selected_code - 1
