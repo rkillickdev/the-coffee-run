@@ -349,12 +349,16 @@ def create_item_dict():
 
     user_choices = [get_menu_choice(pull_menu("coffee")), get_menu_choice(pull_menu("milk")), get_quantity()]
 
+    # calculate unit price
+    unit = user_choices[0][1] + user_choices[1][1] 
+
     # user_choices converted from a list to a dictionary
     item = [{
         "Coffee" : user_choices[0][0],
         "Milk" : user_choices[1][0],
+        "Unit Price" : unit,
         "Quantity" : user_choices[2],
-        "Price" : (user_choices[0][1] + user_choices[1][1]) * user_choices[2]
+        "Price" : unit * user_choices[2]
     }]
 
     # Generates a key based on the number of items already in the order
@@ -523,7 +527,7 @@ def input_options(keys, option):
         print(updated_quantity)
         item = user_order.items[index]
         item[index + 1]['Quantity'] = updated_quantity
-
+        item[index + 1]['Price'] = item[index + 1]['Unit Price'] * updated_quantity
         print(item[index + 1]['Quantity'])
         print(user_order.items)
         view_order("choices")
