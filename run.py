@@ -455,15 +455,19 @@ def remove_options():
     """
     """
 
-    keys = list(range(len(user_order.items)))
+    options = list(range(len(user_order.items)))
     # Generates a key based on the number of items already in the order
     # key = [len(user_order.items) + 1]
+    keys = [i + 1 for i in options]
+    print(options)
     print(keys)
 
     # Creates a dictionary using the item dictionary as the value.
-    for item in user_order.items:
-        updated_dict = dict(zip(keys, item.values()))
-        print(updated_dict)
+    for k, item in zip(keys, user_order.items):
+        print(k)
+        print(item)
+        # updated_dict = dict(zip(k, item.values()))
+        # print(updated_dict)
     new_list = []
     # for i, item in zip(options, user_order.items):
     # for item in user_order.items:
@@ -490,7 +494,7 @@ def remove_options():
 
         selected_code = int(input("Enter a number here:\n"))
 
-        if validate_data(selected_code, options):
+        if validate_data(selected_code, keys):
             break
 
     index = selected_code - 1
