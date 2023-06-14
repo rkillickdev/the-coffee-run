@@ -473,7 +473,7 @@ def next_step(user_choice):
             print("I'm sorry there are no more items to remove")
             main()
         else:
-            remove_options()
+            remove_options(get_keys())
     elif user_choice == 3:
         edit_options()
     elif user_choice == 4:
@@ -490,44 +490,12 @@ def get_keys():
     return keys
 
 
-def remove_options():
+def remove_options(keys):
     """
+    Accepts a code form the user.  If valid, this code is used to generate the
+    necessary index for the item being removed, which is then passed as an 
+    argument to the remove_item method on the class instance user_order.
     """
-
-    options = list(range(len(user_order.items)))
-    # Generates a key based on the number of items already in the order
-    # key = [len(user_order.items) + 1]
-    keys = [i + 1 for i in options]
-    # print(options)
-    # print(keys)
-
-    # Creates a dictionary using the item dictionary as the value.
-
-    # new_dict = {k:v for item in user_order.items for k,v in item.items()}
-    # for k, item in zip(keys, user_order.items):
-    #     print(k)
-    #     print(item)
-    #     updated_dict = dict.fromkeys(keys, item.values())
-    #     print(updated_dict)
-    # new_list = []
-    # for i, item in zip(options, user_order.items):
-    # for item in user_order.items:
-        # key = i+1
-        # value = item.values()
-        # item = dict.fromkeys(i, item.values())
-        # new_list.append(item)
-        # print(key)
-        # print(value)
-        # updated_dict = dict(key, value)
-        # print(updated_dict)
-    # print(new_list)
-        # index = i
-        # print(index)
-        # key = item[index]
-        # print(key)
-
-
-    # print(options)
 
     while True:
 
@@ -539,7 +507,6 @@ def remove_options():
             break
 
     index = selected_code - 1
-    print(index)
     user_order.remove_item(index)
     update_order_dict()
     view_order()

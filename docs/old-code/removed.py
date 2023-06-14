@@ -53,3 +53,59 @@ def validate_data(user_input, expected_values):
             return False
 
     return True
+
+
+    def remove_options(keys):
+    """
+    Original workings for this function with much experimentation!
+    """
+
+    options = list(range(len(user_order.items)))
+    # Generates a key based on the number of items already in the order
+    # key = [len(user_order.items) + 1]
+    keys = [i + 1 for i in options]
+    # print(options)
+    # print(keys)
+
+    # Creates a dictionary using the item dictionary as the value.
+
+    # new_dict = {k:v for item in user_order.items for k,v in item.items()}
+    # for k, item in zip(keys, user_order.items):
+    #     print(k)
+    #     print(item)
+    #     updated_dict = dict.fromkeys(keys, item.values())
+    #     print(updated_dict)
+    # new_list = []
+    # for i, item in zip(options, user_order.items):
+    # for item in user_order.items:
+        # key = i+1
+        # value = item.values()
+        # item = dict.fromkeys(i, item.values())
+        # new_list.append(item)
+        # print(key)
+        # print(value)
+        # updated_dict = dict(key, value)
+        # print(updated_dict)
+    # print(new_list)
+        # index = i
+        # print(index)
+        # key = item[index]
+        # print(key)
+
+
+    # print(options)
+
+    while True:
+
+        print("Which item of your order you would like to remove?")
+
+        selected_code = int(input("Enter a number here:\n"))
+
+        if validate_data(selected_code, keys):
+            break
+
+    index = selected_code - 1
+    print(index)
+    user_order.remove_item(index)
+    update_order_dict()
+    view_order()
