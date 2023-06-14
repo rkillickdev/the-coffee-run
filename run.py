@@ -324,7 +324,7 @@ def validate_data(user_input, expected_values, selection = ""):
                 raise ValueError(
                     "This value is not valid, please enter a number between 1 and 10"
                 )
-            elif selection == "next_step" or "remove_options":
+            elif selection == "options":
                 raise ValueError(
                     "This code is not valid.  Please select a number from the menu"
                 )                                       
@@ -447,7 +447,7 @@ def view_order_options():
 
         selected_code = int(input("Enter your choice here:\n"))
 
-        if validate_data(selected_code, code_options, "next_step"):
+        if validate_data(selected_code, code_options, "options"):
             break
 
     next_step(selected_code)
@@ -465,9 +465,9 @@ def next_step(user_choice):
             print("I'm sorry there are no more items to remove")
             main()
         else:
-            remove_options(get_keys())
+            input_options(get_keys(), "remove")
     elif user_choice == 3:
-        edit_options(get_keys())
+        input_options(get_keys(), "edit")
     elif user_choice == 4:
         complete_order()
 
@@ -481,8 +481,7 @@ def get_keys():
     keys = [i + 1 for i in options]
     return keys
 
-
-def remove_options(keys):
+def input_options(keys, option):
     """
     Accepts a code form the user.  If valid, this code is used to generate the
     necessary index for the item being removed, which is then passed as an 
@@ -494,24 +493,77 @@ def remove_options(keys):
 
     while True:
 
-        print("Which item of your order you would like to remove?")
+        print(f"Which item of your order you would like to {option}?")
 
         selected_code = int(input("Enter a number here:\n"))
 
-        if validate_data(selected_code, keys, "remove_options"):
+        if validate_data(selected_code, keys, "options"):
             break
 
     index = selected_code - 1
-    user_order.remove_item(index)
-    update_order_dict()
-    if not user_order.items:
-        main()
-    else:
+    if option == "remove":
+        user_order.remove_item(index)
+        update_order_dict()
+        if not user_order.items:
+            main()
+        else:
+            view_order("choices")
+
+    elif option == "edit":
+        print(user_order.items)
+        updated_quantity = get_quantity()
+        print(updated_quantity)
+        item = user_order.items[index]
+        item[index + 1]['Quantity'] = updated_quantity
+
+        print(item[index + 1]['Quantity'])
+        print(user_order.items)
         view_order("choices")
 
-def edit_options(keys):
-    """
-    """
+# def remove_options(keys):
+#     """
+#     Accepts a code form the user.  If valid, this code is used to generate the
+#     necessary index for the item being removed, which is then passed as an 
+#     argument to the remove_item method on the class instance user_order.
+#     """
+
+#     os.system('cls' if os.name == 'nt' else 'clear')
+#     view_order()
+
+#     while True:
+
+#         print("Which item of your order you would like to remove?")
+
+#         selected_code = int(input("Enter a number here:\n"))
+
+#         if validate_data(selected_code, keys, "options"):
+#             break
+
+#     index = selected_code - 1
+#     user_order.remove_item(index)
+#     update_order_dict()
+#     if not user_order.items:
+#         main()
+#     else:
+#         view_order("choices")
+
+# def edit_options(keys):
+#     """
+#     """
+#     os.system('cls' if os.name == 'nt' else 'clear')
+#     view_order()
+
+#     while True:
+#     print("Which item of your order you would like to edit?")
+
+#     selected_code = int(input("Enter a number here:\n"))
+
+#     if validate_data(selected_code, keys, "options"):
+#         break
+
+    
+
+
 
 def complete_order():
     """
