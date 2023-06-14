@@ -222,22 +222,30 @@ def validate_name(user_input):
     return True
 
 
-def get_menu_choice(ingredient):
+def pull_menu(ingredient):
     """
     Pulls data from whatever sheet name is passed as an argument to the function.
     Assigns values to the variable data.
-    Assigns index 0 of the variable data to the variable header_names.
-    Assigns remaining indexes of variable data to the variable menu_content.  
     """
 
     menu = SHEET.worksheet(f"{ingredient}")
     data = menu.get_all_values()
+    return [data, ingredient]
+
+def get_menu_choice(data):
+    """
+    Assigns index 0 of the variable data to the variable header_names.
+    Assigns remaining indexes of variable data to the variable menu_content.  
+    """
     
+    menu = data[0]
+    ingredient = data[1]
+
     # Set first row of specified sheet as header names.
-    header_names = data[0]
+    header_names = menu[0]
 
     # Assign rows from data to variable menu_content. 
-    menu_content = data[1:]
+    menu_content = menu[1:]
 
     # Generate a list of code options to validate input against.
     code_options = []
@@ -259,8 +267,8 @@ def get_menu_choice(ingredient):
 
     os.system('cls' if os.name == 'nt' else 'clear')
     
-    item = (data[int(selected_code)][1])
-    unit_cost = (data[int(selected_code)][2])
+    item = (menu[int(selected_code)][1])
+    unit_cost = (menu[int(selected_code)][2])
     if ingredient == "coffee":
         print("Great, now let's get your coffee just how you like it!\n")
     return item, float(unit_cost)
@@ -339,7 +347,7 @@ def create_item_dict():
     Stores user_choices by calling the get_menu_choice and get_quantity functions"
     """
 
-    user_choices = [get_menu_choice("coffee"), get_menu_choice("milk"), get_quantity()]
+    user_choices = [get_menu_choice(pull_menu("coffee")), get_menu_choice(pull_menu("milk")), get_quantity()]
 
     # user_choices converted from a list to a dictionary
     item = [{
