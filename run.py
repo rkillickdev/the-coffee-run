@@ -478,7 +478,18 @@ def next_step(user_choice):
         edit_options()
     elif user_choice == 4:
         complete_order()
-        
+
+def get_keys():
+    """
+    Finds the length of the user_order.items list and iterates over this
+    to generate a list of integers to be used as dictionary keys.
+    """
+
+    options = list(range(len(user_order.items)))
+    keys = [i + 1 for i in options]
+    return keys
+
+
 def remove_options():
     """
     """
@@ -533,7 +544,7 @@ def remove_options():
     update_order_dict()
     view_order()
 
-def edit_order():
+def edit_options():
     """
     """
 
