@@ -357,11 +357,13 @@ def create_item_dict():
 
     return item_dict
 
-def view_order():
+def view_order(selection=""):
     """
     Iterates over each dictionary stored in user_order items list and uses f string to
     print items currently in the order.
     """
+
+    os.system('cls' if os.name == 'nt' else 'clear')
 
     if not user_order.is_complete:
         print("You're order currently contains the following:\n")
@@ -384,17 +386,17 @@ def view_order():
     # Updates user_order total_drinks attribute.
     user_order.get_drinks_total()
 
-    if not user_order.is_complete:
+    
+    if selection == "choices":
         view_order_options()
-    else:
-        print(f"Your order total is £{user_order.total_price}\n"  
-              f"Your reference number is {user_order.order_ref}")
+
+    # else:
+    #     print(f"Your order total is £{user_order.total_price}\n"  
+    #           f"Your reference number is {user_order.order_ref}")
 
 def update_order_dict():
     """
     """
-
-    print(user_order.items)
 
     options = list(range(len(user_order.items)))
     keys = [i + 1 for i in options]
@@ -403,20 +405,10 @@ def update_order_dict():
     for k, item in zip(keys, user_order.items):
         dict_key = list(item.keys())
         value = dict_key[0]
-        print(dict_key)
-        print(value)
-        print(k)
-        print(item)
         new_dict = {k : item[value]}
         updated_order_list.append(new_dict)
-        print(new_dict)
-    print(updated_order_list)
+    
     user_order.items = updated_order_list
-    print(user_order.items)
-    # return updated_order_list
-
-
-
 
 def view_order_options():
     """
@@ -475,7 +467,7 @@ def next_step(user_choice):
         else:
             remove_options(get_keys())
     elif user_choice == 3:
-        edit_options()
+        edit_options(get_keys())
     elif user_choice == 4:
         complete_order()
 
@@ -497,6 +489,9 @@ def remove_options(keys):
     argument to the remove_item method on the class instance user_order.
     """
 
+    os.system('cls' if os.name == 'nt' else 'clear')
+    view_order()
+
     while True:
 
         print("Which item of your order you would like to remove?")
@@ -509,9 +504,12 @@ def remove_options(keys):
     index = selected_code - 1
     user_order.remove_item(index)
     update_order_dict()
-    view_order()
+    if not user_order.items:
+        main()
+    else:
+        view_order("choices")
 
-def edit_options():
+def edit_options(keys):
     """
     """
 
@@ -576,7 +574,7 @@ def main():
     item = create_item_dict()
     os.system('cls' if os.name == 'nt' else 'clear')
     user_order.update_item(item)
-    view_order()
+    view_order("choices")
        
 
 # Create an instance of the class Order
