@@ -168,6 +168,7 @@ def assemble_order():
     os.system('cls' if os.name == 'nt' else 'clear')
     user_order.update_item(item)
     view_order("choices")
+    # user_menu(action_options(), "order_options")
 
 def get_recent():
     """
@@ -445,7 +446,8 @@ def view_order(selection=""):
 
     
     if selection == "choices":
-        view_order_options()
+        # view_order_options()
+        user_menu(action_options(), "order_options")
 
     # else:
     #     print(f"Your order total is £{user_order.total_price}\n"  
@@ -485,12 +487,12 @@ def user_options():
 
     return user_options
 
-def view_order_options():
+def action_options():
     """
 
     """
     
-    action_options = {
+    actions = {
         1 : {
             "Action" : "Add an item to order"
         },
@@ -505,7 +507,7 @@ def view_order_options():
         }
     }
 
-    return action_options
+    return actions
 
 def user_menu(options, menu):
     """
@@ -535,7 +537,7 @@ def user_menu(options, menu):
     
     if menu == "main":
         main_menu_steps(selected_code)
-    elif options == "view_order_options()":
+    elif menu == "order_options":
         next_step(selected_code)
 
 def next_step(user_choice):
