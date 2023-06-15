@@ -72,7 +72,26 @@ class Order:
                     subtotal = value.get('Quantity')
                     drinks_total += subtotal
             self.total_drinks = drinks_total
-        
+
+        def get_quantity(self, ingredient, type, keys):
+            """
+            Iterates over the class attribute items and checks the quantity
+            of the 'type' argument that has been passed, in each dictionary
+            in the list.  The total of items of this 'type' is then calculated
+            and returned as the variable total_quantity
+            """
+
+            quantities_list = []
+            
+            for k, item in zip(keys, self.items):
+                if item [k][f"{ingredient}"] == type:
+                    quantity = item[k]['Quantity']
+                else:
+                    quantity = 0
+                quantities_list.append(quantity)
+            total_quantity = sum(quantities_list)
+            return total_quantity
+                        
         def calculate_prep(self):
             """
             Takes the total number of drinks for the order and calculates
@@ -639,6 +658,7 @@ def main():
     os.system('cls' if os.name == 'nt' else 'clear')
     user_order.update_item(item)
     view_order("choices")
+    user_order.get_quantity("Coffee", "flat white", get_keys())
        
 
 # Create an instance of the class Order
