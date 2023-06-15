@@ -662,7 +662,7 @@ def items_to_string():
             details = value
             for key, value in details.items():
                 item.append(value)
-            summary = f"{item[2]} X {item[0]} with {item[1]} milk"
+            summary = f"{item[3]} X {item[0]} with {item[1]} milk"
             details_list.append(summary)
     
     details_string = '\n'.join(details_list)
