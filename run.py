@@ -593,9 +593,6 @@ def input_options(keys, option):
 #         break
 
     
-
-
-
 def complete_order():
     """
     """
@@ -613,9 +610,32 @@ def complete_order():
                     user_order.total_price, user_order.total_drinks, user_order.date, user_order.time]
 
     send_data(order_details, "orders")
-    items_to_string()
+    # items_to_string()
 
     view_order()
+    sales_data()
+
+def sales_data():
+    """
+    Compile a sales list with the quantity of each type of coffe and milk
+    in the order.
+    """
+
+    fw_sales = user_order.get_quantity("Coffee", "flat white", get_keys())
+    la_sales = user_order.get_quantity("Coffee", "latte", get_keys())
+    ca_sales = user_order.get_quantity("Coffee", "cappuccino", get_keys())
+    am_sales = user_order.get_quantity("Coffee", "americano", get_keys())   
+    reg_sales = user_order.get_quantity("Milk", "regular", get_keys())
+    ski_sales = user_order.get_quantity("Milk", "skinny", get_keys())
+    oat_sales = user_order.get_quantity("Milk", "oat", get_keys())
+    soy_sales = user_order.get_quantity("Milk", "soy", get_keys())
+
+    sales = [fw_sales, la_sales, ca_sales, am_sales, reg_sales, ski_sales,
+            oat_sales, soy_sales]
+    sales.append(user_order.time)
+    sales.append(user_order.date) 
+
+    print(sales)
 
 def send_data(data, worksheet):
     """
@@ -658,9 +678,7 @@ def main():
     os.system('cls' if os.name == 'nt' else 'clear')
     user_order.update_item(item)
     view_order("choices")
-    user_order.get_quantity("Coffee", "flat white", get_keys())
        
-
 # Create an instance of the class Order
 user_order = Order()
 main()
