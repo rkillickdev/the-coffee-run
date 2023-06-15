@@ -22,7 +22,7 @@ class Order:
         """
 
         def __init__(self):
-            self.name = get_user_name()
+            self.name = ""
             self.items = []
             self.total_drinks = 0
             self.date = ""
@@ -143,6 +143,32 @@ class Order:
         def complete_order(self):
             self.is_complete = True  
 
+def main_menu_steps(user_choice):
+    """
+    """
+
+    if user_choice == 1:
+        create_order()
+
+def create_order():
+    """
+    """
+
+    get_user_name()
+    print(f"Hi {user_order.name} So you need some coffee..." 
+            f"and fast?! Here's what we offer:\n")
+    assemble_order()
+
+def assemble_order():
+    """
+    """
+
+    # os.system('cls' if os.name == 'nt' else 'clear')
+    item = create_item_dict()
+    os.system('cls' if os.name == 'nt' else 'clear')
+    user_order.update_item(item)
+    view_order("choices")
+
 def get_recent():
     """
     Gets the column data for total drink and time from "orders" sheet.
@@ -217,7 +243,7 @@ def get_user_name():
         if validate_name(user_name):
             break
 
-    return user_name
+    user_order.name = user_name
 
 def validate_name(user_input):
     """
@@ -441,15 +467,30 @@ def update_order_dict():
     
     user_order.items = updated_order_list
 
+def user_options():
+    """
+    """
+
+    user_options = {
+        1: {
+            "Action" : "Order Coffee"
+        },
+        2: {
+            "Action" : "View Existing Order"
+        },
+        3: {
+            "Action" : "Admin Login"
+        }
+    }
+
+    return user_options
+
 def view_order_options():
     """
-    Create a data frame from the options dictionary.
-    Display user options using tabulate.
-    Accept user input, validate and pass this as an argument 
-    to the function next_step.
+
     """
     
-    options = {
+    action_options = {
         1 : {
             "Action" : "Add an item to order"
         },
@@ -463,6 +504,16 @@ def view_order_options():
             "Action" : "Finalise Order"
         }
     }
+
+    return action_options
+
+def user_menu(options, menu):
+    """
+    Create a data frame from the options dictionary.
+    Display user options using tabulate.
+    Accept user input, validate and pass this as an argument 
+    to the function next_step.
+    """
 
     # Generate a list of code options to validate input against.
     code_options = list(options.keys())
@@ -481,7 +532,11 @@ def view_order_options():
         if validate_data(selected_code, code_options, "options"):
             break
 
-    next_step(selected_code)
+    
+    if menu == "main":
+        main_menu_steps(selected_code)
+    elif options == "view_order_options()":
+        next_step(selected_code)
 
 def next_step(user_choice):
     """
@@ -490,7 +545,7 @@ def next_step(user_choice):
     """
 
     if user_choice == 1:
-        main()
+        assemble_order()
     elif user_choice == 2:
         if not user_order.items:
             print("I'm sorry there are no more items to remove")
@@ -672,12 +727,8 @@ def main():
     """
     Run all program functions.
     """
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(f"Hi {user_order.name} So you need some coffee... and fast?! Here's what we offer:\n")
-    item = create_item_dict()
-    os.system('cls' if os.name == 'nt' else 'clear')
-    user_order.update_item(item)
-    view_order("choices")
+    user_menu(user_options(), "main")
+   
        
 # Create an instance of the class Order
 user_order = Order()
