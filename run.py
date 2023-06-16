@@ -653,7 +653,7 @@ def complete_order():
     send_data(order_details, "orders")
 
     view_order()
-    sales_data()
+    send_data(sales_data(), "sales")
 
 def sales_data():
     """
@@ -673,14 +673,16 @@ def sales_data():
     sales = [fw_sales, la_sales, ca_sales, am_sales, reg_sales, ski_sales,
             oat_sales, soy_sales]
     sales.append(user_order.time)
-    sales.append(user_order.date) 
+    sales.append(user_order.date)
 
-def send_data(data, worksheet):
+    return sales 
+
+def send_data(data, sheet_name):
     """
     Receives a list to be inserted into a worksheet.
     Update the relevant worksheet with the data provided.
     """
-    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update = SHEET.worksheet(sheet_name)
     worksheet_to_update.append_row(data)
     print("Your order has been submitted!")
     
