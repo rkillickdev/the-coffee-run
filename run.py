@@ -193,12 +193,17 @@ def assemble_order():
 
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    get_user_name()
+    if user_order.name == "":
+        get_user_name()
 
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    print(f"Hi {user_order.name} So you need some coffee..." 
-            f"and fast?! Here's what we offer:\n")
+    if not user_order.items:
+        print(f"Hi {user_order.name}, so you need some coffee..." 
+               "and fast?! Here's what we offer:\n")
+    else:
+        print(f"Hello again {user_order.name}, so you want to add "
+               "some more items?  Go ahead:\n")
 
     item = create_item_dict()
     os.system('cls' if os.name == 'nt' else 'clear')
