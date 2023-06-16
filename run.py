@@ -519,15 +519,21 @@ def user_menu(options, menu):
 
     # Generate a list of code options to validate input against.
     code_options = list(options.keys())
+    first = code_options[0]
+    last = code_options[-1]
 
-    print("What would you like to do next?\n")
+    if menu == "main":
+        print("Welcome to The Coffee Run, what would you like to do today?\n")
+    else:
+        print("What would you like to do next?\n")
 
     df = pd.DataFrame(options)
     print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
      + "\n")
 
     while True:
-        print("Please choose your next step by entering the code (1-4)\n")
+        print(f"Please choose your next step by entering the code " 
+              f"({first} - {last})\n")
 
         selected_code = int(input("Enter your choice here:\n"))
 
