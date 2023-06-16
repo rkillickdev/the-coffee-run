@@ -206,7 +206,6 @@ def assemble_order():
                "some more items?  Go ahead:\n")
 
     item = create_item_dict()
-    os.system('cls' if os.name == 'nt' else 'clear')
     user_order.update_item(item)
     view_order("choices")
 
