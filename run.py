@@ -141,7 +141,47 @@ class Order:
             self.pickup = pickup_string
 
         def complete_order(self):
-            self.is_complete = True  
+            self.is_complete = True
+
+def user_options():
+    """
+    """
+
+    user_options = {
+        1: {
+            "Action" : "Order Coffee"
+        },
+        2: {
+            "Action" : "View Existing Order"
+        },
+        3: {
+            "Action" : "Admin Login"
+        }
+    }
+
+    return user_options
+
+def action_options():
+    """
+
+    """
+    
+    actions = {
+        1 : {
+            "Action" : "Add an item to order"
+        },
+        2 : {
+            "Action" : "Remove an item from order"
+        },
+        3 : {
+            "Action" : "Edit Quantities" 
+        },
+        4 : {
+            "Action" : "Finalise Order"
+        }
+    }
+
+    return actions  
 
 def user_menu(options, menu):
     """
@@ -209,65 +249,6 @@ def assemble_order():
     user_order.update_item(item)
     view_order("choices")
 
-def get_recent():
-    """
-    Gets the column data for total drink and time from "orders" sheet.
-    Filters and returns total drinks ordered in the last 15 minutes. 
-    """
-    orders = SHEET.worksheet("orders")
-    total_drinks = orders.col_values(5)
-    time = orders.col_values(7)
-    drinks = total_drinks[1:]
-    order_times = time[1:]
-
-    # I used the following article to learn about manipulating datetime:
-    # https://www.dataquest.io/blog/python-datetime-tutorial/
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    current = datetime.strptime(current_time, "%H:%M:%S")
-    recent = []
-    total_recent = 0
-
-    # Iterates over order times and calculates difference between current time.
-    for order, time in zip(drinks, order_times):
-        max_time = timedelta(minutes=15) 
-        past = datetime.strptime(time, "%H:%M:%S") 
-        difference = current - past
-        
-        # Appends total drinks placed in last 15 minutes to recent list
-        if difference <= max_time:
-            recent.append(order)
-
-    # Calculates total number of recent drinks ordered
-    for num in recent:
-        total_recent += int(num)
-    print(f"Recent Orders: {recent}")
-    print(f"Total number of recent drinks is {total_recent}")
-    return total_recent
-
-def get_orders():
-    """
-    Pulls data from "orders" sheet and returns the data without the headers
-    as orders_list.
-    """
-
-    orders = SHEET.worksheet("orders")
-    data = orders.get_all_values()
-    orders_list = data[1:]
-    return orders_list
-
-def create_order_ref(orders_list):
-    """
-    Filters only order references from the orders_list, finds the next 
-    avaialable number based on the length of the order_refs list, and 
-    assigns this to new_order_ref.  The function then returns this value.
-    """
-    order_refs = []
-    for order in orders_list:
-        order_refs.append(order[0])
-    new_order_ref = len(order_refs) + 1
-    return new_order_ref
-        
 def get_user_name():
     """
     Takes user_name input from user and validates.
@@ -306,6 +287,32 @@ def validate_name(user_input):
 
     return True
 
+def create_item_dict():
+    """
+    Stores user_choices by calling the get_menu_choice and get_quantity functions"
+    """
+
+    user_choices = [get_menu_choice(pull_menu("coffee")), get_menu_choice(pull_menu("milk")), get_quantity()]
+
+    # calculate unit price
+    unit = user_choices[0][1] + user_choices[1][1] 
+
+    # user_choices converted from a list to a dictionary
+    item = [{
+        "Coffee" : user_choices[0][0],
+        "Milk" : user_choices[1][0],
+        "Unit Price" : unit,
+        "Quantity" : user_choices[2],
+        "Price" : unit * user_choices[2]
+    }]
+
+    # Generates a key based on the number of items already in the order
+    key = [len(user_order.items) + 1]
+
+    # Creates a dictionary using the item dictionary as the value.
+    item_dict = dict(zip(key, item))
+
+    return item_dict
 
 def pull_menu(ingredient):
     """
@@ -358,6 +365,31 @@ def get_menu_choice(data):
         print("Great, now let's get your coffee just how you like it!\n")
     return item, float(unit_cost)
 
+def validate_data(user_input, expected_values, selection = ""):
+    """
+    Raises ValueError if user_input is not found in list of expected_values.
+    """
+
+    try:
+        if user_input not in expected_values:
+            if selection == "coffee_code":
+                raise ValueError(
+                    "This code is not valid"
+                )
+            elif selection == "coffee_quantity":
+                raise ValueError(
+                    "This value is not valid, please enter a number between 1 and 10"
+                )
+            elif selection == "options":
+                raise ValueError(
+                    "This code is not valid.  Please select a number from the menu"
+                )                                       
+    except ValueError as e:
+            print(f"Something went wrong. {e}. Please try again.")
+            return False
+
+    return True
+
 def get_quantity():
     """
     Takes quantity input from user and returns as an integer.
@@ -402,58 +434,43 @@ def validate_drinks(user_input):
 
     return True
 
-def validate_data(user_input, expected_values, selection = ""):
+
+def get_recent():
     """
-    Raises ValueError if user_input is not found in list of expected_values.
+    Gets the column data for total drink and time from "orders" sheet.
+    Filters and returns total drinks ordered in the last 15 minutes. 
     """
+    orders = SHEET.worksheet("orders")
+    total_drinks = orders.col_values(5)
+    time = orders.col_values(7)
+    drinks = total_drinks[1:]
+    order_times = time[1:]
 
-    try:
-        if user_input not in expected_values:
-            if selection == "coffee_code":
-                raise ValueError(
-                    "This code is not valid"
-                )
-            elif selection == "coffee_quantity":
-                raise ValueError(
-                    "This value is not valid, please enter a number between 1 and 10"
-                )
-            elif selection == "options":
-                raise ValueError(
-                    "This code is not valid.  Please select a number from the menu"
-                )                                       
-    except ValueError as e:
-            print(f"Something went wrong. {e}. Please try again.")
-            return False
+    # I used the following article to learn about manipulating datetime:
+    # https://www.dataquest.io/blog/python-datetime-tutorial/
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    current = datetime.strptime(current_time, "%H:%M:%S")
+    recent = []
+    total_recent = 0
 
-    return True
+    # Iterates over order times and calculates difference between current time.
+    for order, time in zip(drinks, order_times):
+        max_time = timedelta(minutes=15) 
+        past = datetime.strptime(time, "%H:%M:%S") 
+        difference = current - past
+        
+        # Appends total drinks placed in last 15 minutes to recent list
+        if difference <= max_time:
+            recent.append(order)
 
-def create_item_dict():
-    """
-    Stores user_choices by calling the get_menu_choice and get_quantity functions"
-    """
-
-    user_choices = [get_menu_choice(pull_menu("coffee")), get_menu_choice(pull_menu("milk")), get_quantity()]
-
-    # calculate unit price
-    unit = user_choices[0][1] + user_choices[1][1] 
-
-    # user_choices converted from a list to a dictionary
-    item = [{
-        "Coffee" : user_choices[0][0],
-        "Milk" : user_choices[1][0],
-        "Unit Price" : unit,
-        "Quantity" : user_choices[2],
-        "Price" : unit * user_choices[2]
-    }]
-
-    # Generates a key based on the number of items already in the order
-    key = [len(user_order.items) + 1]
-
-    # Creates a dictionary using the item dictionary as the value.
-    item_dict = dict(zip(key, item))
-
-    return item_dict
-
+    # Calculates total number of recent drinks ordered
+    for num in recent:
+        total_recent += int(num)
+    print(f"Recent Orders: {recent}")
+    print(f"Total number of recent drinks is {total_recent}")
+    return total_recent
+        
 def view_order(selection=""):
     """
     Iterates over each dictionary stored in user_order items list and uses f string to
@@ -491,62 +508,6 @@ def view_order(selection=""):
     # else:
     #     print(f"Your order total is £{user_order.total_price}\n"  
     #           f"Your reference number is {user_order.order_ref}")
-
-def update_order_dict():
-    """
-    """
-
-    options = list(range(len(user_order.items)))
-    keys = [i + 1 for i in options]
-    updated_order_list = [] 
-
-    for k, item in zip(keys, user_order.items):
-        dict_key = list(item.keys())
-        value = dict_key[0]
-        new_dict = {k : item[value]}
-        updated_order_list.append(new_dict)
-    
-    user_order.items = updated_order_list
-
-def user_options():
-    """
-    """
-
-    user_options = {
-        1: {
-            "Action" : "Order Coffee"
-        },
-        2: {
-            "Action" : "View Existing Order"
-        },
-        3: {
-            "Action" : "Admin Login"
-        }
-    }
-
-    return user_options
-
-def action_options():
-    """
-
-    """
-    
-    actions = {
-        1 : {
-            "Action" : "Add an item to order"
-        },
-        2 : {
-            "Action" : "Remove an item from order"
-        },
-        3 : {
-            "Action" : "Edit Quantities" 
-        },
-        4 : {
-            "Action" : "Finalise Order"
-        }
-    }
-
-    return actions
 
 def next_step(user_choice):
     """
@@ -616,48 +577,67 @@ def input_options(keys, option):
         print(user_order.items)
         view_order("choices")
 
-# def remove_options(keys):
-#     """
-#     Accepts a code form the user.  If valid, this code is used to generate the
-#     necessary index for the item being removed, which is then passed as an 
-#     argument to the remove_item method on the class instance user_order.
-#     """
+def update_order_dict():
+    """
+    """
 
-#     os.system('cls' if os.name == 'nt' else 'clear')
-#     view_order()
+    options = list(range(len(user_order.items)))
+    keys = [i + 1 for i in options]
+    updated_order_list = [] 
 
-#     while True:
-
-#         print("Which item of your order you would like to remove?")
-
-#         selected_code = int(input("Enter a number here:\n"))
-
-#         if validate_data(selected_code, keys, "options"):
-#             break
-
-#     index = selected_code - 1
-#     user_order.remove_item(index)
-#     update_order_dict()
-#     if not user_order.items:
-#         main()
-#     else:
-#         view_order("choices")
-
-# def edit_options(keys):
-#     """
-#     """
-#     os.system('cls' if os.name == 'nt' else 'clear')
-#     view_order()
-
-#     while True:
-#     print("Which item of your order you would like to edit?")
-
-#     selected_code = int(input("Enter a number here:\n"))
-
-#     if validate_data(selected_code, keys, "options"):
-#         break
-
+    for k, item in zip(keys, user_order.items):
+        dict_key = list(item.keys())
+        value = dict_key[0]
+        new_dict = {k : item[value]}
+        updated_order_list.append(new_dict)
     
+    user_order.items = updated_order_list
+
+def get_orders():
+    """
+    Pulls data from "orders" sheet and returns the data without the headers
+    as orders_list.
+    """
+
+    orders = SHEET.worksheet("orders")
+    data = orders.get_all_values()
+    orders_list = data[1:]
+    return orders_list
+
+def create_order_ref(orders_list):
+    """
+    Filters only order references from the orders_list, finds the next 
+    avaialable number based on the length of the order_refs list, and 
+    assigns this to new_order_ref.  The function then returns this value.
+    """
+    order_refs = []
+    for order in orders_list:
+        order_refs.append(order[0])
+    new_order_ref = len(order_refs) + 1
+    return new_order_ref
+
+def items_to_string():
+    """
+    Iterates over items in instance of the Class Order.
+    Nested loop used to get the values of each dictionary.
+    A summary string is created for each item and appended
+    to the details_list.
+    The summary strings are joined and saved as details_string. 
+    """
+    details_list = []
+    
+    for dict in user_order.items:
+        item = []    
+        for key, value in dict.items():
+            details = value
+            for key, value in details.items():
+                item.append(value)
+            summary = f"{item[3]} X {item[0]} with {item[1]} milk"
+            details_list.append(summary)
+    
+    details_string = '\n'.join(details_list)
+    return details_string
+
 def complete_order():
     """
     """
@@ -710,28 +690,6 @@ def send_data(data, worksheet):
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(data)
     print("Your order has been submitted!")
-
-def items_to_string():
-    """
-    Iterates over items in instance of the Class Order.
-    Nested loop used to get the values of each dictionary.
-    A summary string is created for each item and appended
-    to the details_list.
-    The summary strings are joined and saved as details_string. 
-    """
-    details_list = []
-    
-    for dict in user_order.items:
-        item = []    
-        for key, value in dict.items():
-            details = value
-            for key, value in details.items():
-                item.append(value)
-            summary = f"{item[3]} X {item[0]} with {item[1]} milk"
-            details_list.append(summary)
-    
-    details_string = '\n'.join(details_list)
-    return details_string
     
 def main():
     """
