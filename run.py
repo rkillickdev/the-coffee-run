@@ -651,7 +651,6 @@ def complete_order():
                     user_order.total_price, user_order.total_drinks, user_order.date, user_order.time]
 
     send_data(order_details, "orders")
-    # items_to_string()
 
     view_order()
     sales_data()
