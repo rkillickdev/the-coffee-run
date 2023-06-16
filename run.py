@@ -185,27 +185,25 @@ def main_menu_steps(user_choice):
     """
 
     if user_choice == 1:
-        create_order()
-
-def create_order():
-    """
-    """
-
-    get_user_name()
-    print(f"Hi {user_order.name} So you need some coffee..." 
-            f"and fast?! Here's what we offer:\n")
-    assemble_order()
+        assemble_order()
 
 def assemble_order():
     """
     """
 
-    # os.system('cls' if os.name == 'nt' else 'clear')
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+    get_user_name()
+
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+    print(f"Hi {user_order.name} So you need some coffee..." 
+            f"and fast?! Here's what we offer:\n")
+
     item = create_item_dict()
     os.system('cls' if os.name == 'nt' else 'clear')
     user_order.update_item(item)
     view_order("choices")
-    # user_menu(action_options(), "order_options")
 
 def get_recent():
     """
