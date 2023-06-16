@@ -226,6 +226,10 @@ def main_menu_steps(user_choice):
 
     if user_choice == 1:
         assemble_order()
+    elif user_choice == 2:
+        print("here's your order")
+    elif user_choice == 3:
+        print("Welcome admin")
 
 def assemble_order():
     """
