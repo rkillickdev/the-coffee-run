@@ -675,8 +675,6 @@ def sales_data():
     sales.append(user_order.time)
     sales.append(user_order.date) 
 
-    print(sales)
-
 def send_data(data, worksheet):
     """
     Receives a list to be inserted into a worksheet.
