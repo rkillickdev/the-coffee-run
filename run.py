@@ -696,9 +696,8 @@ def main():
        
 # Create an instance of the class Order
 user_order = Order()
+
 main()
-print(user_order.prep_time)
-print(user_order.pickup)
 
 
 
