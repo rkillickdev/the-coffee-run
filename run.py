@@ -657,6 +657,12 @@ def complete_order():
     send_data(order_details, "orders")
 
     view_order()
+
+    print("Thank you, your order has been submitted!\n")
+    print(f"Your order reference is {user_order.order_ref}\n")
+    print(f"The total cost of your order is £{user_order.total_price}\n")
+    print(f"Your coffee will be ready to pickup at {user_order.pickup}\n")
+    
     send_data(sales_data(), "sales")
 
 def sales_data():
@@ -688,7 +694,6 @@ def send_data(data, sheet_name):
     """
     worksheet_to_update = SHEET.worksheet(sheet_name)
     worksheet_to_update.append_row(data)
-    print("Your order has been submitted!")
     
 def main():
     """
