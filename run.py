@@ -567,14 +567,10 @@ def input_options(keys, option):
             view_order("choices")
 
     elif option == "edit":
-        print(user_order.items)
         updated_quantity = get_quantity()
-        print(updated_quantity)
         item = user_order.items[index]
         item[index + 1]['Quantity'] = updated_quantity
         item[index + 1]['Price'] = item[index + 1]['Unit Price'] * updated_quantity
-        print(item[index + 1]['Quantity'])
-        print(user_order.items)
         view_order("choices")
 
 def update_order_dict():
@@ -695,6 +691,7 @@ def main():
     """
     Run all program functions.
     """
+    os.system('cls' if os.name == 'nt' else 'clear')
     user_menu(user_options(), "main")
    
        
