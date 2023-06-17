@@ -191,7 +191,7 @@ options_complete = {
         "Action" : "Return To Main Menu"
     }, 
     2: {
-        "Action" : "View Your Order"
+        "Action" : "View Order"
     },
     3: {
         "Action" : "Quit App"     
@@ -244,7 +244,7 @@ def main_menu_steps(user_choice):
     if user_choice == 1:
         assemble_order()
     elif user_choice == 2:
-        print("here's your order")
+        view_completed(pull_menu("orders"))
     elif user_choice == 3:
         print("Welcome admin")
 
@@ -525,8 +525,10 @@ def view_order(selection=""):
 
     
     if selection == "choices":
-        # view_order_options()
         user_menu(action_options(), "order_options")
+    elif selection == "completed":
+        user_menu(options_complete, "order_complete")      
+        
 
 def next_step(user_choice):
     """
@@ -674,8 +676,6 @@ def complete_order():
 
     send_data(order_details, "orders")
 
-    # view_order()
-
     print("Thank you, your order has been submitted!\n")
     print(f"Your order reference is {user_order.order_ref}\n")
     print(f"The total cost of your order is £{user_order.total_price}\n")
@@ -693,7 +693,7 @@ def completed_steps(user_choice):
         clear_order()
         main()
     elif user_choice == 2:
-        print("Here is your order")
+        view_order("completed")
     elif user_choice == 3:
         print(f"Thanks fo ordering your Coffee with us {user_order.name}")
 
@@ -709,6 +709,7 @@ def view_completed(sheet_data):
     Validates input of user input by checking if their order ref exists.
     If order ref valid, use data from this order to display details to user.
     """
+    os.system('cls' if os.name == 'nt' else 'clear')
 
     data = sheet_data[0]
     header_names = data[0] 
@@ -782,8 +783,8 @@ def main():
 # Create an instance of the class Order
 user_order = Order()
 
-# main()
-view_completed(pull_menu("orders"))
+main()
+
 
 
 
