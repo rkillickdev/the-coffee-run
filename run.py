@@ -697,6 +697,20 @@ def clear_order():
     user_order.items = []
     user_order.name = ""    
 
+def view_completed(sheet_data, user_choice):
+
+    data = sheet_data[0]
+    header_names = data[0] 
+    completed_orders = data[1:]
+
+    for order in completed_orders:
+        if order[0] == user_choice:
+            print(f"Hi {order[1]},\n")
+            print(f"Details for order ref {order[0]} are as follows:\n")
+            print(f"{order[2]}")
+            print("\n")
+            print(f"The total cost of your order is £{order[3]}")
+
 def sales_data():
     """
     Compile a sales list with the quantity of each type of coffe and milk
@@ -738,7 +752,8 @@ def main():
 # Create an instance of the class Order
 user_order = Order()
 
-main()
+# main()
+view_completed(pull_menu("orders"), '27')
 
 
 
