@@ -215,6 +215,7 @@ def user_menu(options, menu):
     code_options = list(options.keys())
     first = code_options[0]
     last = code_options[-1]
+    code_string = list(map(str, code_options))
 
     if menu == "main":
         print("Welcome to The Coffee Run, what would you like to do today?\n")
@@ -229,18 +230,18 @@ def user_menu(options, menu):
         print(f"Please choose your next step by entering the code " 
               f"({first} - {last})\n")
 
-        selected_code = int(input("Enter your choice here:\n"))
+        selected_code = (input("Enter your choice here:\n"))
 
-        if validate_data(selected_code, code_options, "options"):
+        if validate_data(selected_code, code_string, "options"):
             break
 
     
     if menu == "main":
-        main_menu_steps(selected_code)
+        main_menu_steps(int(selected_code))
     elif menu == "order_options":
-        next_step(selected_code)
+        next_step(int(selected_code))
     elif menu == "order_complete":
-        completed_steps(selected_code, code_options)
+        completed_steps(int(selected_code), code_options)
 
 def main_menu_steps(user_choice):
     """
