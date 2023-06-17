@@ -4,7 +4,7 @@ import pandas as pd
 import os
 from tabulate import tabulate
 from datetime import datetime, timedelta
-from termcolor import colored
+from termcolor import colored, cprint
 from pyfiglet import Figlet
 
 SCOPE = [
@@ -222,12 +222,12 @@ def user_menu(options, menu):
     code_string = list(map(str, code_options))
 
     if menu == "main":
-        print("Welcome to The Coffee Run, what would you like to do today?\n")
+        print(f"Welcome to {colored('The Coffee Run', 'green')}, what would you like to do today?\n")
     else:
         print("What would you like to do next?\n")
 
     df = pd.DataFrame(options)
-    print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')"\n")
+    print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')+"\n")
 
     while True:
         print(f"Please choose your next step by entering the code "
@@ -386,7 +386,7 @@ def get_menu_choice(data):
 
     # Print menu as a table
     print(tabulate(menu_content, headers=header_names, tablefmt='fancy_grid')
-            "\n")
+            +"\n")
     # Assign user input to variable selected_code and check if valid.
     while True:
         print(f"Please select your {ingredient} by entering the code (1-4)\n")
@@ -418,12 +418,12 @@ def validate_data(user_input, expected_values, selection=""):
                 )
             elif selection == "coffee_quantity":
                 raise ValueError(
-                    "This value is not valid, please enter a number between
+                    "This value is not valid, please enter a number between"
                     " 1 and 10"
                 )
             elif selection == "options":
                 raise ValueError(
-                    "This code is not valid.  Please select a number from
+                    "This code is not valid.  Please select a number from"
                     " the menu"
                 )
             elif selection == "reference":
