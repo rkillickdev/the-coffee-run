@@ -476,7 +476,7 @@ def get_quantity():
 
     if not validate_drinks(selected_quantity):
         print("here are your options")
-        view_order_options()
+        # input_options(get_keys(), "edit")
 
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -637,8 +637,8 @@ def input_options(keys, option):
         updated_quantity = get_quantity()
         item = user_order.items[index]
         item[index + 1]['Quantity'] = updated_quantity
-        item[index + 1]['Price'] = item[index + 1]['Unit Price'](
-            * updated_quantity)
+        item[index + 1]['Price'] = item[index + 1][
+            'Unit Price'] * updated_quantity
         view_order("choices")
 
 
