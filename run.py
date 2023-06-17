@@ -404,6 +404,10 @@ def validate_data(user_input, expected_values, selection = ""):
             elif selection == "options":
                 raise ValueError(
                     "This code is not valid.  Please select a number from the menu"
+                )
+            elif selection == "reference":
+                raise ValueError(
+                    "This order reference does not exist.  Please try again"
                 )                                       
     except ValueError as e:
             print(f"Something went wrong. {e}. Please try again.")
@@ -694,22 +698,48 @@ def completed_steps(user_choice):
         print(f"Thanks fo ordering your Coffee with us {user_order.name}")
 
 def clear_order():
+    """
+    """
     user_order.items = []
     user_order.name = ""    
 
-def view_completed(sheet_data, user_choice):
+def view_completed(sheet_data):
+    """
+    Collates a list of existing order references from the "orders" sheet.
+    Validates input of user input by checking if their order ref exists.
+    If order ref valid, use data from this order to display details to user.
+    """
 
     data = sheet_data[0]
     header_names = data[0] 
     completed_orders = data[1:]
+    order_refs = []
 
     for order in completed_orders:
-        if order[0] == user_choice:
+        ref = order[0]
+        order_refs.append(ref)
+
+    while True:
+
+        print("To view an existing order, please enter your " 
+              "reference number:\n")
+
+        selected_code = (input("Enter a reference here:\n"))
+
+        if validate_data(selected_code, order_refs, "reference"):
+            break
+
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+    for order in completed_orders:
+        if order[0] == selected_code:
             print(f"Hi {order[1]},\n")
             print(f"Details for order ref {order[0]} are as follows:\n")
             print(f"{order[2]}")
             print("\n")
-            print(f"The total cost of your order is £{order[3]}")
+            print(f"The total cost of your order is £{order[3]}\n")
+
+    user_menu(options_complete, "order_complete")
 
 def sales_data():
     """
@@ -753,7 +783,7 @@ def main():
 user_order = Order()
 
 # main()
-view_completed(pull_menu("orders"), '27')
+view_completed(pull_menu("orders"))
 
 
 
