@@ -207,6 +207,24 @@ def options_complete(status):
     return options_complete
 
 
+def title_screen():
+    """
+    Use Figlet from pyfiglet library to print title screen.
+    Learn about this library from the following article:
+    https://towardsdatascience.com/prettify-your-terminal
+    -text-with-termcolor-and-pyfiglet-880de83fda6b
+    """
+    line_1 = "The"
+    line_2 = "Coffee"
+    line_3 = "Run"
+    x = line_1.center(12)
+    y = line_3.center(12)
+
+    f = Figlet(font='bulbhead')
+    print(f.renderText(x))
+    print(f.renderText(line_2))
+    print(f.renderText(y))
+
 def user_menu(options, menu):
     """
     Create a data frame from the options dictionary.
@@ -821,4 +839,5 @@ def main():
 # Create an instance of the class Order
 user_order = Order()
 
-main()
+# main()
+title_screen()
