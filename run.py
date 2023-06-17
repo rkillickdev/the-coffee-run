@@ -184,7 +184,19 @@ def action_options():
         }
     }
 
-    return actions  
+    return actions
+
+options_complete = {
+    1: {
+        "Action" : "Return To Main Menu"
+    }, 
+    2: {
+        "Action" : "View Your Order"
+    },
+    3: {
+        "Action" : "Quit App"     
+    }
+}  
 
 def user_menu(options, menu):
     """
@@ -222,6 +234,8 @@ def user_menu(options, menu):
         main_menu_steps(selected_code)
     elif menu == "order_options":
         next_step(selected_code)
+    elif menu == "order_complete":
+        completed_steps(selected_code)
 
 def main_menu_steps(user_choice):
     """
@@ -474,8 +488,6 @@ def get_recent():
     # Calculates total number of recent drinks ordered
     for num in recent:
         total_recent += int(num)
-    print(f"Recent Orders: {recent}")
-    print(f"Total number of recent drinks is {total_recent}")
     return total_recent
         
 def view_order(selection=""):
@@ -511,10 +523,6 @@ def view_order(selection=""):
     if selection == "choices":
         # view_order_options()
         user_menu(action_options(), "order_options")
-
-    # else:
-    #     print(f"Your order total is £{user_order.total_price}\n"  
-    #           f"Your reference number is {user_order.order_ref}")
 
 def next_step(user_choice):
     """
@@ -663,14 +671,30 @@ def complete_order():
 
     send_data(order_details, "orders")
 
-    view_order()
+    # view_order()
 
     print("Thank you, your order has been submitted!\n")
     print(f"Your order reference is {user_order.order_ref}\n")
     print(f"The total cost of your order is £{user_order.total_price}\n")
     print(f"Your coffee will be ready to pickup at {user_order.pickup}\n")
+
+    user_menu(options_complete, "order_complete")
     
     send_data(sales_data(), "sales")
+
+def completed_steps(user_choice):
+    """
+    """
+
+    if user_choice == 1:
+        user_order.items = []
+        user_order.name = ""
+        main()
+    elif user_choice == 2:
+        print("Here is your order")
+    elif user_choice == 3:
+        print(f"Thanks fo ordering your Coffee with us {user_order.name}")
+
 
 def sales_data():
     """
