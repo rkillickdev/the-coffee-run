@@ -143,48 +143,36 @@ class Order:
         def complete_order(self):
             self.is_complete = True
 
-def user_options():
-    """
-    """
 
-    user_options = {
-        1: {
-            "Action" : "Order Coffee"
-        },
-        2: {
-            "Action" : "View Existing Order"
-        },
-        3: {
-            "Action" : "Admin Login"
-        }
+user_options = {
+    1: {
+        "Action" : "Order Coffee"
+    },
+    2: {
+        "Action" : "View Existing Order"
+    },
+    3: {
+        "Action" : "Admin Login"
     }
+}
 
-    return user_options
-
-def action_options():
-    """
-
-    """
-    
-    actions = {
-        1 : {
-            "Action" : "Add an item to order"
-        },
-        2 : {
-            "Action" : "Remove an item from order"
-        },
-        3 : {
-            "Action" : "Edit Quantities" 
-        },
-        4 : {
-            "Action" : "Finalise Order"
-        },
-        5: {
-            "Action" : "Cancel Order"
-        }
+action_options = {
+    1 : {
+        "Action" : "Add an item to order"
+    },
+    2 : {
+        "Action" : "Remove an item from order"
+    },
+    3 : {
+        "Action" : "Edit Quantities" 
+    },
+    4 : {
+        "Action" : "Finalise Order"
+    },
+    5: {
+        "Action" : "Cancel Order"
     }
-
-    return actions
+}
 
 options_complete = {
     1: {
@@ -525,7 +513,7 @@ def view_order(selection=""):
 
     
     if selection == "choices":
-        user_menu(action_options(), "order_options")
+        user_menu(action_options, "order_options")
     elif selection == "completed":
         user_menu(options_complete, "order_complete")      
         
@@ -777,7 +765,7 @@ def main():
     Run all program functions.
     """
     os.system('cls' if os.name == 'nt' else 'clear')
-    user_menu(user_options(), "main")
+    user_menu(user_options, "main")
    
        
 # Create an instance of the class Order
