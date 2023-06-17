@@ -199,10 +199,6 @@ def user_menu(options, menu):
     first = code_options[0]
     last = code_options[-1]
 
-    print(user_order.items)
-    print(user_order.name)
-    print(user_order.order_ref)
-
     if menu == "main":
         print("Welcome to The Coffee Run, what would you like to do today?\n")
     else:
