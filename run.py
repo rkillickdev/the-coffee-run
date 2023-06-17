@@ -178,6 +178,9 @@ def action_options():
         },
         4 : {
             "Action" : "Finalise Order"
+        },
+        5: {
+            "Action" : "Cancel Order"
         }
     }
 
