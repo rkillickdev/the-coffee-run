@@ -4,6 +4,8 @@ import pandas as pd
 import os
 from tabulate import tabulate
 from datetime import datetime, timedelta
+from termcolor import colored
+from pyfiglet import Figlet
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
