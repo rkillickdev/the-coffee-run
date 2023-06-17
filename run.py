@@ -839,5 +839,5 @@ def main():
 # Create an instance of the class Order
 user_order = Order()
 
-# main()
-title_screen()
+main()
+# title_screen()
