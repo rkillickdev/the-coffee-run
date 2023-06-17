@@ -543,8 +543,7 @@ def next_step(user_choice):
     elif user_choice == 4:
         complete_order()
     elif user_choice == 5:
-        user_order.items = []
-        user_order.name = ""
+        clear_order()
         main()
 
 def get_keys():
@@ -687,14 +686,16 @@ def completed_steps(user_choice):
     """
 
     if user_choice == 1:
-        user_order.items = []
-        user_order.name = ""
+        clear_order()
         main()
     elif user_choice == 2:
         print("Here is your order")
     elif user_choice == 3:
         print(f"Thanks fo ordering your Coffee with us {user_order.name}")
 
+def clear_order():
+    user_order.items = []
+    user_order.name = ""    
 
 def sales_data():
     """
