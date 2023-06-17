@@ -660,7 +660,7 @@ def complete_order():
     user_order.complete_order()
 
     order_details = [user_order.order_ref, user_order.name, items_to_string(),
-                    user_order.total_price, user_order.total_drinks, user_order.date, user_order.time]
+                    user_order.total_price, user_order.total_drinks, user_order.date, user_order.time, user_order.pickup]
 
     send_data(order_details, "orders")
 
