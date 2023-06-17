@@ -174,17 +174,34 @@ action_options = {
     }
 }
 
-options_complete = {
-    1: {
-        "Action" : "Return To Main Menu"
-    }, 
-    2: {
-        "Action" : "View Order"
-    },
-    3: {
-        "Action" : "Quit App"     
-    }
-}  
+def options_complete(status):
+    """
+    """
+
+    if status == "current":
+        options_complete = {
+            1: {
+                "Action" : "Return To Main Menu"
+            }, 
+            2: {
+                "Action" : "View Order"
+            },
+            3: {
+                "Action" : "Quit App"     
+            }
+        }
+    elif status == "completed" :
+        options_complete = {
+            1: {
+                "Action" : "Return To Main Menu"
+            }, 
+            2: {
+                "Action" : "Quit App"     
+            }
+        }
+
+    return options_complete   
+
 
 def user_menu(options, menu):
     """
@@ -223,7 +240,7 @@ def user_menu(options, menu):
     elif menu == "order_options":
         next_step(selected_code)
     elif menu == "order_complete":
-        completed_steps(selected_code)
+        completed_steps(selected_code, code_options)
 
 def main_menu_steps(user_choice):
     """
@@ -515,7 +532,7 @@ def view_order(selection=""):
     if selection == "choices":
         user_menu(action_options, "order_options")
     elif selection == "completed":
-        user_menu(options_complete, "order_complete")      
+        user_menu(options_complete("completed"), "order_complete")      
         
 
 def next_step(user_choice):
@@ -669,20 +686,20 @@ def complete_order():
     print(f"The total cost of your order is £{user_order.total_price}\n")
     print(f"Your coffee will be ready to pickup at {user_order.pickup}\n")
 
-    user_menu(options_complete, "order_complete")
+    user_menu(options_complete("current"), "order_complete")
     
     send_data(sales_data(), "sales")
 
-def completed_steps(user_choice):
+def completed_steps(user_choice, codes):
     """
     """
-
-    if user_choice == 1:
+    last = codes[-1]
+    if user_choice == codes[0]:
         clear_order()
         main()
-    elif user_choice == 2:
+    elif user_choice == 2 and user_choice != last:
         view_order("completed")
-    elif user_choice == 3:
+    elif user_choice == last:
         print(f"Thanks fo ordering your Coffee with us {user_order.name}")
 
 def clear_order():
@@ -728,7 +745,7 @@ def view_completed(sheet_data):
             print("\n")
             print(f"The total cost of your order is £{order[3]}\n")
 
-    user_menu(options_complete, "order_complete")
+    user_menu(options_complete("completed"), "order_complete")
 
 def sales_data():
     """
