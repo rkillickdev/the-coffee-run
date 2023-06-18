@@ -240,18 +240,18 @@ def user_menu(options, menu):
     code_string = list(map(str, code_options))
 
     if menu == "main":
-        print(f"Welcome to {colored('The Coffee Run', 'green')}, what would you like to do today?\n")
+        title_screen()
+        message = "Welcome. What would you like to do today?\n"
     else:
-        print("What would you like to do next?\n")
+        message = "What would you like to do next?\n"
 
     df = pd.DataFrame(options)
     print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')+"\n")
 
     while True:
-        print(f"Please choose your next step by entering the code "
-              f"({first} - {last})\n")
+        print(f"{message}")
 
-        selected_code = (input("Enter your choice here:\n"))
+        selected_code = (input(f"{colored(f'Enter {first} - {last} here:', 'green')}\n"))
 
         if validate_data(selected_code, code_string, "options"):
             break
