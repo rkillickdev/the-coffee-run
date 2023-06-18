@@ -306,10 +306,7 @@ def get_user_name():
 
     # Assign user input to variable selected_quantity and check if valid.
     while True:
-
-        print("Please enter your name\n")
-
-        user_name = input("Enter your choice here:\n")
+        user_name = input(f"{colored('Please enter your name here:', 'green')}\n")
 
         if validate_name(user_name):
             break
