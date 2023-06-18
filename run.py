@@ -237,6 +237,7 @@ def user_menu(options, menu):
     code_options = list(options.keys())
     first = code_options[0]
     last = code_options[-1]
+
     code_string = list(map(str, code_options))
 
     if menu == "main":
@@ -404,10 +405,9 @@ def get_menu_choice(data):
             +"\n")
     # Assign user input to variable selected_code and check if valid.
     while True:
-        print(f"Please select your {ingredient} by entering the code (1-4)\n")
-
-        selected_code = input("Enter your choice here:\n")
-
+        selected_code = input(
+            colored(f"Please select your {ingredient} by entering the code (1-4)\n", 'green')
+            )
         if validate_data(selected_code, code_options, "coffee_code"):
             break
 
