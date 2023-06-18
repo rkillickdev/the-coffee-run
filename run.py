@@ -225,6 +225,7 @@ def title_screen():
     print(f.renderText(line_2))
     print(f.renderText(y))
 
+
 def user_menu(options, menu):
     """
     Create a data frame from the options dictionary.
@@ -400,13 +401,17 @@ def get_menu_choice(data):
         code = row[0]
         code_options.append(code)
 
+    first = code_options[0]
+    last = code_options[-1]
+
     # Print menu as a table
     print(tabulate(menu_content, headers=header_names, tablefmt='fancy_grid')
             +"\n")
+
     # Assign user input to variable selected_code and check if valid.
     while True:
         selected_code = input(
-            colored(f"Please select your {ingredient} by entering the code (1-4)\n", 'green')
+            colored(f"Please select your {ingredient} by entering the code {first} - {last}\n", 'green')
             )
         if validate_data(selected_code, code_options, "coffee_code"):
             break
