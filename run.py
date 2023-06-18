@@ -517,9 +517,17 @@ def get_sales_totals():
 
     totals = [sum(i) for i in zip(*sales_rows)]
 
-    sales_totals = [headers, totals]
+    coffee_totals = [headers[:4], totals[:4]]
+    milk_totals = [headers[4:], totals[4:]] 
 
-    return sales_totals 
+    return coffee_totals, milk_totals
+
+def most_popular():
+    """
+    """
+
+    sales_stats = get_sales_totals()
+    print(sales_stats)
 
 
 def get_recent():
@@ -864,4 +872,5 @@ user_order = Order()
 
 # main()
 # title_screen()
-get_stats()
+# get_stats()
+most_popular()
