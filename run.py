@@ -434,11 +434,6 @@ def validate_data(user_input, expected_values, selection=""):
                 raise ValueError(
                     "This code is not valid"
                 )
-            elif selection == "coffee_quantity":
-                raise ValueError(
-                    "This value is not valid, please enter a number between"
-                    " 1 and 10"
-                )
             elif selection == "options":
                 raise ValueError(
                     "This code is not valid.  Please select a number from"
@@ -448,6 +443,12 @@ def validate_data(user_input, expected_values, selection=""):
                 raise ValueError(
                     "This order reference does not exist.  Please try again"
                 )
+        
+        if selection == "coffee_quantity":
+            if user_input.isalpha():
+                raise ValueError(
+                "Please enter a number between 1 and 10"
+            )
     except ValueError as e:
         print(f"Something went wrong. {e}. Please try again.")
         return False
@@ -471,14 +472,8 @@ def get_quantity():
         quantity_options = range(1, 11)
 
         if validate_data(selected_quantity, list(map(str, quantity_options)),
-                        "coffee_quantity"):
+                    "coffee_quantity") and validate_drinks(selected_quantity):
             break
-
-    if not validate_drinks(selected_quantity):
-        print("here are your options")
-        # input_options(get_keys(), "edit")
-
-    os.system('cls' if os.name == 'nt' else 'clear')
 
     return int(selected_quantity)
 
@@ -495,8 +490,8 @@ def validate_drinks(user_input):
             )
 
     except ValueError as e:
-        print(f"Something went wrong. {e}. Please try again.")
-        return False
+        message = f"{e}. Please choose another option.\n"
+        view_order("choices", message)
 
     return True
 
@@ -536,7 +531,7 @@ def get_recent():
     return total_recent
 
 
-def view_order(selection=""):
+def view_order(selection="", message=""):
     """
     Iterates over each dictionary stored in user_order items list and uses
     f string to print items currently in the order.
@@ -544,7 +539,9 @@ def view_order(selection=""):
 
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    if not user_order.is_complete:
+    if message:
+        print(message)
+    elif not user_order.is_complete:
         print("You're order currently contains the following:\n")
     else:
         print("Here is a summary of your order:\n")
