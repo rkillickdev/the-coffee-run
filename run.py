@@ -498,6 +498,30 @@ def validate_drinks(user_input):
     return True
 
 
+def get_sales_totals():
+    """
+    Converts sales figures from worksheet to lists of integers.
+    Iterates over each row of sales figures and calculates total
+    sales for each column.
+    """
+    sales = SHEET.worksheet("sales")
+    data = sales.get_all_values()
+    headers = data[0][:8]
+    units = data[1:]
+    sales_rows = []
+    
+    for item in units:
+        # convert from a list of strings to integers
+        integers = [int(x) for x in item[:8]]
+        sales_rows.append(integers)
+
+    totals = [sum(i) for i in zip(*sales_rows)]
+
+    sales_totals = [headers, totals]
+
+    return sales_totals 
+
+
 def get_recent():
     """
     Gets the column data for total drink and time from "orders" sheet.
@@ -838,5 +862,6 @@ def main():
 # Create an instance of the class Order
 user_order = Order()
 
-main()
+# main()
 # title_screen()
+get_stats()
