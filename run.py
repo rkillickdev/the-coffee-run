@@ -498,12 +498,13 @@ def validate_drinks(user_input):
     return True
 
 
-def get_sales_totals():
+def get_sales_totals(dates):
     """
     Converts sales figures from worksheet to lists of integers.
     Iterates over each row of sales figures and calculates total
     sales for each column.
     """
+    list_of_dates = dates
     sales = SHEET.worksheet("sales")
     data = sales.get_all_values()
     headers = data[0][:8]
@@ -521,6 +522,25 @@ def get_sales_totals():
     milk_totals = [headers[4:], totals[4:]] 
 
     return coffee_totals, milk_totals
+    print(coffe_totals)
+    print(list_of_dates)
+
+def date_range(days):
+    """
+    Generates a list of date strings for the past number of days
+    specified in the argument 'days'.  I used the following article
+    to find a way to achieve this:
+    https://www.pythonprogramming.in/getting-the-date-of-7-days-
+    ago-from-current-date-in-python.html
+    """
+    now = datetime.now()
+    dates_list = []
+ 
+    for x in range(days):
+        date = now - timedelta(days=x)
+        date_string = date.strftime("%d/%m/%Y") 
+        dates_list.append(date_string)
+    return dates_list
 
 def most_popular():
     """
@@ -873,4 +893,6 @@ user_order = Order()
 # main()
 # title_screen()
 # get_stats()
-most_popular()
+# most_popular()
+# date_range(7)
+get_sales_totals(date_range(7))
