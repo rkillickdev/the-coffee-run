@@ -564,12 +564,23 @@ def date_range(days):
         dates_list.append(date_string)
     return dates_list
 
-def most_popular():
+def most_popular(type, time_span):
     """
+    Iterates over sales totals for the past number of days depending on the 
+    value passed as the argument 'time_span'.  The max() method is used to 
+    find the highest total and these ststs are printed for the user.
     """
 
-    sales_stats = get_sales_totals()
-    print(sales_stats)
+    requested = get_sales_totals(get_sales_data(date_range(time_span)), type)
+    titles = requested[0]
+    totals = requested[1]
+
+    for title, total in zip(titles, totals):
+        if total == max(totals):
+            most_popular = title
+            total_sold = total
+    print(f"Over the past {time_span} days, the most popular {type} has been {most_popular}\n")
+    print(F"You have sold {total_sold} in the past {time_span} days")
 
 
 def get_recent():
@@ -915,7 +926,6 @@ user_order = Order()
 # main()
 # title_screen()
 # get_stats()
-# most_popular()
+most_popular("coffee", 4)
 # date_range(7)
-get_sales_totals(get_sales_data(date_range(3)), "coffee")
 # get_sales_data(date_range(3))
