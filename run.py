@@ -498,7 +498,7 @@ def validate_drinks(user_input):
     return True
 
 
-def get_sales_totals(dates):
+def get_sales_totals(type, dates):
     """
     Converts sales figures from worksheet to lists of integers.
     Iterates over each row of sales figures and calculates total
@@ -510,7 +510,7 @@ def get_sales_totals(dates):
     headers = data[0][:8]
     units = data[1:]
     sales_rows = []
-    
+
     for item in units:
         # convert from a list of strings to integers
         integers = [int(x) for x in item[:8]]
@@ -519,11 +519,12 @@ def get_sales_totals(dates):
     totals = [sum(i) for i in zip(*sales_rows)]
 
     coffee_totals = [headers[:4], totals[:4]]
-    milk_totals = [headers[4:], totals[4:]] 
+    milk_totals = [headers[4:], totals[4:]]
 
-    return coffee_totals, milk_totals
-    print(coffe_totals)
-    print(list_of_dates)
+    if type == "coffee":
+        return coffee_totals, list_of_dates  
+    elif type == "milk":
+        return milk_totals , list_of_dates
 
 def date_range(days):
     """
@@ -895,4 +896,4 @@ user_order = Order()
 # get_stats()
 # most_popular()
 # date_range(7)
-get_sales_totals(date_range(7))
+get_sales_totals("milk", date_range(7))
