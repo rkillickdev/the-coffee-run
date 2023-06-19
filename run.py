@@ -498,15 +498,35 @@ def validate_drinks(user_input):
     return True
 
 
-def get_sales_totals(type, dates):
+def get_sales_data(dates):
     """
     Converts sales figures from worksheet to lists of integers.
-    Iterates over each row of sales figures and calculates total
-    sales for each column.
+    Takes a list of dates as an argument and iterates over each
+    row, checking whether the date in column J is in the list of
+    dates.  If it is, the date is appended to the list of 
+    requested_data and the function returns this list.
     """
+
     list_of_dates = dates
     sales = SHEET.worksheet("sales")
     data = sales.get_all_values()
+    headers = data[0]
+    sales_data = data[1:]
+    requested_data = [headers]
+
+    for row in sales_data:
+        if row[9] in list_of_dates:
+            requested_data.append(row)
+    
+    return requested_data
+
+
+def get_sales_totals(data, type):
+    """
+    Iterates over each row of sales figures and calculates total
+    sales for each column.
+    """
+
     headers = data[0][:8]
     units = data[1:]
     sales_rows = []
@@ -522,9 +542,10 @@ def get_sales_totals(type, dates):
     milk_totals = [headers[4:], totals[4:]]
 
     if type == "coffee":
-        return coffee_totals, list_of_dates  
+        return coffee_totals
     elif type == "milk":
-        return milk_totals , list_of_dates
+        return milk_totals
+
 
 def date_range(days):
     """
@@ -896,4 +917,5 @@ user_order = Order()
 # get_stats()
 # most_popular()
 # date_range(7)
-get_sales_totals("milk", date_range(7))
+get_sales_totals(get_sales_data(date_range(3)), "coffee")
+# get_sales_data(date_range(3))
