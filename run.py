@@ -840,9 +840,12 @@ def complete_order():
     send_data(order_details, "orders")
 
     print("Thank you, your order has been submitted!\n")
-    print(f"Your order reference is {user_order.order_ref}\n")
-    print(f"The total cost of your order is £{user_order.total_price}\n")
-    print(f"Your coffee will be ready to pickup at {user_order.pickup}\n")
+    print(f"Your order reference is:"
+         f" {colored(f'{user_order.order_ref}', 'cyan', attrs=['bold'])}\n")
+    print(f"The total cost of your order is:" 
+         f" {colored(f'£{user_order.total_price}', 'cyan', attrs=['bold'])}\n")
+    print(f"Your coffee will be ready to pickup at:"
+         f" {colored(f'{user_order.pickup}', 'cyan', attrs=['bold'])}\n")
 
     user_menu(options_complete("current"), "order_complete")
 
