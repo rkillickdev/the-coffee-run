@@ -318,7 +318,8 @@ def validate_name(user_input):
     Raises ValueError if user_input is not all letters or is greater than
     10 characters.
     """
-
+    os.system('cls' if os.name == 'nt' else 'clear')
+    
     try:
         if len(user_input) > 10:
             raise ValueError(
@@ -330,7 +331,7 @@ def validate_name(user_input):
                 "You must enter all letters"
             )
     except ValueError as e:
-        print(f"Something went wrong. {e}. Please try again.")
+        print(f"{colored(f'{e}. Please try again.', 'red')}")
         return False
 
     return True
@@ -449,7 +450,7 @@ def validate_data(user_input, expected_values, selection=""):
                 "Please enter a number between 1 and 10"
             )
     except ValueError as e:
-        print(f"Something went wrong. {e}. Please try again.")
+        print(f"{colored(f'{e}. Please try again.', 'red')}")
         return False
 
     return True
@@ -485,11 +486,11 @@ def validate_drinks(user_input):
     try:
         if int(user_input) + user_order.total_drinks > 10:
             raise ValueError(
-                "You can only order a maximum of 10 drinks per order"
+                    "You can only order a maximum of 10 drinks per order"        
             )
 
     except ValueError as e:
-        message = f"{e}. Please choose another option.\n"
+        message = f"{colored(f'{e}. Please choose another option.', 'red')}"
         view_order("choices", message)
 
     return True
