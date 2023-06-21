@@ -214,16 +214,13 @@ def title_screen():
     https://towardsdatascience.com/prettify-your-terminal
     -text-with-termcolor-and-pyfiglet-880de83fda6b
     """
-    line_1 = "The"
-    line_2 = "Coffee"
-    line_3 = "Run"
-    x = line_1.center(12)
-    y = line_3.center(12)
+    line_1 = "Coffee"
+    line_2 = "Run"
+    c = line_2.center(12)
 
     f = Figlet(font='bulbhead')
-    print(f.renderText(x))
-    print(f.renderText(line_2))
-    print(f.renderText(y))
+    print(f.renderText(line_1))
+    print(f.renderText(c))
 
 
 def user_menu(options, menu):
