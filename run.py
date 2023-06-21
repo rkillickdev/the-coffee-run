@@ -521,32 +521,6 @@ def get_sales_data(dates):
     return requested_data
 
 
-def get_sales_totals(data, type):
-    """
-    Iterates over each row of sales figures and calculates total
-    sales for each column.
-    """
-
-    headers = data[0][:8]
-    units = data[1:]
-    sales_rows = []
-
-    for item in units:
-        # convert from a list of strings to integers
-        integers = [int(x) for x in item[:8]]
-        sales_rows.append(integers)
-
-    totals = [sum(i) for i in zip(*sales_rows)]
-
-    coffee_totals = [headers[:4], totals[:4]]
-    milk_totals = [headers[4:], totals[4:]]
-
-    if type == "coffee":
-        return coffee_totals
-    elif type == "milk":
-        return milk_totals
-
-
 def date_range(days):
     """
     Generates a list of date strings for the past number of days
@@ -564,23 +538,64 @@ def date_range(days):
         dates_list.append(date_string)
     return dates_list
 
-def most_popular(type, time_span):
+
+def get_sales_totals(time_span):
     """
-    Iterates over sales totals for the past number of days depending on the 
-    value passed as the argument 'time_span'.  The max() method is used to 
-    find the highest total and these ststs are printed for the user.
+    Iterates over each row of sales figures for a range of
+    days as specified in the 'time_span' argument.
+    The total sales for each column is then calculated.
     """
 
-    requested = get_sales_totals(get_sales_data(date_range(time_span)), type)
-    titles = requested[0]
-    totals = requested[1]
+    data = get_sales_data(date_range(time_span))
+
+    headers = data[0][:8]
+    units = data[1:]
+    sales_rows = []
+
+    for item in units:
+        # convert from a list of strings to integers
+        integers = [int(x) for x in item[:8]]
+        sales_rows.append(integers)
+
+    totals = [sum(i) for i in zip(*sales_rows)]
+
+    coffee_totals = [headers[:4], totals[:4]]
+    milk_totals = [headers[4:], totals[4:]]
+
+    return [coffee_totals, milk_totals]
+
+
+def most_popular(data):
+    """
+    Iterates over sales totals provided in the argument 'data'.  
+    The max() method is used to find the highest total and 
+    these stats are returned by the function.
+    """
+
+    titles = data[0]
+    totals = data[1]
+
+    most_popular = []
 
     for title, total in zip(titles, totals):
         if total == max(totals):
-            most_popular = title
-            total_sold = total
-    print(f"Over the past {time_span} days, the most popular {type} has been {most_popular}\n")
-    print(F"You have sold {total_sold} in the past {time_span} days")
+            most_popular.append(title)
+            most_popular.append(total)
+
+    return most_popular
+
+
+def admin_stats(days):
+    """
+    Gets sales totals for coffee and milk for the past number of days
+    specified in the argument 'days' and finds the most popular.
+    """
+
+    sales_data = get_sales_totals(days)
+    coffee_sales = sales_data[0]
+    milk_sales = sales_data[1]
+    top_coffee = most_popular(coffee_sales)
+    top_milk = most_popular(milk_sales)
 
 
 def get_recent():
@@ -926,6 +941,8 @@ user_order = Order()
 # main()
 # title_screen()
 # get_stats()
-most_popular("coffee", 4)
+# most_popular("coffee", 7)
 # date_range(7)
 # get_sales_data(date_range(3))
+admin_stats(10)
+# get_sales_totals(7, "coffee")
