@@ -862,7 +862,10 @@ def completed_steps(user_choice, codes):
     elif user_choice == 2 and user_choice != last:
         view_order("completed")
     elif user_choice == last:
-        print(f"Thanks fo ordering your Coffee with us {user_order.name}")
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print(f"Thanks for ordering your Coffee with us" 
+              f" {user_order.name}.  See you again soon!\n")
+        title_screen()    
 
 
 def clear_order():
