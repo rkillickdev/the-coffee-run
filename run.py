@@ -310,7 +310,7 @@ def get_user_name():
         if validate_name(user_name):
             break
 
-    user_order.name = user_name
+    user_order.name = user_name.capitalize()
 
 
 def validate_name(user_input):
