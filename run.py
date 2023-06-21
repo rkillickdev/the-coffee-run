@@ -589,13 +589,29 @@ def admin_stats(days):
     """
     Gets sales totals for coffee and milk for the past number of days
     specified in the argument 'days' and finds the most popular.
+    Tabulates sales for each type of coffee, provides a total figure
+    for coffee sold, and also prints information on the most
+    popular coffee and milk.
     """
 
     sales_data = get_sales_totals(days)
-    coffee_sales = sales_data[0]
-    milk_sales = sales_data[1]
-    top_coffee = most_popular(coffee_sales)
-    top_milk = most_popular(milk_sales)
+
+    coffee = sales_data[0]
+    coffee_sales = sum(coffee[1])
+    milk = sales_data[1]
+    top_coffee = most_popular(coffee)
+    top_milk = most_popular(milk)
+
+    print(f"Total number of coffees sold in the past {days} days"
+          f" : {colored(coffee_sales, 'cyan', attrs=['bold'])}\n")
+
+    print(tabulate(coffee, headers='firstrow', tablefmt='fancy_grid')
+            +"\n")
+
+    print(f"Most popular coffee:"
+          f" {colored(top_coffee[0],'cyan', attrs=['bold'])}\n")
+    print(f"Most popular milk:"
+          f" {colored(top_milk[0],'cyan', attrs=['bold'])}")
 
 
 def get_recent():
