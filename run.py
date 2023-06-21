@@ -275,7 +275,7 @@ def main_menu_steps(user_choice):
     elif user_choice == 2:
         view_completed(pull_menu("orders"))
     elif user_choice == 3:
-        print("Welcome admin")
+        admin_stats(10)
 
 
 def assemble_order():
@@ -593,9 +593,9 @@ def admin_stats(days):
     for coffee sold, and also prints information on the most
     popular coffee and milk.
     """
+    os.system('cls' if os.name == 'nt' else 'clear')
 
     sales_data = get_sales_totals(days)
-
     coffee = sales_data[0]
     coffee_sales = sum(coffee[1])
     milk = sales_data[1]
@@ -954,11 +954,5 @@ def main():
 # Create an instance of the class Order
 user_order = Order()
 
-# main()
-# title_screen()
-# get_stats()
-# most_popular("coffee", 7)
-# date_range(7)
-# get_sales_data(date_range(3))
-admin_stats(10)
-# get_sales_totals(7, "coffee")
+main()
+
