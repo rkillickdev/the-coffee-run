@@ -445,7 +445,7 @@ def validate_data(user_input, expected_values, selection=""):
                 )
         
         if selection == "coffee_quantity":
-            if user_input.isalpha():
+            if user_input.isalpha() or int(user_input) < 1:
                 raise ValueError(
                 "Please enter a number between 1 and 10"
             )
@@ -979,4 +979,6 @@ def main():
 user_order = Order()
 
 main()
+
+
 
