@@ -240,7 +240,7 @@ def user_menu(options, menu):
 
     if menu == "main":
         title_screen()
-        message = "Welcome. What would you like to do today?\n"
+        message = "Welcome. What would you like to do today?"
     else:
         message = "What would you like to do next?\n"
 
@@ -248,7 +248,7 @@ def user_menu(options, menu):
     print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')+"\n")
 
     while True:
-        print(f"{message}")
+        print(f"{message}\n")
 
         selected_code = (input(f"{colored(f'Enter {first} - {last} here:', 'green')}\n"))
 
@@ -485,11 +485,11 @@ def validate_drinks(user_input):
     try:
         if int(user_input) + user_order.total_drinks > 10:
             raise ValueError(
-                    "You can only order a maximum of 10 drinks per order"        
+                    "You can only order a max of 10 drinks per order"        
             )
 
     except ValueError as e:
-        message = f"{colored(f'{e}. Please choose another option.', 'red')}"
+        message = f"{colored(f'{e}. Please choose another option:', 'red')}"
         view_order("choices", message)
 
     return True
