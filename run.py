@@ -627,6 +627,8 @@ def admin_stats(days):
 
     if selected_code == 'm':
         main()
+    elif selected_code == 'q':
+        quit_app()
 
 
 def get_recent():
@@ -880,12 +882,18 @@ def completed_steps(user_choice, codes):
     elif user_choice == 2 and user_choice != last:
         view_order("completed")
     elif user_choice == last:
-        os.system('cls' if os.name == 'nt' else 'clear')
-        print(
-            colored("Thanks for stopping by, see you again soon!\n", 'cyan')
-            )
-        title_screen()    
+        quit_app()
+            
 
+
+def quit_app():
+    """
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(
+        colored("Thanks for stopping by, see you again soon!\n", 'cyan')
+        )
+    title_screen()
 
 def clear_order():
     """
