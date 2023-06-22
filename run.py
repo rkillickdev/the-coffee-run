@@ -874,8 +874,9 @@ def completed_steps(user_choice, codes):
         view_order("completed")
     elif user_choice == last:
         os.system('cls' if os.name == 'nt' else 'clear')
-        print(f"Thanks for ordering your Coffee with us" 
-              f" {user_order.name}.  See you again soon!\n")
+        print(
+            colored("Thanks for stopping by, see you again soon!\n", 'cyan')
+            )
         title_screen()    
 
 
