@@ -850,7 +850,7 @@ def complete_order():
 
     send_data(order_details, "orders")
 
-    print("Thank you, your order has been submitted!\n")
+    print(colored("Thank you, your order has been submitted!\n", 'cyan'))
     print(f"Your order reference is:"
          f" {colored(f'{user_order.order_ref}', 'cyan', attrs=['bold'])}\n")
     print(f"The total cost of your order is:" 
