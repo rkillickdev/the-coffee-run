@@ -250,7 +250,9 @@ def user_menu(options, menu):
     while True:
         print(f"{message}\n")
 
-        selected_code = (input(f"{colored(f'Enter {first} - {last} here:', 'green')}\n"))
+        selected_code = (
+            input(f"{colored(f'Enter {first} - {last} here:', 'green')}\n")
+            )
 
         if validate_data(selected_code, code_string, "options"):
             break
@@ -288,10 +290,10 @@ def assemble_order():
 
     if not user_order.items:
         print(f"Hi {user_order.name}, so you need some coffee..."
-                "and fast?! Here's what we offer:\n")
+              "and fast?! Here's what we offer:\n")
     else:
         print(f"Hello again {user_order.name}, so you want to add "
-               "some more items?  Go ahead:\n")
+              "some more items?  Go ahead:\n")
 
     item = create_item_dict()
     user_order.update_item(item)
@@ -305,7 +307,9 @@ def get_user_name():
 
     # Assign user input to variable selected_quantity and check if valid.
     while True:
-        user_name = input(f"{colored('Please enter your name here:', 'green')}\n")
+        user_name = input(
+            f"{colored('Please enter your name here:', 'green')}\n"
+            )
 
         if validate_name(user_name):
             break
@@ -319,7 +323,7 @@ def validate_name(user_input):
     10 characters.
     """
     os.system('cls' if os.name == 'nt' else 'clear')
-    
+
     try:
         if len(user_input) > 10:
             raise ValueError(
@@ -404,12 +408,13 @@ def get_menu_choice(data):
 
     # Print menu as a table
     print(tabulate(menu_content, headers=header_names, tablefmt='fancy_grid')
-            +"\n")
+          + "\n")
 
     # Assign user input to variable selected_code and check if valid.
     while True:
         selected_code = input(
-            colored(f"Please select your {ingredient} by entering the code {first} - {last}\n", 'green')
+            colored(f"Please select your {ingredient} by entering the code"
+                    f"{first} - {last}\n", 'green')
             )
         if validate_data(selected_code, code_options, "coffee_code"):
             break
@@ -443,12 +448,12 @@ def validate_data(user_input, expected_values, selection=""):
                 raise ValueError(
                     "This order reference does not exist.  Please try again"
                 )
-        
+
         if selection == "coffee_quantity":
             if user_input.isalpha() or int(user_input) < 1:
                 raise ValueError(
-                "Please enter a number between 1 and 10"
-            )
+                    "Please enter a number between 1 and 10"
+                )
     except ValueError as e:
         print(f"{colored(f'{e}. Please try again.', 'red')}")
         return False
@@ -465,12 +470,14 @@ def coffee_quantity(action):
     while True:
         # Create a list of integers to pass as the expected_values argument.
         quantity_options = range(1, 11)
-        
+
         selected_quantity = input(
             colored("Please select a quantity between 1 and 10\n", 'green')
         )
-        if validate_data(selected_quantity, list(map(str, quantity_options)),
-                    "coffee_quantity") and validate_drinks(selected_quantity, action):
+        if validate_data(selected_quantity,
+                         list(map(str, quantity_options)),
+                         "coffee_quantity") and validate_drinks(
+                            selected_quantity, action):
             break
 
     return int(selected_quantity)
@@ -484,19 +491,19 @@ def validate_drinks(user_input, step):
     try:
         if step == "add" and int(user_input) + user_order.total_drinks > 10:
             raise ValueError(
-                    "Sorry, this would take your order over 10 drinks"        
+                    "Sorry, this would take your order over 10 drinks"
             )
-        elif step == "edit" and int(user_input) >10:
+        elif step == "edit" and int(user_input) > 10:
             raise ValueError(
-                    "You can only order a max of 10 drinks per order"    
-            ) 
+                    "You can only order a max of 10 drinks per order"
+            )
 
     except ValueError as e:
         if user_order.total_drinks == 10:
-            message = f"{colored(f'{e}. Please choose another option:','red')}\n"
+            message = f"{colored(f'{e}. Please choose again:','red')}\n"
             view_order("choices", message)
         else:
-            print(f"{colored(f'{e}. Please choose another option:', 'red')}")
+            print(f"{colored(f'{e}. Please choose again:', 'red')}")
         return False
 
     return True
@@ -507,7 +514,7 @@ def get_sales_data(dates):
     Converts sales figures from worksheet to lists of integers.
     Takes a list of dates as an argument and iterates over each
     row, checking whether the date in column J is in the list of
-    dates.  If it is, the date is appended to the list of 
+    dates.  If it is, the date is appended to the list of
     requested_data and the function returns this list.
     """
 
@@ -521,7 +528,7 @@ def get_sales_data(dates):
     for row in sales_data:
         if row[9] in list_of_dates:
             requested_data.append(row)
-    
+
     return requested_data
 
 
@@ -535,10 +542,10 @@ def date_range(days):
     """
     now = datetime.now()
     dates_list = []
- 
+
     for x in range(days):
         date = now - timedelta(days=x)
-        date_string = date.strftime("%d/%m/%Y") 
+        date_string = date.strftime("%d/%m/%Y")
         dates_list.append(date_string)
     return dates_list
 
@@ -571,8 +578,8 @@ def get_sales_totals(time_span):
 
 def most_popular(data):
     """
-    Iterates over sales totals provided in the argument 'data'.  
-    The max() method is used to find the highest total and 
+    Iterates over sales totals provided in the argument 'data'.
+    The max() method is used to find the highest total and
     these stats are returned by the function.
     """
 
@@ -611,7 +618,7 @@ def admin_stats(days):
           f" : {colored(coffee_sales, 'cyan', attrs=['bold'])}\n")
 
     print(tabulate(coffee, headers='firstrow', tablefmt='fancy_grid')
-            +"\n")
+          + "\n")
 
     print(f"Most popular coffee:"
           f" {colored(top_coffee[0],'cyan', attrs=['bold'])}\n")
@@ -692,7 +699,7 @@ def view_order(selection="", message=""):
     df = pd.DataFrame(order_dict)
 
     print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
-     + "\n")
+          + "\n")
 
     # Updates user_order total_drinks attribute.
     user_order.get_drinks_total()
@@ -854,18 +861,18 @@ def complete_order():
     user_order.complete_order()
 
     order_details = [user_order.order_ref, user_order.name, items_to_string(),
-                    user_order.total_price, user_order.total_drinks,
-                    user_order.date, user_order.time, user_order.pickup]
+                     user_order.total_price, user_order.total_drinks,
+                     user_order.date, user_order.time, user_order.pickup]
 
     send_data(order_details, "orders")
 
     print(colored("Thank you, your order has been submitted!\n", 'cyan'))
     print(f"Your order reference is:"
-         f" {colored(f'{user_order.order_ref}', 'cyan', attrs=['bold'])}\n")
-    print(f"The total cost of your order is:" 
-         f" {colored(f'£{user_order.total_price}', 'cyan', attrs=['bold'])}\n")
+          f" {colored(f'{user_order.order_ref}','cyan',attrs=['bold'])}\n")
+    print(f"The total cost of your order is:"
+          f" {colored(f'£{user_order.total_price}','cyan',attrs=['bold'])}\n")
     print(f"Your coffee will be ready to pickup at:"
-         f" {colored(f'{user_order.pickup}', 'cyan', attrs=['bold'])}\n")
+          f" {colored(f'{user_order.pickup}','cyan',attrs=['bold'])}\n")
 
     user_menu(options_complete("current"), "order_complete")
 
@@ -883,7 +890,6 @@ def completed_steps(user_choice, codes):
         view_order("completed")
     elif user_choice == last:
         quit_app()
-            
 
 
 def quit_app():
@@ -894,6 +900,7 @@ def quit_app():
         colored("Thanks for stopping by, see you again soon!\n", 'cyan')
         )
     title_screen()
+
 
 def clear_order():
     """
@@ -936,7 +943,7 @@ def view_completed(sheet_data):
     for order in completed_orders:
         if order[0] == selected_code:
             print(f"Hi {order[1]},\n")
-            print(f"Details for order ref {colored(order[0], 'cyan')}" 
+            print(f"Details for order ref {colored(order[0], 'cyan')}"
                   " are as follows:\n")
             print(f"{order[2]}\n")
             print(f"The total cost of your order is"
@@ -963,7 +970,7 @@ def sales_data():
     soy_sales = user_order.get_quantity("Milk", "soy", get_keys())
 
     sales = [fw_sales, la_sales, ca_sales, am_sales, reg_sales, ski_sales,
-            oat_sales, soy_sales]
+             oat_sales, soy_sales]
     sales.append(user_order.time)
     sales.append(user_order.date)
 
@@ -991,6 +998,3 @@ def main():
 user_order = Order()
 
 main()
-
-
-
