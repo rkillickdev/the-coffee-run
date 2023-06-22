@@ -918,10 +918,13 @@ def view_completed(sheet_data):
     for order in completed_orders:
         if order[0] == selected_code:
             print(f"Hi {order[1]},\n")
-            print(f"Details for order ref {order[0]} are as follows:\n")
-            print(f"{order[2]}")
-            print("\n")
-            print(f"The total cost of your order is £{order[3]}\n")
+            print(f"Details for order ref {colored(order[0], 'cyan')}" 
+                  " are as follows:\n")
+            print(f"{order[2]}\n")
+            print(f"The total cost of your order is"
+                  f" £ {colored(order[3], 'cyan')}\n")
+            print(f"Your coffee will be ready to pickup at"
+                  f" {colored(order[7], 'cyan')}\n")
 
     user_menu(options_complete("completed"), "order_complete")
 
