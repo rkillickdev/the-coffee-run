@@ -344,7 +344,7 @@ def create_item_dict():
     """
 
     user_choices = [get_menu_choice(pull_menu("coffee")),
-                    get_menu_choice(pull_menu("milk")), get_quantity()]
+                    get_menu_choice(pull_menu("milk")), coffee_quantity("add")]
 
     # calculate unit price
     unit = user_choices[0][1] + user_choices[1][1]
@@ -456,7 +456,7 @@ def validate_data(user_input, expected_values, selection=""):
     return True
 
 
-def get_quantity():
+def coffee_quantity(action):
     """
     Takes quantity input from user and returns as an integer.
     """
@@ -470,22 +470,26 @@ def get_quantity():
             colored("Please select a quantity between 1 and 10\n", 'green')
         )
         if validate_data(selected_quantity, list(map(str, quantity_options)),
-                    "coffee_quantity") and validate_drinks(selected_quantity):
+                    "coffee_quantity") and validate_drinks(selected_quantity, action):
             break
 
     return int(selected_quantity)
 
 
-def validate_drinks(user_input):
+def validate_drinks(user_input, step):
     """
     Checks sum of user input and total number of drinks currently in the order.
     If sum is greater than 10 return False.
     """
     try:
-        if int(user_input) + user_order.total_drinks > 10:
+        if step == "add" and int(user_input) + user_order.total_drinks > 10:
             raise ValueError(
-                    "You can only order a max of 10 drinks per order"        
+                    "Sorry, this would take your order over 10 drinks"        
             )
+        elif step == "edit" and int(user_input) >10:
+            raise ValueError(
+                    "You can only order a max of 10 drinks per order"    
+            ) 
 
     except ValueError as e:
         if user_order.total_drinks == 10:
@@ -761,7 +765,7 @@ def input_options(keys, option):
             view_order("choices")
 
     elif option == "edit":
-        updated_quantity = get_quantity()
+        updated_quantity = coffee_quantity("edit")
         item = user_order.items[index]
         item[index + 1]['Quantity'] = updated_quantity
         item[index + 1]['Price'] = item[index + 1][
