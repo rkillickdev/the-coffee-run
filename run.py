@@ -463,13 +463,12 @@ def get_quantity():
 
     # Assign user input to variable selected_quantity and check if valid.
     while True:
+        # Create a list of integers to pass as the expected_values argument.
+        quantity_options = range(1, 11)
+        
         selected_quantity = input(
             colored("Please select a quantity between 1 and 10\n", 'green')
         )
-
-        # Create a list of integers to pass as the expected_values argument.
-        quantity_options = range(1, 11)
-
         if validate_data(selected_quantity, list(map(str, quantity_options)),
                     "coffee_quantity") and validate_drinks(selected_quantity):
             break
@@ -489,8 +488,12 @@ def validate_drinks(user_input):
             )
 
     except ValueError as e:
-        message = f"{colored(f'{e}. Please choose another option:', 'red')}"
-        view_order("choices", message)
+        if user_order.total_drinks == 10:
+            message = f"{colored(f'{e}. Please choose another option:','red')}\n"
+            view_order("choices", message)
+        else:
+            print(f"{colored(f'{e}. Please choose another option:', 'red')}")
+        return False
 
     return True
 
