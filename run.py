@@ -599,6 +599,7 @@ def admin_stats(days):
     milk = sales_data[1]
     top_coffee = most_popular(coffee)
     top_milk = most_popular(milk)
+    code_options = ['m', 'q']
 
     print(f"Total number of coffees sold in the past {days} days"
           f" : {colored(coffee_sales, 'cyan', attrs=['bold'])}\n")
@@ -609,7 +610,17 @@ def admin_stats(days):
     print(f"Most popular coffee:"
           f" {colored(top_coffee[0],'cyan', attrs=['bold'])}\n")
     print(f"Most popular milk:"
-          f" {colored(top_milk[0],'cyan', attrs=['bold'])}")
+          f" {colored(top_milk[0],'cyan', attrs=['bold'])}\n")
+
+    while True:
+        selected_code = input(
+            f"{colored('press m for main menu or q to quit app', 'green')}\n"
+            )
+        if validate_data(selected_code, code_options, "coffee_code"):
+            break
+
+    if selected_code == 'm':
+        main()
 
 
 def get_recent():
