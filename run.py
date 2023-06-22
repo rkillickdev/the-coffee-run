@@ -740,9 +740,10 @@ def input_options(keys, option):
 
     while True:
 
-        print(f"Which item of your order you would like to {option}?")
+        print(f"Which item of your order you would like to {option}?\n")
 
-        selected_code = int(input("Enter a number here:\n"))
+        selected_code = int(input(
+            colored("Enter a number here:\n", 'green')))
 
         if validate_data(selected_code, keys, "options"):
             break
