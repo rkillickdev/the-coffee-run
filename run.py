@@ -463,10 +463,9 @@ def get_quantity():
 
     # Assign user input to variable selected_quantity and check if valid.
     while True:
-
-        print("Please select a quantity between 1 and 10\n")
-
-        selected_quantity = input("Enter your choice here:\n")
+        selected_quantity = input(
+            colored("Please select a quantity between 1 and 10\n", 'green')
+        )
 
         # Create a list of integers to pass as the expected_values argument.
         quantity_options = range(1, 11)
