@@ -908,7 +908,9 @@ def view_completed(sheet_data):
         print("To view an existing order, please enter your "
               "reference number:\n")
 
-        selected_code = (input("Enter a reference here:\n"))
+        selected_code = (
+            input(colored("Enter a reference here:\n", 'green'))
+            )
 
         if validate_data(selected_code, order_refs, "reference"):
             break
