@@ -6,6 +6,7 @@ from tabulate import tabulate
 from datetime import datetime, timedelta
 from termcolor import colored, cprint
 from pyfiglet import Figlet
+from collections import OrderedDict
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -366,7 +367,7 @@ def create_item_dict():
     key = [len(user_order.items) + 1]
 
     # Creates a dictionary using the item dictionary as the value.
-    item_dict = dict(zip(key, item))
+    item_dict = OrderedDict(zip(key, item))
 
     return item_dict
 
@@ -691,12 +692,13 @@ def view_order(selection="", message=""):
     # Turn the user_order items list into a single dictionary.
     # Used the following article to learn about this:
     # https://blog.finxter.com/merge-dictionaries/
-    order_dict = {k: v for item in user_order.items for k, v in item.items()}
+    item_dictionary = OrderedDict(
+        {k: v for item in user_order.items for k, v in item.items()})
 
     # Print order summary as a table using pandas data frames.
     # I used the following article to learn about data frames:
     # https://tutorial.eyehunts.com/python/python-tabulate-dictionary-example-code/
-    df = pd.DataFrame(order_dict)
+    df = pd.DataFrame(item_dictionary)
 
     print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
           + "\n")
