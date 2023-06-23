@@ -494,7 +494,7 @@ def validate_drinks(user_input, step):
             raise ValueError(
                     "Sorry, this would take your order over 10 drinks"
             )
-        elif step == "edit" and int(user_input) > 10:
+        elif step == "edit" and int(user_input) > 10 or int(user_input) + user_order.total_drinks > 10:
             raise ValueError(
                     "You can only order a max of 10 drinks per order"
             )
@@ -778,8 +778,10 @@ def input_options(keys, option):
             view_order("choices")
 
     elif option == "edit":
-        updated_quantity = coffee_quantity("edit")
         item = user_order.items[index]
+        item[index + 1]['Quantity'] = 0
+        user_order.get_drinks_total()   
+        updated_quantity = coffee_quantity("edit")
         item[index + 1]['Quantity'] = updated_quantity
         item[index + 1]['Price'] = item[index + 1][
             'Unit Price'] * updated_quantity
