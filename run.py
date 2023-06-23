@@ -948,16 +948,30 @@ def view_completed(sheet_data):
 
     os.system('cls' if os.name == 'nt' else 'clear')
 
+    pickup_time = []
+
     for order in completed_orders:
         if order[0] == selected_code:
+            pickup_time.append(order[5])
+            pickup_time.append(order[7])
+            string_pickup = ' '.join(pickup_time)
+            date_format = '%d/%m/%Y %H:%M:%S'
+            present = datetime.now()
+            current_string = datetime.strftime(present, date_format)
+            present_datetime = datetime.strptime(current_string, date_format)
+            pickup_datetime = datetime.strptime(string_pickup, date_format)
             print(f"Hi {order[1]},\n")
             print(f"Details for order ref {colored(order[0], 'cyan')}"
                   " are as follows:\n")
             print(f"{order[2]}\n")
             print(f"The total cost of your order is"
                   f" £ {colored(order[3], 'cyan')}\n")
-            print(f"Your coffee will be ready to pickup at"
-                  f" {colored(order[7], 'cyan')}\n")
+            if present_datetime < pickup_datetime:
+                print(f"Your coffee will be ready to pickup at"
+                      f" {colored(order[7], 'cyan')}\n")
+            else:
+                print(f"Your coffee is"
+                      f"{colored(' READY','cyan',attrs=['bold'])} to pickup\n")
 
     user_menu(options_complete("completed"), "order_complete")
 
