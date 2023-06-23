@@ -3,7 +3,8 @@ from google.oauth2.service_account import Credentials
 import pandas as pd
 import os
 from tabulate import tabulate
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
+import pytz
 from termcolor import colored, cprint
 from pyfiglet import Figlet
 from collections import OrderedDict
@@ -116,7 +117,7 @@ class Order:
         """
         Returns current date
         """
-        now = datetime.now()
+        now = datetime.now(pytz.timezone('Europe/London'))
         date = now.strftime("%d/%m/%Y")
         self.date = date
 
@@ -124,7 +125,7 @@ class Order:
         """
         Returns current time
         """
-        now = datetime.now()
+        now = datetime.now(pytz.timezone('Europe/London'))
         time = now.strftime("%H:%M:%S")
         self.time = time
 
@@ -541,7 +542,7 @@ def date_range(days):
     https://www.pythonprogramming.in/getting-the-date-of-7-days-
     ago-from-current-date-in-python.html
     """
-    now = datetime.now()
+    now = datetime.now(pytz.timezone('Europe/London'))
     dates_list = []
 
     for x in range(days):
@@ -956,7 +957,7 @@ def view_completed(sheet_data):
             pickup_time.append(order[7])
             string_pickup = ' '.join(pickup_time)
             date_format = '%d/%m/%Y %H:%M:%S'
-            present = datetime.now()
+            present = datetime.now(pytz.timezone('Europe/London'))
             current_string = datetime.strftime(present, date_format)
             present_datetime = datetime.strptime(current_string, date_format)
             pickup_datetime = datetime.strptime(string_pickup, date_format)
@@ -1020,3 +1021,4 @@ def main():
 user_order = Order()
 
 main()
+
