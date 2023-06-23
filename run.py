@@ -755,7 +755,6 @@ def input_options(keys, option):
     view_order()
 
     keys_as_strings = [str(x) for x in keys]
-    print(keys_as_strings)
 
     while True:
 
