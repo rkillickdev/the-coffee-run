@@ -874,9 +874,13 @@ def complete_order():
     print(f"Your coffee will be ready to pickup at:"
           f" {colored(f'{user_order.pickup}','cyan',attrs=['bold'])}\n")
 
+    # sales = sales_data()
+    # print(sales)
+
     user_menu(options_complete("current"), "order_complete")
 
     send_data(sales_data(), "sales")
+    
 
 
 def completed_steps(user_choice, codes):
@@ -960,14 +964,14 @@ def sales_data():
     in the order.
     """
 
-    fw_sales = user_order.get_quantity("Coffee", "flat white", get_keys())
-    la_sales = user_order.get_quantity("Coffee", "latte", get_keys())
-    ca_sales = user_order.get_quantity("Coffee", "cappuccino", get_keys())
-    am_sales = user_order.get_quantity("Coffee", "americano", get_keys())
-    reg_sales = user_order.get_quantity("Milk", "regular", get_keys())
-    ski_sales = user_order.get_quantity("Milk", "skinny", get_keys())
-    oat_sales = user_order.get_quantity("Milk", "oat", get_keys())
-    soy_sales = user_order.get_quantity("Milk", "soy", get_keys())
+    fw_sales = user_order.get_quantity("Coffee", "Flat White", get_keys())
+    la_sales = user_order.get_quantity("Coffee", "Latte", get_keys())
+    ca_sales = user_order.get_quantity("Coffee", "Cappuccino", get_keys())
+    am_sales = user_order.get_quantity("Coffee", "Americano", get_keys())
+    reg_sales = user_order.get_quantity("Milk", "Regular", get_keys())
+    ski_sales = user_order.get_quantity("Milk", "Skinny", get_keys())
+    oat_sales = user_order.get_quantity("Milk", "Oat", get_keys())
+    soy_sales = user_order.get_quantity("Milk", "Almond", get_keys())
 
     sales = [fw_sales, la_sales, ca_sales, am_sales, reg_sales, ski_sales,
              oat_sales, soy_sales]
