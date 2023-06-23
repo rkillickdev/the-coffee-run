@@ -501,8 +501,8 @@ def validate_drinks(user_input, step):
 
     except ValueError as e:
         if user_order.total_drinks == 10:
-            message = f"{colored(f'{e}. Please choose again:','red')}\n"
-            view_order("choices", message)
+            alert = f"{colored(f'{e}. Please choose another option:','red')}\n"
+            view_order("choices", alert)
         else:
             print(f"{colored(f'{e}. Please choose again:', 'red')}")
         return False
@@ -682,9 +682,7 @@ def view_order(selection="", message=""):
 
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    if message:
-        print(message)
-    elif not user_order.is_complete:
+    if not user_order.is_complete:
         print("You're order currently contains the following:\n")
     else:
         print("Here is a summary of your order:\n")
@@ -702,6 +700,9 @@ def view_order(selection="", message=""):
 
     print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
           + "\n")
+
+    if message:
+        print(message)
 
     # Updates user_order total_drinks attribute.
     user_order.get_drinks_total()
