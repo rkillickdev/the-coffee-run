@@ -754,17 +754,20 @@ def input_options(keys, option):
     os.system('cls' if os.name == 'nt' else 'clear')
     view_order()
 
+    keys_as_strings = [str(x) for x in keys]
+    print(keys_as_strings)
+
     while True:
 
         print(f"Which item of your order you would like to {option}?\n")
 
-        selected_code = int(input(
-            colored("Enter a number here:\n", 'green')))
+        selected_code = input(
+            colored("Enter a number here:\n", 'green'))
 
-        if validate_data(selected_code, keys, "options"):
+        if validate_data(selected_code, keys_as_strings, "options"):
             break
 
-    index = selected_code - 1
+    index = int(selected_code) - 1
     if option == "remove":
         user_order.remove_item(index)
         update_order_dict()
