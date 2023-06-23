@@ -874,13 +874,10 @@ def complete_order():
     print(f"Your coffee will be ready to pickup at:"
           f" {colored(f'{user_order.pickup}','cyan',attrs=['bold'])}\n")
 
-    # sales = sales_data()
-    # print(sales)
+    sales = sales_data()
+    send_data(sales, "sales")
 
     user_menu(options_complete("current"), "order_complete")
-
-    send_data(sales_data(), "sales")
-    
 
 
 def completed_steps(user_choice, codes):
