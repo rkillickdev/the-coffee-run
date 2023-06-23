@@ -247,7 +247,7 @@ def user_menu(options, menu):
         message = "What would you like to do next?\n"
 
     df = pd.DataFrame(options)
-    print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')+"\n")
+    print(tabulate(df.T, headers="keys", tablefmt='fancy_grid'))
 
     while True:
         print(f"{message}\n")
