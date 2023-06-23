@@ -61,7 +61,7 @@ class Order:
             for key, value in dict.items():
                 subtotal = value.get('Price')
                 order_total += subtotal
-        self.total_price = order_total
+        self.total_price = round(order_total, 1)
 
     def get_drinks_total(self):
         """
