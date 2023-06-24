@@ -299,7 +299,7 @@ def assemble_order():
 
     item = create_item_dict()
     user_order.update_item(item)
-    view_order("choices")
+    view_order("addition")
 
 
 def get_user_name():
@@ -694,13 +694,26 @@ def view_order(selection="", message=""):
     item_dictionary = OrderedDict(
         {k: v for item in user_order.items for k, v in item.items()})
 
+    print(item_dictionary)
+
     # Print order summary as a table using pandas data frames.
     # I used the following article to learn about data frames:
-    # https://tutorial.eyehunts.com/python/python-tabulate-dictionary-example-code/
-    df = pd.DataFrame(item_dictionary)
+    # https://tutorial.eyehunts.com/python/python-tabulate-
+    #dictionary-example-code/
 
-    print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
-          + "\n")
+    last_item = []
+
+    if selection == "addition":
+        last_item.append(item_dictionary.popitem()) 
+        print(last_item)
+        df = pd.DataFrame(last_item)
+        print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
+              + "\n")
+    else:
+        df = pd.DataFrame(item_dictionary)
+
+        print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
+            + "\n")
 
     if message:
         print(message)
@@ -708,7 +721,7 @@ def view_order(selection="", message=""):
     # Updates user_order total_drinks attribute.
     user_order.get_drinks_total()
 
-    if selection == "choices":
+    if selection == "choices" or selection == "addition":
         user_menu(action_options, "order_options")
     elif selection == "completed":
         user_menu(options_complete("completed"), "order_complete")
