@@ -185,34 +185,14 @@ action_options = {
     }
 }
 
-
-def options_complete(status):
-    """
-    """
-
-    if status == "current":
-        options_complete = {
-            1: {
-                "Action": "Return To Main Menu"
-            },
-            2: {
-                "Action": "View Order"
-            },
-            3: {
-                "Action": "Quit App"
-            }
-        }
-    elif status == "completed":
-        options_complete = {
-            1: {
-                "Action": "Return To Main Menu"
-            },
-            2: {
-                "Action": "Quit App"
-            }
-        }
-
-    return options_complete
+options_complete = {
+    1: {
+        "Action": "Return To Main Menu"
+    },
+    2: {
+        "Action": "View Order"
+    }
+}
 
 
 def title_screen():
@@ -750,6 +730,7 @@ def view_order(selection="", message=""):
     if selection == "completed":
         selected_code = return_to_menu("main")
         if selected_code == 'm':
+            clear_order()
             main()
 
 
@@ -926,7 +907,7 @@ def complete_order():
     sales = sales_data()
     send_data(sales, "sales")
 
-    user_menu(options_complete("current"), "order_complete")
+    user_menu(options_complete, "order_complete")
 
 
 def completed_steps(user_choice, codes):
@@ -936,11 +917,8 @@ def completed_steps(user_choice, codes):
     if user_choice == codes[0]:
         clear_order()
         main()
-    elif user_choice == 2 and user_choice != last:
+    elif user_choice == codes[1]:
         view_order("completed")
-    elif user_choice == last:
-        quit_app()
-
 
 def quit_app():
     """
@@ -956,6 +934,7 @@ def clear_order():
     """
     """
     user_order.items = []
+    user_order.total_drinks = 0
     user_order.name = ""
 
 
