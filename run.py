@@ -172,9 +172,12 @@ action_options = {
         "Action": "Edit Quantities"
     },
     4: {
-        "Action": "Finalise Order"
+        "Action": "View Current Order"
     },
     5: {
+        "Action": "Finalise Order"
+    },
+    6: {
         "Action": "Cancel Order"
     }
 }
@@ -758,8 +761,10 @@ def next_step(user_choice):
     elif user_choice == 3:
         input_options(get_keys(), "edit")
     elif user_choice == 4:
-        complete_order()
+        view_order("choices")
     elif user_choice == 5:
+        complete_order()
+    elif user_choice == 6:
         clear_order()
         main()
 
