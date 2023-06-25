@@ -212,13 +212,13 @@ def title_screen():
     https://towardsdatascience.com/prettify-your-terminal
     -text-with-termcolor-and-pyfiglet-880de83fda6b
     """
-    line_1 = "Coffee"
-    line_2 = "Run"
-    c = line_2.center(12)
+    line_1 = "COFFEE  RUN"
+    # line_2 = "Run"
+    # c = line_2.center(12)
 
-    f = Figlet(font='bulbhead')
+    f = Figlet(font='big')
     print(f.renderText(line_1))
-    print(f.renderText(c))
+    # print(f.renderText(c))
 
 
 def user_menu(options, menu):
@@ -241,7 +241,7 @@ def user_menu(options, menu):
 
     if menu == "main":
         title_screen()
-        message = "Welcome. What would you like to do today?"
+        message = "Welcome to The Coffee Run. What would you like to do today?"
     else:
         message = "What would you like to do next?\n"
 
@@ -249,7 +249,7 @@ def user_menu(options, menu):
     print(tabulate(df.T, headers="keys", tablefmt='fancy_grid'))
 
     while True:
-        print(f"{message}\n")
+        print(f"\n{message}\n")
 
         selected_code = (
             input(f"{colored(f'Enter {first} - {last} here:', 'green')}\n")
