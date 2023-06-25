@@ -249,7 +249,7 @@ def user_menu(options, menu):
     print(tabulate(df.T, headers="keys", tablefmt='fancy_grid'))
 
     while True:
-        print(f"\n{message}\n")
+        print(f"\n{message}")
 
         selected_code = (
             input(f"{colored(f'Enter {first} - {last} here:', 'green')}\n")
