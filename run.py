@@ -497,17 +497,17 @@ def validate_drinks(user_input, step):
     If sum is greater than 10 return False.
     """
     try:
-        if step == "add" and int(user_input) + user_order.total_drinks > 10:
+        if step == "add" and int(user_input) + user_order.total_drinks > 5:
             raise ValueError(
-                    "Sorry, this would take your order over 10 drinks"
+                    "Sorry, this would take your order over 5 drinks"
             )
-        elif step == "edit" and int(user_input) > 10 or int(user_input) + user_order.total_drinks > 10:
+        elif step == "edit" and int(user_input) > 5 or int(user_input) + user_order.total_drinks > 5:
             raise ValueError(
-                    "You can only order a max of 10 drinks per order"
+                    "You can only order a max of 5 drinks per order"
             )
 
     except ValueError as e:
-        if user_order.total_drinks == 10:
+        if user_order.total_drinks == 5:
             alert = f"{colored(f'{e}. Please choose another option:','red')}\n"
             view_order("choices", alert)
         else:
