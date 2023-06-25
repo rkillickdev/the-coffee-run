@@ -158,6 +158,9 @@ user_options = {
     },
     3: {
         "Action": "Admin Login"
+    },
+    4: {
+        "Action": "Quit App"
     }
 }
 
@@ -283,6 +286,9 @@ def main_menu_steps(user_choice):
         view_completed(pull_menu("orders"))
     elif user_choice == 3:
         admin_stats(10)
+    elif user_choice == 4:
+        quit_app()
+
 
 
 def assemble_order():
