@@ -416,7 +416,7 @@ def get_menu_choice(data):
     first = code_options[0]
     last = code_options[-1]
 
-    # Print menu as a table
+    # Prints menu as a table
     print(tabulate(menu_content, headers=header_names, tablefmt='fancy_grid')
           + "\n")
 
@@ -441,6 +441,8 @@ def get_menu_choice(data):
 def validate_data(user_input, expected_values, selection=""):
     """
     Raises ValueError if user_input is not found in list of expected_values.
+    The ValueError raised is determined by the string passed as the argument
+    'selection'.
     """
 
     try:
@@ -462,7 +464,7 @@ def validate_data(user_input, expected_values, selection=""):
         if selection == "coffee_quantity":
             if user_input.isalpha() or int(user_input) < 1:
                 raise ValueError(
-                    "Please enter a number between 1 and 10"
+                    "Please enter a number between 1 and 5"
                 )
     except ValueError as e:
         print(f"{colored(f'{e}. Please try again.', 'red')}")
@@ -482,7 +484,7 @@ def coffee_quantity(action):
         quantity_options = range(1, 11)
 
         selected_quantity = input(
-            colored("Please select a quantity between 1 and 10\n", 'green')
+            colored("Please select a quantity between 1 and 5\n", 'green')
         )
         if validate_data(selected_quantity,
                          list(map(str, quantity_options)),
@@ -496,7 +498,7 @@ def coffee_quantity(action):
 def validate_drinks(user_input, step):
     """
     Checks sum of user input and total number of drinks currently in the order.
-    If sum is greater than 10 return False.
+    If sum is greater than 5 return False.
     """
 
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -508,7 +510,7 @@ def validate_drinks(user_input, step):
             )
         elif step == "edit" and int(user_input) > 5 or int(user_input) + user_order.total_drinks > 5:
             raise ValueError(
-                    "You can only order a max of 5 drinks per order"
+                    "You can only order a maximum of 5 drinks per order"
             )
 
     except ValueError as e:
@@ -637,13 +639,6 @@ def admin_stats(days):
     print(f"Most popular milk:"
           f" {colored(top_milk[0],'cyan', attrs=['bold'])}\n")
 
-    # while True:
-    #     selected_code = input(
-    #         f"{colored('press m for main menu or q to quit app', 'green')}\n"
-    #         )
-    #     if validate_data(selected_code, code_options, "coffee_code"):
-    #         break
-
     selected_code = return_to_menu("main")
 
     if selected_code == 'm':
@@ -651,7 +646,7 @@ def admin_stats(days):
 
 def return_to_menu(menu_type):
     """
-    Gives user the choice of returning to main menu or quitting the app.
+    Guides the user back to a menu as specified in the argument 'menu_type'.
     User input must pass validation before the next step runs.
     """
 
@@ -675,7 +670,7 @@ def return_to_menu(menu_type):
 
 def get_recent():
     """
-    Gets the column data for total drink and time from "orders" sheet.
+    Gets the column data for total drinks and time from "orders" sheet.
     Filters and returns total drinks ordered in the last 15 minutes.
     """
     orders = SHEET.worksheet("orders")
@@ -711,7 +706,7 @@ def get_recent():
 def view_order(selection="", message=""):
     """
     Iterates over each dictionary stored in user_order items list and uses
-    f string to print items currently in the order.
+    f string literal to print items currently in the order.
     """
 
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -756,7 +751,7 @@ def view_order(selection="", message=""):
 
 def next_step(user_choice):
     """
-    Check value of the parameter user_choice and run
+    Checks value of the parameter user_choice and runs
     associated function based on this value.
     """
 
@@ -792,9 +787,15 @@ def get_keys():
 
 def input_options(keys, option):
     """
-    Accepts a code form the user.  If valid, this code is used to generate the
-    necessary index for the item being removed, which is then passed as an
-    argument to the remove_item method on the class instance user_order.
+    Accepts a code from the user.  If valid, this code is used to generate the
+    necessary index to manipulate the item being removed or edited.
+    If removing an item, the index is passed as an argument to the remove_item
+    method of the Class Order. The view_order function is then called to display
+    the new order summary with the item removed. 
+    If editing the quantity of an item, the quantity value is set to zero, before
+    re-entering the desired quantity.  The quantity and price values are then updated
+    in the item dictionary.  The view_order function is then called displaying a 
+    summary of the order with the ammended quantity and price.
     """
 
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -813,6 +814,7 @@ def input_options(keys, option):
             break
 
     index = int(selected_code) - 1
+
     if option == "remove":
         user_order.remove_item(index)
         update_order_dict()
@@ -834,6 +836,9 @@ def input_options(keys, option):
 
 def update_order_dict():
     """
+    Updates keys for dictionaries in user_order.items when an item
+    is removed from the list, so the keys are always sequential
+    when displayed in a table format.
     """
 
     options = list(range(len(user_order.items)))
@@ -899,6 +904,14 @@ def items_to_string():
 
 def submit_order():
     """
+    Class methods called on the instance of Order 'user_order'.
+    A list of order details collated  from the user_order attributes which
+    are then sent to the google sheet called "orders".
+    Print statements using f string literals are used to communicate key
+    information from the order to the user.
+    The sales_data function is also called and this data is sent to the 
+    google sheet called "sales".
+    Next step options are then displayed to the user in tabular form.
     """
 
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -933,6 +946,9 @@ def submit_order():
 
 def completed_steps(user_choice, codes):
     """
+    This either returns the user to the main menu or displays a
+    summary of their sumitted order, depending on the value passed
+    as the argument 'user_choice'.
     """
     last = codes[-1]
     if user_choice == codes[0]:
@@ -943,6 +959,8 @@ def completed_steps(user_choice, codes):
 
 def quit_app():
     """
+    Prints a thank you message and runs the title_screen function to
+    display "Coffee Run".
     """
     os.system('cls' if os.name == 'nt' else 'clear')
     print(
@@ -953,6 +971,8 @@ def quit_app():
 
 def clear_order():
     """
+    Updates the attributes items, total_drinks and name for the class instance 
+    of Order called user_order.
     """
     user_order.items = []
     user_order.total_drinks = 0
@@ -998,10 +1018,11 @@ def view_completed(sheet_data):
             pickup_time.append(order[7])
             string_pickup = ' '.join(pickup_time)
             date_format = '%d/%m/%Y %H:%M:%S'
-            present = datetime.now(pytz.timezone('Europe/London'))
+            present = get_datetime()
             current_string = datetime.strftime(present, date_format)
             present_datetime = datetime.strptime(current_string, date_format)
             pickup_datetime = datetime.strptime(string_pickup, date_format)
+
             print(f"Hi {order[1]},\n")
             print(f"Details for order ref {colored(order[0], 'cyan')}"
                   " are as follows:\n")
@@ -1022,8 +1043,8 @@ def view_completed(sheet_data):
 
 def sales_data():
     """
-    Compile a sales list with the quantity of each type of coffe and milk
-    in the order.
+    Compile and return a sales list with the quantity of each type of 
+    coffe and milk in the order.
     """
 
     fw_sales = user_order.get_quantity("Coffee", "Flat White", get_keys())
@@ -1046,7 +1067,7 @@ def sales_data():
 def send_data(data, sheet_name):
     """
     Receives a list to be inserted into a worksheet.
-    Update the relevant worksheet with the data provided.
+    Updates the specified worksheet with the data provided.
     """
     worksheet_to_update = SHEET.worksheet(sheet_name)
     worksheet_to_update.append_row(data)
@@ -1054,7 +1075,7 @@ def send_data(data, sheet_name):
 
 def main():
     """
-    Run all program functions.
+    Displays the main user menu.
     """
     os.system('cls' if os.name == 'nt' else 'clear')
     user_menu(user_options, "main")
