@@ -46,8 +46,8 @@ class Order:
 
     def remove_item(self, item):
         """
+        Removes the last item from the items list.
         """
-
         self.items.pop(item)
 
     def get_order_total(self):
@@ -67,7 +67,7 @@ class Order:
     def get_drinks_total(self):
         """
         Iterates over items list and for each dictionary sums the value
-        of all 'Quantity' keys.
+        of all 'Quantity' keys to get the total number of drinks in the order.
         """
 
         drinks_total = 0
@@ -95,6 +95,7 @@ class Order:
                 quantity = 0
             quantities_list.append(quantity)
         total_quantity = sum(quantities_list)
+
         return total_quantity
 
     def calculate_prep(self):
@@ -115,7 +116,7 @@ class Order:
 
     def get_date(self):
         """
-        Returns current date
+        Returns current date.
         """
         now = get_datetime()
         date = now.strftime("%d/%m/%Y")
@@ -123,7 +124,7 @@ class Order:
 
     def get_time(self):
         """
-        Returns current time
+        Returns current time.
         """
         now = get_datetime()
         time = now.strftime("%H:%M:%S")
@@ -134,7 +135,7 @@ class Order:
         Creates a datetime object for the current time and a timedelta
         object using the value stored in the order attribute 'prep_time'.
         These objects are added and then converted to a string which is
-        assigned to the orderattribute 'pickup'.
+        assigned to the order attribute 'pickup'.
         """
         # I read the following article for adding minutes to datetime:
         # https://thispointer.com/how-to-add-minutes-to-datetime-in-python/
@@ -146,6 +147,9 @@ class Order:
         self.pickup = pickup_string
 
     def complete_order(self):
+        """
+        This sets the is_complete attribute of Order to True.
+        """
         self.is_complete = True
 
 
@@ -208,10 +212,11 @@ def get_datetime():
 def title_screen():
     """
     Use Figlet from pyfiglet library to print title screen.
-    Learn about this library from the following article:
+    Learnt about this library from the following article:
     https://towardsdatascience.com/prettify-your-terminal
     -text-with-termcolor-and-pyfiglet-880de83fda6b
     """
+    
     line_1 = "COFFEE  RUN"
     centered = line_1.center(24)
     f = Figlet(font='big')
@@ -234,6 +239,7 @@ def user_menu(options, menu):
     first = code_options[0]
     last = code_options[-1]
 
+    # Turn code options into a list of strings.
     code_string = list(map(str, code_options))
 
     if menu == "main":
@@ -265,6 +271,8 @@ def user_menu(options, menu):
 
 def main_menu_steps(user_choice):
     """
+    Accepts user_choice as an argument which will be a value between 1 - 4.  
+    This value then determines the next function that should be run.
     """
 
     if user_choice == 1:
@@ -279,6 +287,9 @@ def main_menu_steps(user_choice):
 
 def assemble_order():
     """
+    A dictionary is created based on the user choice of coffee type, 
+    milk and quantity. This item is then added to the user_order items
+    list and the current order displayed by running the view_order function.
     """
 
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -305,7 +316,6 @@ def get_user_name():
     Takes user_name input from user and validates.
     """
 
-    # Assign user input to variable selected_quantity and check if valid.
     while True:
         user_name = input(
             f"{colored('Please enter your name here:', 'green')}\n"
@@ -350,7 +360,7 @@ def create_item_dict():
     user_choices = [get_menu_choice(pull_menu("coffee")),
                     get_menu_choice(pull_menu("milk")), coffee_quantity("add")]
 
-    # calculate unit price
+    # calculates unit price
     unit = user_choices[0][1] + user_choices[1][1]
 
     # user_choices converted from a list to a dictionary
@@ -362,7 +372,7 @@ def create_item_dict():
         "Price": unit * user_choices[2]
     }]
 
-    # Generates a key based on the number of items already in the order
+    # Generates a key based on the number of items already in the order.
     key = [len(user_order.items) + 1]
 
     # Creates a dictionary using the item dictionary as the value.
