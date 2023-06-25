@@ -766,7 +766,7 @@ def next_step(user_choice):
     elif user_choice == 4:
         view_order("choices")
     elif user_choice == 5:
-        complete_order()
+        submit_order()
     elif user_choice == 6:
         clear_order()
         main()
@@ -890,7 +890,7 @@ def items_to_string():
     return details_string
 
 
-def complete_order():
+def submit_order():
     """
     """
 
@@ -909,7 +909,8 @@ def complete_order():
 
     send_data(order_details, "orders")
 
-    print(colored("Thank you, your order has been submitted!\n", 'cyan'))
+    print(f"Thanks {colored(user_order.name, 'cyan')}."
+           " Your order has been submitted!\n")
     print(f"Your order reference is:"
           f" {colored(f'{user_order.order_ref}','cyan',attrs=['bold'])}\n")
     print(f"The total cost of your order is:"
