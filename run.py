@@ -233,6 +233,9 @@ def user_menu(options, menu):
     to the function next_step.
     """
 
+    if menu == "order_options":
+        os.system('cls' if os.name == 'nt' else 'clear')
+
     # Generate a list of code options to validate input against.
     code_options = list(options.keys())
     first = code_options[0]
@@ -299,7 +302,7 @@ def assemble_order():
 
     item = create_item_dict()
     user_order.update_item(item)
-    view_order("addition")
+    view_order("choices")
 
 
 def get_user_name():
@@ -614,7 +617,6 @@ def admin_stats(days):
     milk = sales_data[1]
     top_coffee = most_popular(coffee)
     top_milk = most_popular(milk)
-    code_options = ['m', 'q']
 
     print(f"Total number of coffees sold in the past {days} days"
           f" : {colored(coffee_sales, 'cyan', attrs=['bold'])}\n")
@@ -643,7 +645,11 @@ def admin_stats(days):
 
 def return_to_menu():
     """
+    Gives user the choice of returning to main menu or quitting the app.
+    User input must pass validation before the next step runs.
     """
+
+    code_options = ['m', 'q']
 
     while True:
         selected_code = input(
@@ -709,23 +715,10 @@ def view_order(selection="", message=""):
     item_dictionary = OrderedDict(
         {k: v for item in user_order.items for k, v in item.items()})
 
-    print(item_dictionary)
-
     # Print order summary as a table using pandas data frames.
     # I used the following article to learn about data frames:
     # https://tutorial.eyehunts.com/python/python-tabulate-
     #dictionary-example-code/
-
-    # last_item = []
-
-    # if selection == "addition":
-    #     last_item.append(item_dictionary.popitem()) 
-    #     print(last_item)
-    #     df = pd.DataFrame(last_item)
-    #     print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
-    #           + "\n")
-    # else:
-    
     df = pd.DataFrame(item_dictionary)
 
     print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
@@ -737,12 +730,15 @@ def view_order(selection="", message=""):
     # Updates user_order total_drinks attribute.
     user_order.get_drinks_total()
 
+    if selection == 'choices':
+        selected_code = return_to_menu()
+        if selected_code == 'm':
+            user_menu(action_options, "order_options")
+        elif selected_code == 'q':
+            quit_app()
 
-
-    if selection == "choices" or selection == "addition":
-        user_menu(action_options, "order_options")
-    elif selection == "completed":
-        user_menu(options_complete("completed"), "order_complete")
+    if selection == "completed":
+            user_menu(options_complete("completed"), "order_complete")
 
 
 def next_step(user_choice):
