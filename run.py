@@ -290,7 +290,6 @@ def main_menu_steps(user_choice):
         quit_app()
 
 
-
 def assemble_order():
     """
     """
@@ -645,24 +644,28 @@ def admin_stats(days):
     #     if validate_data(selected_code, code_options, "coffee_code"):
     #         break
 
-    selected_code = return_to_menu()
+    selected_code = return_to_menu("main")
 
     if selected_code == 'm':
         main()
-    elif selected_code == 'q':
-        quit_app()
 
-def return_to_menu():
+def return_to_menu(menu_type):
     """
     Gives user the choice of returning to main menu or quitting the app.
     User input must pass validation before the next step runs.
     """
 
-    code_options = ['m', 'q']
+    code_options = ['m']
+    menu_message = ""
+
+    if menu_type == "main":
+        menu_message = "press m to get you back to the menu"
+    elif menu_type == "order_choices":
+        menu_message = "press m to return to the menu options"
 
     while True:
         selected_code = input(
-            f"{colored('press m for main menu or q to quit app', 'green')}\n"
+            f"{colored(menu_message, 'green')}\n"
             )
         if validate_data(selected_code, code_options, "coffee_code"):
             break
@@ -740,11 +743,9 @@ def view_order(selection="", message=""):
     user_order.get_drinks_total()
 
     if selection == 'choices':
-        selected_code = return_to_menu()
+        selected_code = return_to_menu("order_choices")
         if selected_code == 'm':
             user_menu(action_options, "order_options")
-        elif selected_code == 'q':
-            quit_app()
 
     if selection == "completed":
             user_menu(options_complete("completed"), "order_complete")
