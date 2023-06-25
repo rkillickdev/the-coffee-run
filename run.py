@@ -627,6 +627,24 @@ def admin_stats(days):
     print(f"Most popular milk:"
           f" {colored(top_milk[0],'cyan', attrs=['bold'])}\n")
 
+    # while True:
+    #     selected_code = input(
+    #         f"{colored('press m for main menu or q to quit app', 'green')}\n"
+    #         )
+    #     if validate_data(selected_code, code_options, "coffee_code"):
+    #         break
+
+    selected_code = return_to_menu()
+
+    if selected_code == 'm':
+        main()
+    elif selected_code == 'q':
+        quit_app()
+
+def return_to_menu():
+    """
+    """
+
     while True:
         selected_code = input(
             f"{colored('press m for main menu or q to quit app', 'green')}\n"
@@ -634,10 +652,7 @@ def admin_stats(days):
         if validate_data(selected_code, code_options, "coffee_code"):
             break
 
-    if selected_code == 'm':
-        main()
-    elif selected_code == 'q':
-        quit_app()
+    return selected_code
 
 
 def get_recent():
@@ -701,25 +716,28 @@ def view_order(selection="", message=""):
     # https://tutorial.eyehunts.com/python/python-tabulate-
     #dictionary-example-code/
 
-    last_item = []
+    # last_item = []
 
-    if selection == "addition":
-        last_item.append(item_dictionary.popitem()) 
-        print(last_item)
-        df = pd.DataFrame(last_item)
-        print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
-              + "\n")
-    else:
-        df = pd.DataFrame(item_dictionary)
+    # if selection == "addition":
+    #     last_item.append(item_dictionary.popitem()) 
+    #     print(last_item)
+    #     df = pd.DataFrame(last_item)
+    #     print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
+    #           + "\n")
+    # else:
+    
+    df = pd.DataFrame(item_dictionary)
 
-        print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
-            + "\n")
+    print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
+        + "\n")
 
     if message:
         print(message)
 
     # Updates user_order total_drinks attribute.
     user_order.get_drinks_total()
+
+
 
     if selection == "choices" or selection == "addition":
         user_menu(action_options, "order_options")
