@@ -117,7 +117,7 @@ class Order:
         """
         Returns current date
         """
-        now = datetime.now(pytz.timezone('Europe/London'))
+        now = get_datetime()
         date = now.strftime("%d/%m/%Y")
         self.date = date
 
@@ -125,7 +125,7 @@ class Order:
         """
         Returns current time
         """
-        now = datetime.now(pytz.timezone('Europe/London'))
+        now = get_datetime()
         time = now.strftime("%H:%M:%S")
         self.time = time
 
@@ -193,6 +193,16 @@ options_complete = {
         "Action": "View Order"
     }
 }
+
+
+def get_datetime():
+    """
+    Uses datetime and pytz modules to return current time and date
+    for London timezone as the coffee shop is located in London.
+    """
+
+    now = datetime.now(pytz.timezone('Europe/London'))
+    return now
 
 
 def title_screen():
@@ -533,7 +543,7 @@ def date_range(days):
     https://www.pythonprogramming.in/getting-the-date-of-7-days-
     ago-from-current-date-in-python.html
     """
-    now = datetime.now(pytz.timezone('Europe/London'))
+    now = get_datetime()
     dates_list = []
 
     for x in range(days):
@@ -666,7 +676,7 @@ def get_recent():
 
     # I used the following article to learn about manipulating datetime:
     # https://www.dataquest.io/blog/python-datetime-tutorial/
-    now = datetime.now()
+    now = get_datetime()
     current_time = now.strftime("%H:%M:%S")
     current = datetime.strptime(current_time, "%H:%M:%S")
     recent = []
