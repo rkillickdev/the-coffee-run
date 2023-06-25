@@ -417,7 +417,7 @@ def get_menu_choice(data):
     while True:
         selected_code = input(
             colored(f"Please select your {ingredient} by entering the code"
-                    f"{first} - {last}\n", 'green')
+                    f" {first} - {last}\n",'green',)
             )
         if validate_data(selected_code, code_options, "coffee_code"):
             break
@@ -491,6 +491,9 @@ def validate_drinks(user_input, step):
     Checks sum of user input and total number of drinks currently in the order.
     If sum is greater than 10 return False.
     """
+
+    os.system('cls' if os.name == 'nt' else 'clear')
+
     try:
         if step == "add" and int(user_input) + user_order.total_drinks > 5:
             raise ValueError(
