@@ -213,12 +213,9 @@ def title_screen():
     -text-with-termcolor-and-pyfiglet-880de83fda6b
     """
     line_1 = "COFFEE  RUN"
-    # line_2 = "Run"
-    # c = line_2.center(12)
-
+    centered = line_1.center(24)
     f = Figlet(font='big')
-    print(f.renderText(line_1))
-    # print(f.renderText(c))
+    print(f.renderText(centered))
 
 
 def user_menu(options, menu):
