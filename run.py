@@ -659,7 +659,7 @@ def return_to_menu(menu_type):
     menu_message = ""
 
     if menu_type == "main":
-        menu_message = "press m to get you back to the menu"
+        menu_message = "press m to get back to the main menu"
     elif menu_type == "order_choices":
         menu_message = "press m to return to the menu options"
 
@@ -748,7 +748,9 @@ def view_order(selection="", message=""):
             user_menu(action_options, "order_options")
 
     if selection == "completed":
-            user_menu(options_complete("completed"), "order_complete")
+        selected_code = return_to_menu("main")
+        if selected_code == 'm':
+            main()
 
 
 def next_step(user_choice):
@@ -1013,7 +1015,9 @@ def view_completed(sheet_data):
                 print(f"Your coffee is"
                       f"{colored(' READY','cyan',attrs=['bold'])} to pickup\n")
 
-    user_menu(options_complete("completed"), "order_complete")
+    selected_code = return_to_menu("main")
+    if selected_code == 'm':
+            main()
 
 
 def sales_data():
