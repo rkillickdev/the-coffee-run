@@ -12,13 +12,13 @@ from collections import OrderedDict
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
-    "https://www.googleapis.com/auth/drive"
-    ]
+    "https://www.googleapis.com/auth/drive",
+]
 
-CREDS = Credentials.from_service_account_file('creds.json')
+CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('the_coffee_run')
+SHEET = GSPREAD_CLIENT.open("the_coffee_run")
 
 
 class Order:
@@ -60,7 +60,7 @@ class Order:
 
         for dict in self.items:
             for key, value in dict.items():
-                subtotal = value.get('Price')
+                subtotal = value.get("Price")
                 order_total += subtotal
         self.total_price = round(order_total, 1)
 
@@ -74,7 +74,7 @@ class Order:
 
         for dict in self.items:
             for key, value in dict.items():
-                subtotal = value.get('Quantity')
+                subtotal = value.get("Quantity")
                 drinks_total += subtotal
         self.total_drinks = drinks_total
 
@@ -90,7 +90,7 @@ class Order:
 
         for k, item in zip(keys, self.items):
             if item[k][f"{ingredient}"] == type:
-                quantity = item[k]['Quantity']
+                quantity = item[k]["Quantity"]
             else:
                 quantity = 0
             quantities_list.append(quantity)
@@ -154,48 +154,24 @@ class Order:
 
 
 user_options = {
-    1: {
-        "Action": "Order Coffee"
-    },
-    2: {
-        "Action": "View Existing Order"
-    },
-    3: {
-        "Action": "Admin View"
-    },
-    4: {
-        "Action": "Quit App"
-    }
+    1: {"Action": "Order Coffee"},
+    2: {"Action": "View Existing Order"},
+    3: {"Action": "Admin View"},
+    4: {"Action": "Quit App"},
 }
 
 action_options = {
-    1: {
-        "Action": "Add an item to order"
-    },
-    2: {
-        "Action": "Remove an item from order"
-    },
-    3: {
-        "Action": "Edit Quantities"
-    },
-    4: {
-        "Action": "View Current Order"
-    },
-    5: {
-        "Action": "Finalise Order"
-    },
-    6: {
-        "Action": "Cancel Order"
-    }
+    1: {"Action": "Add an item to order"},
+    2: {"Action": "Remove an item from order"},
+    3: {"Action": "Edit Quantities"},
+    4: {"Action": "View Current Order"},
+    5: {"Action": "Finalise Order"},
+    6: {"Action": "Cancel Order"},
 }
 
 options_complete = {
-    1: {
-        "Action": "Return To Main Menu"
-    },
-    2: {
-        "Action": "View Order"
-    }
+    1: {"Action": "Return To Main Menu"},
+    2: {"Action": "View Order"},
 }
 
 
@@ -205,7 +181,7 @@ def get_datetime():
     for London timezone as the coffee shop is located in London.
     """
 
-    now = datetime.now(pytz.timezone('Europe/London'))
+    now = datetime.now(pytz.timezone("Europe/London"))
     return now
 
 
@@ -216,10 +192,10 @@ def title_screen():
     https://towardsdatascience.com/prettify-your-terminal
     -text-with-termcolor-and-pyfiglet-880de83fda6b
     """
-    
+
     line_1 = "COFFEE  RUN"
     centered = line_1.center(24)
-    f = Figlet(font='big')
+    f = Figlet(font="big")
     print(f.renderText(centered))
 
 
@@ -232,7 +208,7 @@ def user_menu(options, menu):
     """
 
     if menu == "order_options":
-        os.system('cls' if os.name == 'nt' else 'clear')
+        os.system("cls" if os.name == "nt" else "clear")
 
     # Generate a list of code options to validate input against.
     code_options = list(options.keys())
@@ -249,14 +225,14 @@ def user_menu(options, menu):
         message = "What would you like to do next?\n"
 
     df = pd.DataFrame(options)
-    print(tabulate(df.T, headers="keys", tablefmt='fancy_grid'))
+    print(tabulate(df.T, headers="keys", tablefmt="fancy_grid"))
 
     while True:
         print(f"\n{message}")
 
-        selected_code = (
-            input(f"{colored(f'Enter {first} - {last} here:', 'green')}\n")
-            )
+        selected_code = input(
+            f"{colored(f'Enter {first} - {last} here:', 'green')}\n"
+        )
 
         if validate_data(selected_code, code_string, "options"):
             break
@@ -271,7 +247,7 @@ def user_menu(options, menu):
 
 def main_menu_steps(user_choice):
     """
-    Accepts user_choice as an argument which will be a value between 1 - 4.  
+    Accepts user_choice as an argument which will be a value between 1 - 4.
     This value then determines the next function that should be run.
     """
 
@@ -287,24 +263,28 @@ def main_menu_steps(user_choice):
 
 def assemble_order():
     """
-    A dictionary is created based on the user choice of coffee type, 
+    A dictionary is created based on the user choice of coffee type,
     milk and quantity. This item is then added to the user_order items
     list and the current order displayed by running the view_order function.
     """
 
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("cls" if os.name == "nt" else "clear")
 
     if user_order.name == "":
         get_user_name()
 
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("cls" if os.name == "nt" else "clear")
 
     if not user_order.items:
-        print(f"Hi {user_order.name}, so you need some coffee..."
-              "and fast?! Here's what we offer:\n")
+        print(
+            f"Hi {user_order.name}, so you need some coffee..."
+            "and fast?! Here's what we offer:\n"
+        )
     else:
-        print(f"Hello again {user_order.name}, so you want to add "
-              "some more items?  Go ahead:\n")
+        print(
+            f"Hello again {user_order.name}, so you want to add "
+            "some more items?  Go ahead:\n"
+        )
 
     item = create_item_dict()
     user_order.update_item(item)
@@ -319,7 +299,7 @@ def get_user_name():
     while True:
         user_name = input(
             f"{colored('Please enter your name here:', 'green')}\n"
-            )
+        )
 
         if validate_name(user_name):
             break
@@ -332,18 +312,14 @@ def validate_name(user_input):
     Raises ValueError if user_input is not all letters or is greater than
     10 characters.
     """
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("cls" if os.name == "nt" else "clear")
 
     try:
         if len(user_input) > 10:
-            raise ValueError(
-                "You cannot enter more than 10 characters"
-            )
+            raise ValueError("You cannot enter more than 10 characters")
 
         elif not user_input.isalpha():
-            raise ValueError(
-                "You must enter all letters"
-            )
+            raise ValueError("You must enter all letters")
     except ValueError as e:
         print(f"{colored(f'{e}. Please try again.', 'red')}")
         return False
@@ -357,20 +333,25 @@ def create_item_dict():
     get_quantity functions"
     """
 
-    user_choices = [get_menu_choice(pull_menu("coffee")),
-                    get_menu_choice(pull_menu("milk")), coffee_quantity("add")]
+    user_choices = [
+        get_menu_choice(pull_menu("coffee")),
+        get_menu_choice(pull_menu("milk")),
+        coffee_quantity("add"),
+    ]
 
     # calculates unit price
     unit = user_choices[0][1] + user_choices[1][1]
 
     # user_choices converted from a list to a dictionary
-    item = [{
-        "Coffee": user_choices[0][0],
-        "Milk": user_choices[1][0],
-        "Unit Price": unit,
-        "Quantity": user_choices[2],
-        "Price": unit * user_choices[2]
-    }]
+    item = [
+        {
+            "Coffee": user_choices[0][0],
+            "Milk": user_choices[1][0],
+            "Unit Price": unit,
+            "Quantity": user_choices[2],
+            "Price": unit * user_choices[2],
+        }
+    ]
 
     # Generates a key based on the number of items already in the order.
     key = [len(user_order.items) + 1]
@@ -417,22 +398,27 @@ def get_menu_choice(data):
     last = code_options[-1]
 
     # Prints menu as a table
-    print(tabulate(menu_content, headers=header_names, tablefmt='fancy_grid')
-          + "\n")
+    print(
+        tabulate(menu_content, headers=header_names, tablefmt="fancy_grid")
+        + "\n"
+    )
 
     # Assign user input to variable selected_code and check if valid.
     while True:
         selected_code = input(
-            colored(f"Please select your {ingredient} by entering the code"
-                    f" {first} - {last}\n",'green',)
+            colored(
+                f"Please select your {ingredient} by entering the code"
+                f" {first} - {last}\n",
+                "green",
             )
+        )
         if validate_data(selected_code, code_options, "coffee_code"):
             break
 
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("cls" if os.name == "nt" else "clear")
 
-    item = (menu[int(selected_code)][1])
-    unit_cost = (menu[int(selected_code)][2])
+    item = menu[int(selected_code)][1]
+    unit_cost = menu[int(selected_code)][2]
     if ingredient == "coffee":
         print("Great, now let's get your coffee just how you like it!\n")
     return item, float(unit_cost)
@@ -448,24 +434,18 @@ def validate_data(user_input, expected_values, selection=""):
     try:
         if user_input not in expected_values:
             if selection == "coffee_code":
-                raise ValueError(
-                    "This code is not valid"
-                )
+                raise ValueError("This code is not valid")
             elif selection == "options":
                 raise ValueError(
                     "This code is not valid.  Please select a number from"
                     " the menu"
                 )
             elif selection == "reference":
-                raise ValueError(
-                    "This order reference does not exist"
-                )
+                raise ValueError("This order reference does not exist")
 
         if selection == "coffee_quantity":
             if user_input.isalpha() or int(user_input) < 1:
-                raise ValueError(
-                    "Please enter a number between 1 and 5"
-                )
+                raise ValueError("Please enter a number between 1 and 5")
     except ValueError as e:
         print(f"{colored(f'{e}. Please try again.', 'red')}")
         return False
@@ -484,12 +464,13 @@ def coffee_quantity(action):
         quantity_options = range(1, 11)
 
         selected_quantity = input(
-            colored("Please select a quantity between 1 and 5\n", 'green')
+            colored("Please select a quantity between 1 and 5\n", "green")
         )
-        if validate_data(selected_quantity,
-                         list(map(str, quantity_options)),
-                         "coffee_quantity") and validate_drinks(
-                            selected_quantity, action):
+        if validate_data(
+            selected_quantity,
+            list(map(str, quantity_options)),
+            "coffee_quantity",
+        ) and validate_drinks(selected_quantity, action):
             break
 
     return int(selected_quantity)
@@ -501,16 +482,18 @@ def validate_drinks(user_input, step):
     If sum is greater than 5 return False.
     """
 
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("cls" if os.name == "nt" else "clear")
 
     try:
         if step == "add" and int(user_input) + user_order.total_drinks > 5:
+            raise ValueError("Sorry, this would take your order over 5 drinks")
+        elif (
+            step == "edit"
+            and int(user_input) > 5
+            or int(user_input) + user_order.total_drinks > 5
+        ):
             raise ValueError(
-                    "Sorry, this would take your order over 5 drinks"
-            )
-        elif step == "edit" and int(user_input) > 5 or int(user_input) + user_order.total_drinks > 5:
-            raise ValueError(
-                    "You can only order a maximum of 5 drinks per order"
+                "You can only order a maximum of 5 drinks per order"
             )
 
     except ValueError as e:
@@ -619,7 +602,7 @@ def admin_stats(days):
     for coffee sold, and also prints information on the most
     popular coffee and milk.
     """
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("cls" if os.name == "nt" else "clear")
 
     sales_data = get_sales_totals(days)
     coffee = sales_data[0]
@@ -628,21 +611,27 @@ def admin_stats(days):
     top_coffee = most_popular(coffee)
     top_milk = most_popular(milk)
 
-    print(f"Total number of coffees sold in the past {days} days"
-          f" : {colored(coffee_sales, 'cyan', attrs=['bold'])}\n")
+    print(
+        f"Total number of coffees sold in the past {days} days"
+        f" : {colored(coffee_sales, 'cyan', attrs=['bold'])}\n"
+    )
 
-    print(tabulate(coffee, headers='firstrow', tablefmt='fancy_grid')
-          + "\n")
+    print(tabulate(coffee, headers="firstrow", tablefmt="fancy_grid") + "\n")
 
-    print(f"Most popular coffee:"
-          f" {colored(top_coffee[0],'cyan', attrs=['bold'])}\n")
-    print(f"Most popular milk:"
-          f" {colored(top_milk[0],'cyan', attrs=['bold'])}\n")
+    print(
+        f"Most popular coffee:"
+        f" {colored(top_coffee[0],'cyan', attrs=['bold'])}\n"
+    )
+    print(
+        f"Most popular milk:"
+        f" {colored(top_milk[0],'cyan', attrs=['bold'])}\n"
+    )
 
     selected_code = return_to_menu("main")
 
-    if selected_code == 'm':
+    if selected_code == "m":
         main()
+
 
 def return_to_menu(menu_type):
     """
@@ -650,7 +639,7 @@ def return_to_menu(menu_type):
     User input must pass validation before the next step runs.
     """
 
-    code_options = ['m']
+    code_options = ["m"]
     menu_message = ""
 
     if menu_type == "main":
@@ -659,9 +648,7 @@ def return_to_menu(menu_type):
         menu_message = "press m to return to the menu options"
 
     while True:
-        selected_code = input(
-            f"{colored(menu_message, 'green')}\n"
-            )
+        selected_code = input(f"{colored(menu_message, 'green')}\n")
         if validate_data(selected_code, code_options, "coffee_code"):
             break
 
@@ -709,7 +696,7 @@ def view_order(selection="", message=""):
     f string literal to print items currently in the order.
     """
 
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("cls" if os.name == "nt" else "clear")
 
     if not user_order.is_complete:
         print("Your order currently contains the following:\n")
@@ -720,16 +707,16 @@ def view_order(selection="", message=""):
     # Used the following article to learn about this:
     # https://blog.finxter.com/merge-dictionaries/
     item_dictionary = OrderedDict(
-        {k: v for item in user_order.items for k, v in item.items()})
+        {k: v for item in user_order.items for k, v in item.items()}
+    )
 
     # Print order summary as a table using pandas data frames.
     # I used the following article to learn about data frames:
     # https://tutorial.eyehunts.com/python/python-tabulate-
-    #dictionary-example-code/
+    # dictionary-example-code/
     df = pd.DataFrame(item_dictionary)
 
-    print(tabulate(df.T, headers="keys", tablefmt='fancy_grid')
-        + "\n")
+    print(tabulate(df.T, headers="keys", tablefmt="fancy_grid") + "\n")
 
     if message:
         print(message)
@@ -737,14 +724,14 @@ def view_order(selection="", message=""):
     # Updates user_order total_drinks attribute.
     user_order.get_drinks_total()
 
-    if selection == 'choices':
+    if selection == "choices":
         selected_code = return_to_menu("order_choices")
-        if selected_code == 'm':
+        if selected_code == "m":
             user_menu(action_options, "order_options")
 
     if selection == "completed":
         selected_code = return_to_menu("main")
-        if selected_code == 'm':
+        if selected_code == "m":
             clear_order()
             main()
 
@@ -790,25 +777,23 @@ def input_options(keys, option):
     Accepts a code from the user.  If valid, this code is used to generate the
     necessary index to manipulate the item being removed or edited.
     If removing an item, the index is passed as an argument to the remove_item
-    method of the Class Order. The view_order function is then called to display
-    the new order summary with the item removed. 
-    If editing the quantity of an item, the quantity value is set to zero, before
-    re-entering the desired quantity.  The quantity and price values are then updated
-    in the item dictionary.  The view_order function is then called displaying a 
-    summary of the order with the ammended quantity and price.
+    method of the Class Order. The view_order function is then called to
+    display the new order summary with the item removed.
+    If editing the quantity of an item, the quantity value is set to zero,
+    before re-entering the desired quantity.  The quantity and price values are
+    then updated in the item dictionary.  The view_order function is then
+    called displaying a summary of the order with ammended quantity and price.
     """
 
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("cls" if os.name == "nt" else "clear")
     view_order()
 
     keys_as_strings = [str(x) for x in keys]
 
     while True:
-
         print(f"Which item of your order you would like to {option}?\n")
 
-        selected_code = input(
-            colored("Enter a number here:\n", 'green'))
+        selected_code = input(colored("Enter a number here:\n", "green"))
 
         if validate_data(selected_code, keys_as_strings, "options"):
             break
@@ -825,12 +810,13 @@ def input_options(keys, option):
 
     elif option == "edit":
         item = user_order.items[index]
-        item[index + 1]['Quantity'] = 0
-        user_order.get_drinks_total()   
+        item[index + 1]["Quantity"] = 0
+        user_order.get_drinks_total()
         updated_quantity = coffee_quantity("edit")
-        item[index + 1]['Quantity'] = updated_quantity
-        item[index + 1]['Price'] = item[index + 1][
-            'Unit Price'] * updated_quantity
+        item[index + 1]["Quantity"] = updated_quantity
+        item[index + 1]["Price"] = (
+            item[index + 1]["Unit Price"] * updated_quantity
+        )
         view_order("choices")
 
 
@@ -898,7 +884,7 @@ def items_to_string():
             summary = f"{item[3]} X {item[0]} with {item[1]} milk"
             details_list.append(summary)
 
-    details_string = '\n'.join(details_list)
+    details_string = "\n".join(details_list)
     return details_string
 
 
@@ -909,12 +895,12 @@ def submit_order():
     are then sent to the google sheet called "orders".
     Print statements using f string literals are used to communicate key
     information from the order to the user.
-    The sales_data function is also called and this data is sent to the 
+    The sales_data function is also called and this data is sent to the
     google sheet called "sales".
     Next step options are then displayed to the user in tabular form.
     """
 
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("cls" if os.name == "nt" else "clear")
 
     user_order.get_order_total()
     user_order.get_date()
@@ -923,20 +909,35 @@ def submit_order():
     user_order.calculate_pickup()
     user_order.complete_order()
 
-    order_details = [user_order.order_ref, user_order.name, items_to_string(),
-                     user_order.total_price, user_order.total_drinks,
-                     user_order.date, user_order.time, user_order.pickup]
+    order_details = [
+        user_order.order_ref,
+        user_order.name,
+        items_to_string(),
+        user_order.total_price,
+        user_order.total_drinks,
+        user_order.date,
+        user_order.time,
+        user_order.pickup,
+    ]
 
     send_data(order_details, "orders")
 
-    print(f"Thanks {colored(user_order.name, 'cyan')}."
-           " Your order has been submitted!\n")
-    print(f"Your order reference is:"
-          f" {colored(f'{user_order.order_ref}','cyan',attrs=['bold'])}\n")
-    print(f"The total cost of your order is:"
-          f" {colored(f'£{user_order.total_price}','cyan',attrs=['bold'])}\n")
-    print(f"Your coffee will be ready to pickup at:"
-          f" {colored(f'{user_order.pickup}','cyan',attrs=['bold'])}\n")
+    print(
+        f"Thanks {colored(user_order.name, 'cyan')}."
+        " Your order has been submitted!\n"
+    )
+    print(
+        f"Your order reference is:"
+        f" {colored(f'{user_order.order_ref}','cyan',attrs=['bold'])}\n"
+    )
+    print(
+        f"The total cost of your order is:"
+        f" {colored(f'£{user_order.total_price}','cyan',attrs=['bold'])}\n"
+    )
+    print(
+        f"Your coffee will be ready to pickup at:"
+        f" {colored(f'{user_order.pickup}','cyan',attrs=['bold'])}\n"
+    )
 
     sales = sales_data()
     send_data(sales, "sales")
@@ -957,21 +958,23 @@ def completed_steps(user_choice, codes):
     elif user_choice == codes[1]:
         view_order("completed")
 
+
 def quit_app():
     """
     Prints a thank you message and runs the title_screen function to
     display "Coffee Run".
     """
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("cls" if os.name == "nt" else "clear")
     print(
-        colored("Thanks for stopping by, see you again soon!\n", 'cyan')
-        , end="\r")
+        colored("Thanks for stopping by, see you again soon!\n", "cyan"),
+        end="\r",
+    )
     title_screen()
 
 
 def clear_order():
     """
-    Updates the attributes items, total_drinks and name for the class instance 
+    Updates the attributes items, total_drinks and name for the class instance
     of Order called user_order.
     """
     user_order.items = []
@@ -985,7 +988,7 @@ def view_completed(sheet_data):
     Validates input of user input by checking if their order ref exists.
     If order ref valid, use data from this order to display details to user.
     """
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("cls" if os.name == "nt" else "clear")
 
     data = sheet_data[0]
     header_names = data[0]
@@ -997,18 +1000,17 @@ def view_completed(sheet_data):
         order_refs.append(ref)
 
     while True:
+        print(
+            "To view an existing order, please enter your "
+            "reference number:\n"
+        )
 
-        print("To view an existing order, please enter your "
-              "reference number:\n")
-
-        selected_code = (
-            input(colored("Enter a reference here:\n", 'green'))
-            )
+        selected_code = input(colored("Enter a reference here:\n", "green"))
 
         if validate_data(selected_code, order_refs, "reference"):
             break
 
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("cls" if os.name == "nt" else "clear")
 
     pickup_time = []
 
@@ -1016,34 +1018,42 @@ def view_completed(sheet_data):
         if order[0] == selected_code:
             pickup_time.append(order[5])
             pickup_time.append(order[7])
-            string_pickup = ' '.join(pickup_time)
-            date_format = '%d/%m/%Y %H:%M:%S'
+            string_pickup = " ".join(pickup_time)
+            date_format = "%d/%m/%Y %H:%M:%S"
             present = get_datetime()
             current_string = datetime.strftime(present, date_format)
             present_datetime = datetime.strptime(current_string, date_format)
             pickup_datetime = datetime.strptime(string_pickup, date_format)
 
             print(f"Hi {order[1]},\n")
-            print(f"Details for order ref {colored(order[0], 'cyan')}"
-                  " are as follows:\n")
+            print(
+                f"Details for order ref {colored(order[0], 'cyan')}"
+                " are as follows:\n"
+            )
             print(f"{order[2]}\n")
-            print(f"The total cost of your order is"
-                  f" £ {colored(order[3], 'cyan')}\n")
+            print(
+                f"The total cost of your order is"
+                f" £ {colored(order[3], 'cyan')}\n"
+            )
             if present_datetime < pickup_datetime:
-                print(f"Your coffee will be ready to pickup at"
-                      f" {colored(order[7], 'cyan')}\n")
+                print(
+                    f"Your coffee will be ready to pickup at"
+                    f" {colored(order[7], 'cyan')}\n"
+                )
             else:
-                print(f"Your coffee is"
-                      f"{colored(' READY','cyan',attrs=['bold'])} to pickup\n")
+                print(
+                    f"Your coffee is"
+                    f"{colored(' READY','cyan',attrs=['bold'])} to pickup\n"
+                )
 
     selected_code = return_to_menu("main")
-    if selected_code == 'm':
-            main()
+    if selected_code == "m":
+        main()
 
 
 def sales_data():
     """
-    Compile and return a sales list with the quantity of each type of 
+    Compile and return a sales list with the quantity of each type of
     coffe and milk in the order.
     """
 
@@ -1056,8 +1066,16 @@ def sales_data():
     oat_sales = user_order.get_quantity("Milk", "Oat", get_keys())
     soy_sales = user_order.get_quantity("Milk", "Almond", get_keys())
 
-    sales = [fw_sales, la_sales, ca_sales, am_sales, reg_sales, ski_sales,
-             oat_sales, soy_sales]
+    sales = [
+        fw_sales,
+        la_sales,
+        ca_sales,
+        am_sales,
+        reg_sales,
+        ski_sales,
+        oat_sales,
+        soy_sales,
+    ]
     sales.append(user_order.time)
     sales.append(user_order.date)
 
@@ -1077,7 +1095,7 @@ def main():
     """
     Displays the main user menu.
     """
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("cls" if os.name == "nt" else "clear")
     user_menu(user_options, "main")
 
 
@@ -1085,4 +1103,3 @@ def main():
 user_order = Order()
 
 main()
-
