@@ -161,7 +161,7 @@ user_options = {
         "Action": "View Existing Order"
     },
     3: {
-        "Action": "Admin Login"
+        "Action": "Admin View"
     },
     4: {
         "Action": "Quit App"
@@ -712,7 +712,7 @@ def view_order(selection="", message=""):
     os.system('cls' if os.name == 'nt' else 'clear')
 
     if not user_order.is_complete:
-        print("You're order currently contains the following:\n")
+        print("Your order currently contains the following:\n")
     else:
         print("Here is a summary of your order:\n")
 
