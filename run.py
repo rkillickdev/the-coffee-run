@@ -965,11 +965,11 @@ def quit_app():
     display "Coffee Run".
     """
     os.system("cls" if os.name == "nt" else "clear")
+    title_screen()
     print(
         colored("Thanks for stopping by, see you again soon!\n", "cyan"),
         end="\r",
     )
-    title_screen()
 
 
 def clear_order():
