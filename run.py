@@ -458,7 +458,7 @@ def validate_data(user_input, expected_values, selection=""):
                 )
             elif selection == "reference":
                 raise ValueError(
-                    "This order reference does not exist.  Please try again"
+                    "This order reference does not exist"
                 )
 
         if selection == "coffee_quantity":
