@@ -974,7 +974,7 @@ def quit_app():
 
 def clear_order():
     """
-    Updates the attributes items, total_drinks, name and ordedr_ref for the 
+    Updates the attributes items, total_drinks, name and ordedr_ref for the
     class instance of Order called user_order.
     """
     user_order.items = []
