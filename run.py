@@ -941,7 +941,6 @@ def submit_order():
 
     sales = sales_data()
     send_data(sales, "sales")
-    user_order.order_ref = create_order_ref(get_orders())
 
     user_menu(options_complete, "order_complete")
 
@@ -975,12 +974,13 @@ def quit_app():
 
 def clear_order():
     """
-    Updates the attributes items, total_drinks and name for the class instance
-    of Order called user_order.
+    Updates the attributes items, total_drinks, name and ordedr_ref for the 
+    class instance of Order called user_order.
     """
     user_order.items = []
     user_order.total_drinks = 0
     user_order.name = ""
+    user_order.order_ref = create_order_ref(get_orders())
 
 
 def view_completed(sheet_data):
