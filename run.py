@@ -941,6 +941,7 @@ def submit_order():
 
     sales = sales_data()
     send_data(sales, "sales")
+    user_order.order_ref = create_order_ref(get_orders())
 
     user_menu(options_complete, "order_complete")
 

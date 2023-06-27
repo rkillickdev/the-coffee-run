@@ -269,6 +269,18 @@ Choosing option 1 will direct the user back to the main menu and choosing option
 
 ## **View Existing Order**
 
+<br>
+
+Users of the app can view the details and status of an existing order if they have their order reference to hand.  Selecting option 2 on the main menu provides the user with the following prompt:
+
+![Enter Existing Order Reference](docs/features/coffee-run-existing-order-enter-ref.png)
+
+The order reference provided by the user, is checked against the list or order references stored in the "orders" sheet on the google sheets doc the_coffee_run.  If it cannot be matched, the following feedback is displayed:
+
+![Invalid Order Reference](docs/features/cofee-run-invalid-order-ref.png)
+
+
+
 
 
 
