@@ -201,7 +201,7 @@ If this is selected, the user will cycle back over the 'Order Coffee' steps outl
 
 ![Max Drinks Total Reached](docs/features/coffee-run-max-drinks-total-reached.png)
 
-### **Option 2: Remove an item**
+### **Option 2: Remove an item from order**
 
 <br>
 
@@ -212,6 +212,84 @@ If a user chooses to remove an item, they are presented with the following summa
 If the user inputs an invalid item code to remove, they will be presented with the following feedback:
 
 ![Remove Item Invalid Code](docs/features/coffee-run-remove-item-invalid-code.png)
+
+If the user enters a valid code corresponding to an item in their order, this will be removed from the order and an updated order summary displayed along with a prompt to return to the Order Options menu by entering 'm':
+
+![Removed Item Updated Summary](docs/features/coffee-run-remove-item-updated-summary.png)
+
+If the user were to remove all items from the order, on removing the final item, they would be directed back to the Main Menu display.
+
+### **Option 3: Edit Quantities**
+
+<br>
+
+If the user chooses to edit the quantity of an item in the order, they are presented with the following summary of their order and prompted to select the itme they would like to edit:
+
+![Edit Quantities Select Item](docs/features/coffee-run-edit-quantities-select-item.png)
+
+If an invalid item code is input by the user, the following feedback is displayed:
+
+![Edit Quantities Invalid Code](docs/features/coffee-run-edit-quantities-invalid-code.png)
+
+The user is then prompted to enter the quantity that they would like of the item they are editing:
+
+![Edit Enter New Quantity](docs/features/coffee-run-edit-enter-new-quantity.png)
+
+If the user attempts to enter an ammended quantity that would take the drinks total of the order over 5, they are presented with the following feedback:
+
+![Quanity Invalid Exceeds Item Limit](docs/features/coffee-run-quantity-validate-exceeds-item-total.png)
+
+Once the user has edited the quantity of the item with a valid value, a summary of the order displaying the ammended quantity and ammended price is shown, along with a prompt to return to the Order Options menu by entering 'm':
+
+![Edited Item Updated Summary](docs/features/coffee-run-edit-item-updated-summary.png)
+
+### **Option 4: View Current Order**
+
+<br>
+
+At any point during the order process, the user can choose to view their current order.  I originally had the current order displayed at all stages of the process, but I realised that this would not be possible if I wanted to work within the constraints of the deployed terminal display (24 rows in height) and not require the user to scroll.  Selecting option 4 provides a tabular view of the items currently in their order.  Entering 'm' takes the user back to the Order Options menu:
+
+![View Current Order](docs/features/coffee-run-view-current-order.png)
+
+### **Option 5: Finalise Order**
+
+<br>
+
+Selecting option 5 takes the user to a page providing them with a personalised message to let them know that their order has been submitted. Key details of the order are also provided including their unique order reference number, the total amount due for the order on pickup, and the esitmated pickup time:
+
+![Finalised Order View](docs/features/coffee-run-finalise-order.png)
+
+The user can then either choose to return to the main menu or view a summary of the items in their order.  The code entered by the user is validated here and an invalid entry will provide the following feedback:
+
+![Finalised Order Next Step Invalid](docs/features/coffee-run-finalised-order-invalid-code.png)
+
+Choosing option 1 will direct the user back to the main menu and choosing option 2 will display a summary of items in the submitted order, with an option to then return to the main menu:
+
+![Finalised Order Summary](docs/features/coffee-run-finalised-order-summary.png)
+
+## **View Existing Order**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
