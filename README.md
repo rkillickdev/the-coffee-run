@@ -109,6 +109,123 @@ ___
 
 ![Flow Chart displaying stages and logic of the program](docs/flow-charts/the-coffee-run-flowchart.png)
 
+## **Features**
+
+<br>
+
+## **Main Menu**
+
+<br>
+
+![Main Menu](docs/features/coffee-run-main-menu.png)
+
+When loading the app, users land on the main menu page so they can immediately access the service they need.  The large 'Coffee Run' title at the top was created using the Pyfiglet module and let's the user know that they have come to the right place to order coffee.
+
+4 options are provided.  Number 1 allows the user to start the process of ordering their coffee.  I have given this option priority, as this is the main reason why most users will access the app.  Number 2 allows the user to access details of an order that has already been submitted.  Number 3 is an admin view designed for the owner of the coffee shop so they can access information about sales based on the data collected by the app.  Option 4 gives the user an opportunity to quit the app.  I have only made this option available at this level of the program, as this is where users return once an order has been submitted.
+
+Users are prompted to enter a number between 1 and 4 which correspond with the menu options.  User input here must pass validation here before progressing to the next step.  If a non valid number or any character is entered by the user, feedback is displayed to the user in the form of the following message:
+
+![Main Menu Validation](docs/features/coffee-run-main-menu-validation.png)
+
+## **Order Coffee**
+
+<br>
+
+When selecting option 1 in the main menu, the user will first be prompted to enter a name:
+
+![User Enter Name](docs/features/coffee-run-enter-name.png)
+
+To pass validation, the name entered must only contain letters.  The following feedback is displayed if this validation test is not passed:
+
+![Name Input Validate Only Letters](docs/features/coffee-run-name-validation-letters.png)
+
+The name provided by the user is limited to 10 characters.  If they input more than this, the following feedback is displayed and they are prompted to try again:
+
+![Name Input Validate Length](docs/features/coffee-run-name-validation-length.png)
+
+Once a valid name has been provided, the user is presented with a personalised message using the name they provided in the previous step.  The coffee types available to order and their prices are displayed in table format - created using the python module tabulate.  Users are encouraged to enter the coffee they want by entering the corresponding code from the table:
+
+![Choose Coffee Type](docs/features/coffee-run-coffee-type.png)
+
+If the code entered by the user does not pass validation, the following feedback is provided:
+
+![Invalid Coffee Type Code](docs/features/coffee-run-validate-type.png)
+
+Once a valid code has been entered for selection of coffee type, the user progresses to the next stage, where they can specify the milk they would prefer:
+
+![Choose Milk Type](docs/features/coffee-run-milk-type.png)
+
+Again, the code entered for milk choice must pass validation before the user can progress.  The following feedback is presented if an invalid code is entered:
+
+![Invalid Milk Type Code](docs/features/coffee-run-validate-milk.png)
+
+The next step in the ordering process is to specify the quantity required of the selected coffee:
+
+![Select Quantity](docs/features/coffee-run-select-quantity.png)
+
+If the user tries to enter a quantity using a non numeric value, they receive the following feedback:
+
+![Quantity Invalid Non Numeric](docs/features/coffee-run-quantity-validate-non-numeric.png)
+
+Users are only allowed to order a maximum of 5 drinks per order.  I mainly chose this number so I was still able to display the largest orders in the terminal display without scrolling.  In reality, this number could be made greater by the coffee shop owner.  If a user tries to order more than 5 drinks, the following feedback is displayed:
+
+![Quanity Invalid Exceeds Item Limit](docs/features/coffee-run-quantity-validate-exceeds-item-total.png)
+
+Once a valid quantity has been input, the user is presented with a summary of their current order in table format:
+
+![Current Order Summary](docs/features/coffee-run-current-order-summary.png)
+
+To view their next options, users are prompted to enter 'm'.  If an invalid character is entered, the following feedback is displayed:
+
+![Return To Menu Code Invalid](docs/features/coffee-run-menu-return-code-invalid.png)
+
+<br>
+
+## **Order Options**
+
+<br>
+
+The user is presented with 6 options of how they can proceed and are prompted to enter a code corresponding to an action in the table menu:
+
+![Order Options](docs/features/coffee-run-order-options.png)
+
+If the code input the user does not pass validation, the following feedback is displayed:
+
+![Order Options Code Invalid](docs/features/coffee-run-order-option-invalid.png)
+
+### **Option 1: Add an item to order**
+
+<br>
+
+If this is selected, the user will cycle back over the 'Order Coffee' steps outlined above.  In total they can enter 5 drinks to their order.  If at any time they quantity they select pushes total drinks over 5, they will be given feedback and prompted to enter a different quantity. If they are unable to add any more drinks to their order because they have reached the maximum of 5, the following will be displayed:
+
+![Max Drinks Total Reached](docs/features/coffee-run-max-drinks-total-reached.png)
+
+### **Option 2: Remove an item**
+
+<br>
+
+If a user chooses to remove an item, they are presented with the following summary of their order and prompted to select the item they wish to remove:
+
+![Remove Item Menu](docs/features/coffee-run-remove-item.png)
+
+If the user inputs an invalid item code to remove, they will be presented with the following feedback:
+
+![Remove Item Invalid Code](docs/features/coffee-run-remove-item-invalid-code.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # **Technologies Used**
 
 ## **Languages Used**
