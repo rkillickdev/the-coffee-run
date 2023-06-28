@@ -67,9 +67,7 @@ Along with a reduction in overcrowding at peak times, the cafe owner also hopes 
 * As the user, I want to view all avaialble coffee & milk options to make my choice.
 * As the user, I want to order my coffee quickly and for the experience to be intuitive.
 * As the user, I want to be provided clear information about when my order will be ready to pickup.
-* As the user, I want to accrue loyalty points for each coffee order.
-* As the user, I want loyalty rewards to be deducted from my order total.
-* As the user, I want to be able to view my order details and reference number once the order has been placed. 
+* As the user, I want to be able to view my order details and pickup time once the order has been placed. 
 
 <br>
 
@@ -78,13 +76,13 @@ ___
 
 In order to satisfy the goals outlined in the project strategy, I will implement the following features:
 
-* Allow user to enter username details in order to collect and redeem loyalty points on the order.
+* Allow user to enter username details so messages can be personalised throughout the order.
 * Present the user with a coffee price menu from which they can select their type of coffee.
 * Allow the user to select the type of milk.
-* Allow the user to select if they would prefer decaffeinated.
-* Allow the user to add 0.5, 1 or 2 sugars.
 * Select the quantity they would like of this particular coffee.
 * Provide the option for user to add additional items to their order before finalising.
+* Allow the user to remove items from their order.
+* Allow the user to edit the quantity of an item in the order.
 * Log time and date of order to base estimated pick up time on.
 * Provide the user with a finalised order summary, with order details, price, estimated pickup time and unique order reference.
 * Update the "orders" sheet with order data that can be used by the client to prepare the necessary coffee.
@@ -95,6 +93,10 @@ In order to satisfy the goals outlined in the project strategy, I will implement
 Future implementations that are not within the scope of this project but could be added at a later date to enhance the user experience would be:
 
 * The ability for the user to pay for the order using the app, to make the pickup process even smoother and quicker.
+
+* The ability for users to create an account where they can accrue loyalty points for each coffee order and redeem them when sufficient total reached.
+
+* Admin View can only be accessed with username and password login
 
 <br>
 
