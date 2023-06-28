@@ -440,6 +440,24 @@ Python was used to create this project.
 
 <br>
 
+**1.**  Order Summary Table Incorrect Column Order:
+
+When printing the order summary to the terminal using tabulate, when only 1 item is present in the order, the price colum displays before unit price even therefore not adhering to the order they appear in the item dictionary (in the screenshot below I have printed the dictionary to the terminal to demonstarte this):
+
+![Tabulate Column Order Incorrect](docs/bugs/view-order-columns-incorrect.png)
+
+However, once a second item is added and the table is updated, the columns now appear in the correct order:
+
+![Tabulate Column Order Correct](docs/bugs/view-order-columns-correct.png)
+
+<br>
+
+**2.**  Pickup Status:
+
+Currently, if the order time is on one side of midnight and pickup time the other side, the order will be labelled as 'Ready'.  This is because current time is found to be greater than pickup time.  In reality there would need to be some code written to inform the user that if order placed after 6pm, pickup time is 7am the next day.
+
+<br>
+
 ### **Solved Bugs:**
 
 <br>
