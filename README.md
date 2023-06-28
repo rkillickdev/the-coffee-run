@@ -436,6 +436,93 @@ Python was used to create this project.
 
 <br>
 
+### **Known Bugs:**
+
+<br>
+
+### **Solved Bugs:**
+
+<br>
+
+**1.**  Deleting Items Keys Not Updated:
+
+This was a problem when deleting an item from the order. Once an item had been removed, the item numbers shown in the table displaying the order, did not match up to the position of the dictionary in the list.  Therefore if an item was originally number 3 in the list, even when number 2 was deleted, the 2nd item would still be displayed as number 3, and if the user input this number it would throw an error.  I eventually worked out that I could not modify the key in the existing dictionaries, therefore I created new ones and updated user_order.items in the update_order_dict function with the following code:
+
+```python
+   for k, item in zip(keys, user_order.items):
+        dict_key = list(item.keys())
+        value = dict_key[0]
+        new_dict = {k: item[value]}
+        updated_order_list.append(new_dict)
+
+    user_order.items = updated_order_list
+```
+
+**2.**  Order Details Displaying Incorrectly in Spreadsheet:
+
+![Order Details Bug](docs/bugs/order-detail-bug-wrong-quantities.png)
+
+I had an issue where the quantity value displayed in the order details was incorrect.  I realised that it was actually using the value for unit_price which had been added to the item dictionary in the third position, but I had not subsequently updated the items_to_string function with the correct index. When I changed this to index 3 as seen below, the bug was solved:
+
+```python
+summary = f"{item[3]} X {item[0]} with {item[1]} milk"
+```
+
+**3.**  Quantity Error Handling:
+
+During testing I relaised that it was possible to enter the value zero as a quantity.  To fix this, I added the following line of code in the function validate_data:
+
+```python
+if user_input.isalpha() or int(user_input) < 1:
+```
+
+This means that user input will not be validated if they enter a character or a number that is less than 1.  Users are prevented from entering a quantity over 10 by the validate_drinks function.
+
+**4.**  Main Menu Error Handling:
+
+I noticed during testing that error handling for invalid codes in the main menu was not working as expected.  On investigation, I realised that the validate_function was attemptig to compare integers against strings and throwing an error.  I solved this by converting the list of keys to validate against from a list of integers to a list of strings in the function input options:
+
+```python
+keys_as_strings = [str(x) for x in keys]
+```
+
+**5.**  Edit Quantities Exceeds Max drinks alllowed:
+
+I experienced a bug where if there was more than one item in the order and you tried to edit the quantity, it was possible to enter a number that would take the order drinks total over the maximum of 5 allowed.  I used the following code below to check whether user input + user_order.total_drinks exceeded the max allowed.  (Please note, when this snapshot was taken I was still allowing 10 drinks per order before eventually changing to 5 in the final version):
+
+```python
+elif step == "edit" and int(user_input) > 10 or int(user_input) + user_order.total_drinks > 10:
+```
+
+However, on further testing, I realised that the value for user_order.total_drinks was still taking into account the quantity for the item that the user was trying to edit.  As you can see in the image below, I should have been able to ammend the flat white order from 8 to 3:
+
+![Edit Quantities Bug](docs/bugs/edit-quantities-bug.png)
+
+I therefore needed to set the quantity value to zero for the item being edited and then recalculate drinks total by calling get_drinks_total method on the user_order instance of Order.  When the updated quantity is entered by the user, the item being edited has a quantity value of zero rather than it’s existing quantity.  I achieved this by adding the following code in the input_options function:
+
+```python
+elif option == "edit":
+item = user_order.items[index]
+item[index + 1]['Quantity'] = 0
+user_order.get_drinks_total()
+updated_quantity = coffee_quantity("edit")
+```
+
+**6.**  Current Time 1 Hour behind London time:
+
+AS the coffee shop is based in London, I wanted to make sure that order times were based on the correct timezone.  To solve this, I imported the pytz module and passed in ‘Europe/London’ as an argument:
+
+```python
+now = datetime.now(pytz.timezone("Europe/London"))
+```
+
+**7.**  Duplicate Order Reference:
+
+I realised during testing that if a user submitted an order and then returned to the main menu and created another order, on submitting this, the order reference was the same.  The solution to this was to update the attribute order_ref for the instance of Order (user_order) in the clear_order function.
+
+![Duplicate Order Bug](docs/bugs/cofee-run-bug-duplicate-order-number%20.png)
+
+
 # **Credits**
 
 ## **Code Used**
