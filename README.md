@@ -279,6 +279,77 @@ The order reference provided by the user, is checked against the list or order r
 
 ![Invalid Order Reference](docs/features/cofee-run-invalid-order-ref.png)
 
+If the order reference entered is found on the "orders" sheet, key information about the order is presented to the user:
+
+![Existing Order Pending](docs/features/coffee-run-existing-order-pending.png)
+
+When an existing order is called, the current time is checked against the estimated pickup time.  If current time is found to be greater than pickup time, the order will be shown as 'Ready':
+
+![Existing Order Ready](docs/features/coffee-run-existing-order-ready.png)
+
+## **Admin View**
+
+<br>
+
+This feature of the app is designed for use by the owners of the coffee shop.  As mentioned in the future implementations section, a username and password login stage would be created, so only those with admin credentials could access this option.  But for the purpose of this project, everyone can access to see this part of the app in action.
+
+When selecting this option, the user is presented with some key stats that have been created through analysis of the sales data stored in the "sales" sheet in the google sheets doc. For the purpose of this project, I have chosen to collate the data from coffee sales over the past 10 days and display the total number of coffees sold in this time period, and also a breakdown of coffee types sold in tabular form.  I have also used this data to inform the business owner about which coffee type and milk choice was most popular over the 10 day period.  This is just an illustration of how this feature of the app could work. Moving forward, further functions could be written to manipulate and represent the data in a way that is most useful for the business owner and could help them make decisions about stock purchasing, staffing etc.
+
+![Admin View](docs/features/coffee-run-admin-view.png)
+
+## **Quit App**
+
+<br>
+
+Once the user has done everything they want to do, they can quit the app by selecting option 4, which displays the following message:
+
+![Quit App](docs/features/coffee-run-quit-app.png)
+
+<br>
+
+# **Database**
+
+Data is stored in a google sheets document and accessed by the app using the Google Drive and Google Sheets APIs.  The spreadsheet can be viwed here.  The spreadsheet consists of the following sheets:
+
+## **Coffee**
+
+<br>
+
+This stores the coffee menu items and associated prices.  The Business owner could update pricing information on the sheet, and these updates would be mirrored on the app:
+
+![Coffee Sheet](docs/features/google-sheets-coffee.png)
+
+
+## **Milk**
+
+<br>
+
+This stores the milk menu options and associated prices:
+
+![Milk Sheet](docs/features/google-sheets-milk.png)
+
+
+## **Orders**
+
+<br>
+
+Once an order has been submitted on the app, it is appended as a row on the orders sheet.  It is this information that the coffee shop will use to put the order together:
+
+![Orders Sheet](docs/features/google-sheets-orders.png)
+
+## **Sales**
+
+<br>
+
+As an order is submitted, the elements of the order are broken down into sales data which is then appened as a row in the sales sheet:
+
+![Sales Sheet](docs/features/google-sheets-sales.png)
+
+
+
+
+
+
 
 
 
@@ -329,6 +400,29 @@ Python was used to create this project.
 ## **Frameworks, Libraries and Programs Used**
 
 <br>
+
+* Git -  Version control.
+* GitHub - All files for the website stored and saved in a repository.
+* Gitpod - IDE used to write the code.
+* LucidChart -For creating a flow diagram
+* Heroku - For deployment of the project.
+* PEP8 CI Python Linter
+* Black - Python Auto Formatter
+* TinyPNG - For compression of image files to improve website performance.
+* Birme - For resizing and re-formatting images to make them suitable for use on the website.
+* Favicon.ico & App Icon Generator - for creating the 16x16px ico favicon.
+
+* gspread - Used to access and update Google Sheets via an API
+* google.oauth2.service_account - Credentials Class imported from this which then uses the creds.json file.
+* pandas - Used to turn dictionaries to dataframes
+* os - This module was imported so I could use the clear terminal command.
+* tabulate -function imported from the tabulate module to display data in table format.
+* datetime, timedelta & timezone imported from datetime module - This was used to get current time and date and also work out differences between current time and pickup time.
+* pytz - for setting current time to the desired timezone.
+* colored & cprint imported from termcolor module - This was used change font colours in order to differentiate types of information for the user.
+* figlet imported from pyfiglet module - This was used to display 'Coffee Run' on the title page in a larger more interesting font.
+* OrderedDict imported from collections - To make use of ordered dictionaries.
+
 
 # **Deployment and Local Development**
 
