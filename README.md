@@ -657,7 +657,7 @@ Initial Inspiration when planning the project and coming up with an idea, came f
 
 [Getting past 10 days dates](https://www.pythonprogramming.in/getting-the-date-of-7-days-ago-from-current-date-in-python.html)
 
-[Converting a list of integers into a list of strings](​​https://blog.finxter.com/how-to-convert-an-integer-list-to-a-string-list-in-python/)
+[Converting a list of integers into a list of strings](https://blog.finxter.com/how-to-convert-an-integer-list-to-a-string-list-in-python/)
 
 [Learning how to use Datetime](https://www.freecodecamp.org/news/how-to-get-the-current-time-in-python-with-datetime/#:~:text=To%20get%20the%20current%20time%20in%20particular%2C%20you%20can%20use,hours%2C%20minutes%2C%20and%20seconds.)
 
