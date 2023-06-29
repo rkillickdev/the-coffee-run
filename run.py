@@ -144,8 +144,19 @@ class Order:
         duration = timedelta(minutes=self.prep_time)
         pickup_time = time_now + duration
         pickup_string = pickup_time.strftime("%H:%M:%S")
-        self.pickup = pickup_string
+        now = get_datetime()
+        tomorrow = now + timedelta(days=1)
+        tomorrow_date = tomorrow.strftime("%d/%m/%Y")
 
+        # Pickup time becomes less than time now if the order is made before 
+        # midnight but pickup falls after midnight.  If this is the case, 
+        # pickup date moves forward by one day so the pickup date is correct.
+        if pickup_time < time_now:
+            self.pickup = f"{pickup_string} on {tomorrow_date}" 
+        else:
+            self.pickup = f"{pickup_string} on {self.date}" 
+
+        
     def complete_order(self):
         """
         This sets the is_complete attribute of Order to True.
@@ -1104,3 +1115,5 @@ def main():
 user_order = Order()
 
 main()
+
+
