@@ -430,6 +430,86 @@ Python was used to create this project.
 
 <br>
 
+## **Deployment to Heroku**
+
+<br>
+
+Before starting the deployment proceedure, I created a list of requirements in gitpod, by entering the folowing command in the terminal:
+
+```
+pip3 freeze > requirements.txt
+```
+
+Heroku then uses this requirements.txt file to install the required dependencies.
+
+The following steps were followed to deploy the app to Heroku:
+
+1.  Create an account and login to [Heroku](https://id.heroku.com/login)
+2.  In the Heroku dashboard, click the 'New' button at the top right of the screen and then select "Create new app".
+3.  I selected the name 'the-coffee-run' ,set my region to Europe and clicked on the 'Create app' button.
+
+![Heroku Acreate App](docs/deployment/heroku-create-app.png)
+
+4.  Click on the settings tab and then click the 'Reveal Config Vars' button.
+
+![Heroku Reveal Config Vars](docs/deployment/heroku-reveal-config-vars.png)
+
+5.  In the field for Key, enter CREDS (All capital letters).
+
+![Heroku Add Config Var](docs/deployment/heroku-add-config-var.png)
+
+6.  From my Gitpod workspace, I went to my creds.json file which has been listed in the .gitignore file, copied the entire contents of this file and pasted it in the config var value field.  The click 'Add'.
+7.  Add another config var, this time with the Key set to PORT and the value 8000.
+8.  From the 'Buildpacks' section click on the 'Add buildpack' button.
+
+![Heroku Add Build Packs](docs/deployment/heroku-add-build-packs.png)
+
+9.  Select Python, then click 'save changes' button.
+10.  Next add the node.js buildpack and click the 'save changes' button again.  **It is important that the buildpacks are added in this order.  If they have been added in the wrong order, they can be clicked and dragged so Python comes first and node.js is below it.**
+
+11.  Next select the 'Deploy' tab, select GitHub as the deployment method, and click the 'Connect to GitHub' button.
+12.  Search for the GitHub repository name in the 'App Connected to GitHub' section and then click the 'connect' button'
+
+![Heroku Deployment Tab](docs/deployment/heroku-deploy-tab.png)
+
+13.  You can now choose to enable automatic deploys or deploy manually.  When the 'automatic deploys' button is clicked and enabled, Heroku will rebuild the app every time a new change is pushed to GitHub.  In the 'Manual deploy' section, the 'Deploy branch' button can be clicked to deploy manually.
+
+![Heroku Deployment Methods](docs/deployment/heroku-deployment-method.png)
+
+14.  I chose to deploy manually. Once the app is built, a link is provided to the [deployed app](https://the-coffee-run.herokuapp.com/).
+
+![Heroku Successful Deployment](docs/deployment/heroku-successful-deployment.png)
+
+<br>
+
+## **Local Development**
+
+<br>
+
+### **How to fork:**
+
+<br>
+
+1. Log in (or sign up) to GitHub.
+2. Find the required repository, in this case: rkillickdev/the-coffee-run
+3. Click on the "fork" button at the top right of the page.
+
+<br>
+
+### **How to clone:**
+
+<br>
+
+1. Log in (or sign up) to GitHub.
+2. Find the required repository, in this case: rkillickdev/the-coffee-run
+3. Click on the green code button.  This will give you the choice of cloning the repository using HTTPS, an SSH key or GitHub CLI.  Make your selection and copy the provided URL link.
+4. Open Terminal
+5. Change the current working directory to the location where you want the cloned directory.
+6. Type 'git clone' and then paste the URL you copied earlier.
+7. Press enter.
+
+<br>
+
 # **Testing**
 
 <br>
@@ -545,9 +625,15 @@ I realised during testing that if a user submitted an order and then returned to
 
 # **Credits**
 
-## **Code Used**
+## **Code Used / Referenced**
 
 <br>
+
+Code for setting up the Google Sheets API so the app could add and manipulate data stored in the google sheets doc, was adapted from the Code Institute [Love Sandwiches](https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/tree/master) walk through project.
+
+Initial Inspiration when planning the project and coming up with an idea, came from the [American Pizza Project](https://github.com/useriasminna/american_pizza_order_system) which was provided as an example project by Code Institute.
+
+[Clearing the screen in the terminal](https://code-institute-room.slack.com/archives/C027C3S3TEU/p1634300241255100?thread_ts=1634300071.255000&cid=C027C3S3TEU)
 
 [Using Tabulate in Python](https://www.askpython.com/python-modules/tabulate-tables-in-python)
 
@@ -555,11 +641,42 @@ I realised during testing that if a user submitted an order and then returned to
 
 [Adding two lists to a dictionary in Python](https://pythonhow.com/how/convert-two-lists-into-a-dictionary/#:~:text=You%20can%20use%20the%20zip,values%20into%20a%20single%20iterable.)
 
+[Accessing Dictionary Keys](https://www.learnbyexample.org/python-nested-dictionary/#:~:text='%3A%20''%7D%7D-,Access%20Nested%20Dictionary%20Items,key%20in%20multiple%20square%20brackets.&text=If%20you%20refer%20to%20a,What%20is%20this%3F&text=To%20avoid%20such%20exception%2C%20you,special%20dictionary%20get()%20method)
+
+[Iterating over multiple lists](https://learnpython.com/blog/loop-over-multiple-lists/#:~:text=Using%20the%20zip%20Function%20to,more%20lists%20side%20by%20side.)
+
+[Checking if a string only contains letters](https://careerkarma.com/blog/python-isalpha-isnumeric-isalnum/#:~:text=isalnum()%20is%20a%20built,method%20returns%20the%20value%20False%20.)
+
+[Breaking up long lines of code](https://www.pythonmorsels.com/breaking-long-lines-code-python/)
+
+[Changing font colour in the terminal](https://towardsdatascience.com/prettify-your-terminal-text-with-termcolor-and-pyfiglet-880de83fda6b)
+
+[Using sum and zip to get sales totals function](https://sparkbyexamples.com/python/python-add-two-lists/?expand_article=1)
+
+[Getting past 10 days dates](https://www.pythonprogramming.in/getting-the-date-of-7-days-ago-from-current-date-in-python.html)
+
+[Converting a list of integers into a list of strings](​​https://blog.finxter.com/how-to-convert-an-integer-list-to-a-string-list-in-python/)
+
+[Learning how to use Datetime](https://www.freecodecamp.org/news/how-to-get-the-current-time-in-python-with-datetime/#:~:text=To%20get%20the%20current%20time%20in%20particular%2C%20you%20can%20use,hours%2C%20minutes%2C%20and%20seconds.)
+
+[Reference list of pytz timezones](https://gist.github.com/heyalexej/8bf688fd67d7199be4a1682b3eec7568)
+
+[Inspiration from Code Institute Home Library Project, for html updates to enhance visual aspect of app](https://github.com/alexkisielewicz/home-library-app)
+
+
+
+
 ## **Content**
 
 <br>
 
 ## **Media**
+
+<br>
+
+* [Royalty free image used for the coffee cup favicon](https://uxwing.com/)
+
+<br>
 
 <br>
 
