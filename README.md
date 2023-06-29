@@ -98,6 +98,8 @@ Future implementations that are not within the scope of this project but could b
 
 * Admin View can only be accessed with username and password login
 
+* Increase options for the business owner in Admin View to manipulate the data in ways that are most useful to them.  More functions could be written to analyse and display the data as required.
+
 <br>
 
 ## **DESIGN**
