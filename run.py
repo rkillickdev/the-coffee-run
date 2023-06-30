@@ -151,15 +151,14 @@ class Order:
         tomorrow_date = tomorrow.strftime("%d/%m/%Y")
         self.pickup = pickup_string
 
-        # Pickup time becomes less than time now if the order is made before 
-        # midnight but pickup falls after midnight.  If this is the case, 
+        # Pickup time becomes less than time now if the order is made before
+        # midnight but pickup falls after midnight.  If this is the case,
         # pickup date moves forward by one day so the pickup date is correct.
         if pickup_time < time_now:
-             self.pickup_date = tomorrow_date 
+            self.pickup_date = tomorrow_date
         else:
-            self.pickup_date= self.date
+            self.pickup_date = self.date
 
-        
     def complete_order(self):
         """
         This sets the is_complete attribute of Order to True.
@@ -386,13 +385,14 @@ def pull_menu(ingredient):
     data = menu.get_all_values()
     return [data, ingredient]
 
-def access_google_sheet(sheet):
-        """
-        Accesses the google sheet passed as the argument 'sheet'
-        """
 
-        gs_data = SHEET.worksheet(sheet)
-        return gs_data
+def access_google_sheet(sheet):
+    """
+    Accesses the google sheet passed as the argument 'sheet'
+    """
+
+    gs_data = SHEET.worksheet(sheet)
+    return gs_data
 
 
 def get_menu_choice(data):
@@ -1052,7 +1052,8 @@ def view_completed(sheet_data):
 
             print(f"Hi {colored(order[1],'cyan',attrs=['bold'])}\n")
             print(
-                f"Details for order ref {colored(order[0],'cyan',attrs=['bold'])}"
+                "Details for order ref "
+                f"{colored(order[0],'cyan',attrs=['bold'])}"
                 " are as follows:\n"
             )
             print(f"{colored(order[2],'cyan',attrs=['bold'])}\n")
@@ -1060,7 +1061,7 @@ def view_completed(sheet_data):
                 f"The total cost of your order is"
                 f" £ {colored(order[3], 'cyan',attrs=['bold'])}\n"
             )
-            # Catches if order placed before midnight but pickup is after midnight
+            # Catches if order placed before midnight but pickup after midnight
             if present_datetime < pickup_datetime or order[5] != order[8]:
                 print(
                     f"Your coffee will be ready to pickup at"
@@ -1130,5 +1131,3 @@ def main():
 user_order = Order()
 
 main()
-
-
