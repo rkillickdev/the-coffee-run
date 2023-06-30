@@ -188,8 +188,7 @@ def get_datetime():
     for London timezone as the coffee shop is located in London.
     """
 
-    # now = datetime.now(pytz.timezone("Europe/London"))
-    now = datetime.now()
+    now = datetime.now(pytz.timezone("Europe/London"))
     return now
 
 
@@ -1056,9 +1055,6 @@ def view_completed(sheet_data):
             current_string = datetime.strftime(present, date_format)
             present_datetime = datetime.strptime(current_string, date_format)
             pickup_datetime = datetime.strptime(string_pickup, date_format)
-
-            print(present_datetime)
-            print(pickup_datetime)
 
             print(f"Hi {colored(order[1],'cyan',attrs=['bold'])}\n")
             print(
