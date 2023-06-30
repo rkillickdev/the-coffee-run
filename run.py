@@ -62,7 +62,7 @@ class Order:
 
         for dict in self.items:
             for key, value in dict.items():
-                subtotal = value.get("Price")
+                subtotal = value.get("Sub Total")
                 order_total += subtotal
         self.total_price = round(order_total, 1)
 
@@ -301,6 +301,7 @@ def assemble_order():
 
     item = create_item_dict()
     user_order.update_item(item)
+    user_order.get_order_total()
     view_order("choices")
 
 
@@ -360,9 +361,9 @@ def create_item_dict():
         {
             "Coffee": user_choices[0][0],
             "Milk": user_choices[1][0],
-            "Unit Price": unit,
+            "Price": unit,
             "Quantity": user_choices[2],
-            "Price": unit * user_choices[2],
+            "Sub Total": unit * user_choices[2],
         }
     ]
 
@@ -721,9 +722,18 @@ def view_order(selection="", message=""):
     os.system("cls" if os.name == "nt" else "clear")
 
     if not user_order.is_complete:
+        print(
+            "The total cost of your order is currently: £ "
+            f"{colored(user_order.total_price,'cyan',attrs=['bold'])}\n"
+            )
         print("Your order currently contains the following:\n")
     else:
-        print("Here is a summary of your order:\n")
+        print(
+            "Here is a summary of order: "
+            f"{colored(user_order.order_ref,'cyan',attrs=['bold'])}"
+            " The total price will be: £ "
+            f"{colored(user_order.total_price,'cyan',attrs=['bold'])}\n"
+            )
 
     # Turn the user_order items list into a single dictionary.
     # Used the following article to learn about this:
@@ -825,6 +835,7 @@ def input_options(keys, option):
     if option == "remove":
         user_order.remove_item(index)
         update_order_dict()
+        user_order.get_order_total()
         if not user_order.items:
             main()
         else:
@@ -836,9 +847,10 @@ def input_options(keys, option):
         user_order.get_drinks_total()
         updated_quantity = coffee_quantity("edit")
         item[index + 1]["Quantity"] = updated_quantity
-        item[index + 1]["Price"] = (
-            item[index + 1]["Unit Price"] * updated_quantity
+        item[index + 1]["Sub Total"] = (
+            item[index + 1]["Price"] * updated_quantity
         )
+        user_order.get_order_total()
         view_order("choices")
 
 
