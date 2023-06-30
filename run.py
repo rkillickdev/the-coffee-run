@@ -142,22 +142,16 @@ class Order:
         # I read the following article for adding minutes to datetime:
         # https://thispointer.com/how-to-add-minutes-to-datetime-in-python/
 
-        time_now = datetime.strptime(self.time, "%H:%M:%S")
+        
+        now_string = self.date + self.time 
+        time_now = datetime.strptime(now_string, "%d/%m/%Y%H:%M:%S")
         duration = timedelta(minutes=self.prep_time)
         pickup_time = time_now + duration
-        pickup_string = pickup_time.strftime("%H:%M:%S")
-        now = get_datetime()
-        tomorrow = now + timedelta(days=1)
-        tomorrow_date = tomorrow.strftime("%d/%m/%Y")
-        self.pickup = pickup_string
+        pickup_time_string = pickup_time.strftime("%H:%M:%S")
+        pickup_date_string = pickup_time.strftime("%d/%m/%Y")
+        self.pickup = pickup_time_string
+        self.pickup_date = pickup_date_string
 
-        # Pickup time becomes less than time now if the order is made before
-        # midnight but pickup falls after midnight.  If this is the case,
-        # pickup date moves forward by one day so the pickup date is correct.
-        if pickup_time < time_now:
-            self.pickup_date = tomorrow_date
-        else:
-            self.pickup_date = self.date
 
     def complete_order(self):
         """
@@ -194,7 +188,8 @@ def get_datetime():
     for London timezone as the coffee shop is located in London.
     """
 
-    now = datetime.now(pytz.timezone("Europe/London"))
+    # now = datetime.now(pytz.timezone("Europe/London"))
+    now = datetime.now()
     return now
 
 
@@ -1143,3 +1138,16 @@ def main():
 user_order = Order()
 
 main()
+
+# time_now = datetime.strptime(user_order.time, "%H:%M:%S")
+# duration = timedelta(minutes=self.prep_time)
+# pickup_time = time_now + duration
+# pickup_string = pickup_time.strftime("%H:%M:%S")
+# now = get_datetime()
+# tomorrow = now + timedelta(days=1)
+# tomorrow_date = tomorrow.strftime("%d/%m/%Y")
+
+# print(now)
+# print(tomorrow)
+
+
