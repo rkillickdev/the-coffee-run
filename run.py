@@ -1057,6 +1057,9 @@ def view_completed(sheet_data):
             present_datetime = datetime.strptime(current_string, date_format)
             pickup_datetime = datetime.strptime(string_pickup, date_format)
 
+            print(present_datetime)
+            print(pickup_datetime)
+
             print(f"Hi {colored(order[1],'cyan',attrs=['bold'])}\n")
             print(
                 "Details for order ref "
@@ -1068,8 +1071,7 @@ def view_completed(sheet_data):
                 f"The total cost of your order is"
                 f" £ {colored(order[3], 'cyan',attrs=['bold'])}\n"
             )
-            # Catches if order placed before midnight but pickup after midnight
-            if present_datetime < pickup_datetime or order[5] != order[8]:
+            if present_datetime < pickup_datetime:
                 print(
                     f"Your coffee will be ready to pickup at"
                     f" {colored(order[7],'cyan',attrs=['bold'])}"
