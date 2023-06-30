@@ -9,6 +9,7 @@ from termcolor import colored, cprint
 from pyfiglet import Figlet
 from collections import OrderedDict
 
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -379,9 +380,17 @@ def pull_menu(ingredient):
     Assigns values to the variable data.
     """
 
-    menu = SHEET.worksheet(f"{ingredient}")
+    menu = access_google_sheet(f"{ingredient}")
     data = menu.get_all_values()
     return [data, ingredient]
+
+def access_google_sheet(sheet):
+        """
+        Accesses the google sheet passed as the argument 'sheet'
+        """
+
+        gs_data = SHEET.worksheet(sheet)
+        return gs_data
 
 
 def get_menu_choice(data):
@@ -528,7 +537,7 @@ def get_sales_data(dates):
     """
 
     list_of_dates = dates
-    sales = SHEET.worksheet("sales")
+    sales = access_google_sheet("sales")
     data = sales.get_all_values()
     headers = data[0]
     sales_data = data[1:]
@@ -671,7 +680,7 @@ def get_recent():
     Gets the column data for total drinks and time from "orders" sheet.
     Filters and returns total drinks ordered in the last 15 minutes.
     """
-    orders = SHEET.worksheet("orders")
+    orders = access_google_sheet("orders")
     total_drinks = orders.col_values(5)
     time = orders.col_values(7)
     drinks = total_drinks[1:]
@@ -857,7 +866,7 @@ def get_orders():
     as orders_list.
     """
 
-    orders = SHEET.worksheet("orders")
+    orders = access_google_sheet("orders")
     data = orders.get_all_values()
     orders_list = data[1:]
     return orders_list
@@ -1028,7 +1037,7 @@ def view_completed(sheet_data):
 
     for order in completed_orders:
         if order[0] == selected_code:
-            pickup_time.append(order[5])
+            # pickup_time.append(order[5])
             pickup_time.append(order[7])
             string_pickup = " ".join(pickup_time)
             date_format = "%d/%m/%Y %H:%M:%S"
