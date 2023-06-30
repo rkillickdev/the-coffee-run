@@ -36,6 +36,7 @@ class Order:
         self.total_price = 0
         self.prep_time = 0
         self.pickup = ""
+        self.pickup_date = ""
         self.order_ref = create_order_ref(get_orders())
         self.is_complete = False
 
@@ -148,14 +149,15 @@ class Order:
         now = get_datetime()
         tomorrow = now + timedelta(days=1)
         tomorrow_date = tomorrow.strftime("%d/%m/%Y")
+        self.pickup = pickup_string
 
         # Pickup time becomes less than time now if the order is made before 
         # midnight but pickup falls after midnight.  If this is the case, 
         # pickup date moves forward by one day so the pickup date is correct.
         if pickup_time < time_now:
-            self.pickup = f"{pickup_string} on {tomorrow_date}" 
+             self.pickup_date = tomorrow_date 
         else:
-            self.pickup = f"{pickup_string} on {self.date}" 
+            self.pickup_date= self.date
 
         
     def complete_order(self):
@@ -938,6 +940,7 @@ def submit_order():
         user_order.date,
         user_order.time,
         user_order.pickup,
+        user_order.pickup_date,
     ]
 
     send_data(order_details, "orders")
