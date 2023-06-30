@@ -946,7 +946,7 @@ def submit_order():
     send_data(order_details, "orders")
 
     print(
-        f"Thanks {colored(user_order.name, 'cyan')}."
+        f"Thanks {colored(user_order.name, 'cyan',attrs=['bold'])}."
         " Your order has been submitted!\n"
     )
     print(
@@ -955,11 +955,12 @@ def submit_order():
     )
     print(
         f"The total cost of your order is:"
-        f" {colored(f'£{user_order.total_price}','cyan',attrs=['bold'])}\n"
+        f" £ {colored(f'{user_order.total_price}','cyan',attrs=['bold'])}\n"
     )
     print(
         f"Your coffee will be ready to pickup at:"
-        f" {colored(f'{user_order.pickup}','cyan',attrs=['bold'])}\n"
+        f" {colored(f'{user_order.pickup}','cyan',attrs=['bold'])}"
+        f" on {colored(f'{user_order.pickup_date}','cyan',attrs=['bold'])}\n"
     )
 
     sales = sales_data()
