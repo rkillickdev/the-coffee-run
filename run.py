@@ -1040,7 +1040,7 @@ def view_completed(sheet_data):
 
     for order in completed_orders:
         if order[0] == selected_code:
-            # pickup_time.append(order[5])
+            pickup_time.append(order[8])
             pickup_time.append(order[7])
             string_pickup = " ".join(pickup_time)
             date_format = "%d/%m/%Y %H:%M:%S"
@@ -1059,10 +1059,11 @@ def view_completed(sheet_data):
                 f"The total cost of your order is"
                 f" £ {colored(order[3], 'cyan')}\n"
             )
-            if present_datetime < pickup_datetime:
+            # Catches if order placed before midnight but pickup is after midnight
+            if present_datetime < pickup_datetime or order[5] != order[8]:
                 print(
                     f"Your coffee will be ready to pickup at"
-                    f" {colored(order[7], 'cyan')}\n"
+                    f" {colored(order[7], 'cyan')} on {order[8]}\n"
                 )
             else:
                 print(
