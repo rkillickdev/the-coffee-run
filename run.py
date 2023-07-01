@@ -673,13 +673,14 @@ def return_to_menu(menu_type):
 def get_recent():
     """
     Gets the column data for total drinks and time from "orders" sheet.
+    Iterates over the last 15 orders.
     Filters and returns total drinks ordered in the last 15 minutes.
     """
     orders = access_google_sheet("orders")
     total_drinks = orders.col_values(5)
     time = orders.col_values(7)
-    drinks = total_drinks[1:]
-    order_times = time[1:]
+    drinks = total_drinks[-15:]
+    order_times = time[-15:]
 
     # I used the following article to learn about manipulating datetime:
     # https://www.dataquest.io/blog/python-datetime-tutorial/
@@ -1134,6 +1135,9 @@ def main():
 user_order = Order()
 
 main()
+
+# max_time = timedelta(minutes=15)
+# print(max_time)
 
 # time_now = datetime.strptime(user_order.time, "%H:%M:%S")
 # duration = timedelta(minutes=self.prep_time)

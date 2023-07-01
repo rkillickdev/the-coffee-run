@@ -185,14 +185,14 @@ The following steps have been taken to test the fuctionality of the app features
 | Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
 | ------- | ---------------- | ----------------- | --------- |
 |         |
-| Validation for user input: **Enter a number here::** | Input validated, call the class method remove_item and get_order_total. Call the function update_order_dict. Current order summary updated and prompt for user input displayed  | Input "1" "2" "3" "4" | Pass |
+| Validation for user input: **Enter a number here:** | Input validated, call the class method remove_item and get_order_total. Call the function update_order_dict. Current order summary updated and prompt for user input displayed  | Input "1" "2" "3" "4" | Pass |
 
 ![Remove Item Updated Summary](docs/features/coffee-run-remove-item-updated-summary.png)
 
 | Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
 | ------- | ---------------- | ----------------- | --------- |
 |         |
-| Validation for user input: **Enter a number here::** | Input validated, call the class method remove_item and get_order_total. Call the function update_order_dict. Return to main menu if no more items remain in the order | Input "1" | Pass |
+| Validation for user input: **Enter a number here:** | Input validated, call the class method remove_item and get_order_total. Call the function update_order_dict. Return to main menu if no more items remain in the order | Input "1" | Pass |
 
 ![Remove Final Item From Order](docs/features/coffee-run-main-menu.png)
 
@@ -243,6 +243,47 @@ The following steps have been taken to test the fuctionality of the app features
 | Validation for user input: **Please select a quantity between 1 and 5** | Input validated, Updated order summary and user input prompt displayed to return to options menu | Input "1" | Pass |
 
 ![Edited Order Summary](docs/features/coffee-run-edit-item-updated-summary.png)
+
+<br>
+
+**View Current Order**
+
+<br>
+
+| Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
+| ------- | ---------------- | ----------------- | --------- |
+|         |
+| Validation for user input: **Enter 1 - 6 here:** | Input validated, Current order summary and prompt for user input displayed  | Input "4" | Pass |
+
+![View Current Order Summary](docs/features/coffee-run-view-current-order.png)
+
+<br>
+
+**Finalise Order**
+
+<br>
+
+| Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
+| ------- | ---------------- | ----------------- | --------- |
+|         |
+| Validation for user input: **Enter 1 - 6 here:** | Input validated, call the function submit_order | Input "5" | Pass |
+| Message including user name gives feedback that the order has been submitted | Message printed when 'Finalise Order' selected | Input "5" | Pass |
+| User provided with a unique reference number for their order | Details of the order reference printed when 'Finalise Order' selected | Input "5" | Pass |
+| Total Cost of the order displayed to the user | The sum of the order item subtotals printed when 'Finalise Order' selected | Input "5" | Pass |
+| Estimated pickup time and date displayed to the user | The estimated time of pickup calculated using the class method calculate_prep.  It should be 2 minutes per drink in the order plus an additional 15 minutes if more than 10 drinks have been ordered recently (in the past 15 minutes - this data is retrieved by calling the get_recent function).  If less than 10 drinks have been ordered recently, an additional 10 minutes will be added to the prep time. | Input "5" | Pass |
+
+
+![Submit Order](docs/features/coffee-run-finalise-order.png)
+
+This example show that the order was submitted 11:58:00 on 1/07/23.  There are fewer than 10 drinks ordered in the previous 15 minutes, so prep time is calculated as 5 X 2 + 10
+
+
+
+
+
+
+
+
 
 
 
