@@ -459,7 +459,7 @@ def validate_data(user_input, expected_values, selection=""):
                 raise ValueError("This order reference does not exist")
 
         if selection == "coffee_quantity":
-            if user_input.isalpha() or int(user_input) < 1:
+            if not user_input.isdigit() or int(user_input) < 1:
                 raise ValueError("Please enter a number between 1 and 5")
     except ValueError as e:
         print(f"{colored(f'{e}. Please try again.', 'red')}")
