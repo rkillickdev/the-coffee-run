@@ -43,6 +43,12 @@ The following steps have been taken to test the fuctionality of the app features
 |         |
 | Validation for user input: **Enter 1-4 here** | Input validated, call assemble_order function, user input prompt for name displayed | Input "1" | Pass |
 
+<br>
+
+**User Name**
+
+<br>
+
 ![User Name Input](docs/features/coffee-run-enter-name.png)
 
 | Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
@@ -58,6 +64,12 @@ The following steps have been taken to test the fuctionality of the app features
 | Validation for user input: **Please enter your name here:** | Error handled and feedback message displayed to user | Attempt input of "rtrtrtrtrtrt" | Pass |
 
 ![Name Length Input Validation](docs/features/coffee-run-name-validation-length.png)
+
+<br>
+
+**Order Coffee**
+
+<br>
 
 | Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
 | ------- | ---------------- | ----------------- | --------- |
@@ -146,9 +158,22 @@ The following steps have been taken to test the fuctionality of the app features
 | Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
 | ------- | ---------------- | ----------------- | --------- |
 |         |
+| Validation for user input: **Please select a quantity between 1 and 5** | Error handled and feedback message displayed to user if they attempt to add item when order drinks total is at maximum | Attempt input of "1" | Pass |
+
+![Adding Item Exceeds Drinks Maximum](docs/features/coffee-run-max-drinks-total-reached.png)
+
+<br>
+
+**Remove Item**
+
+<br>
+
+| Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
+| ------- | ---------------- | ----------------- | --------- |
+|         |
 | Validation for user input: **Enter 1 - 6 here:** | Input validated, call the function input_options(get_keys(), "remove"). Current order summary and prompt for user input displayed  | Input "2" | Pass |
 
-![Remove Item From Order](docs/features/coffee-run-remove-item.png)
+![Remove Item From Order](docs/features/coffee-run-select-item-remove.png)
 
 | Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
 | ------- | ---------------- | ----------------- | --------- |
@@ -170,6 +195,12 @@ The following steps have been taken to test the fuctionality of the app features
 | Validation for user input: **Enter a number here::** | Input validated, call the class method remove_item and get_order_total. Call the function update_order_dict. Return to main menu if no more items remain in the order | Input "1" | Pass |
 
 ![Remove Final Item From Order](docs/features/coffee-run-main-menu.png)
+
+<br>
+
+**Edit Quantities**
+
+<br>
 
 | Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
 | ------- | ---------------- | ----------------- | --------- |
