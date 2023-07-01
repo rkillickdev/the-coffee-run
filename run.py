@@ -1136,16 +1136,3 @@ user_order = Order()
 
 main()
 
-# max_time = timedelta(minutes=15)
-# print(max_time)
-
-# time_now = datetime.strptime(user_order.time, "%H:%M:%S")
-# duration = timedelta(minutes=self.prep_time)
-# pickup_time = time_now + duration
-# pickup_string = pickup_time.strftime("%H:%M:%S")
-# now = get_datetime()
-# tomorrow = now + timedelta(days=1)
-# tomorrow_date = tomorrow.strftime("%d/%m/%Y")
-
-# print(now)
-# print(tomorrow)
