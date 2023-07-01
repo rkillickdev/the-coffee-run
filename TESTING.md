@@ -275,7 +275,15 @@ The following steps have been taken to test the fuctionality of the app features
 
 ![Submit Order](docs/features/coffee-run-finalise-order.png)
 
-This example show that the order was submitted 11:58:00 on 1/07/23.  There are fewer than 10 drinks ordered in the previous 15 minutes, so prep time is calculated as 5 X 2 + 10
+This example below show that the order was submitted at 13:25:26 on 1/07/23.  There are fewer than 10 drinks ordered in the previous 15 minutes (There have been 5 in total), so prep time is calculated as 12 minutes ((1 drink X 2 minutes) + 10 minutes additional) and estimated pickup time is calculated as 13:37:26.
+
+![Pickup Time Add 10 Minutes](docs/features/google-sheet-pickup-time-example-add_ten.png)
+
+This example below shows that the order was submitted at 13:38:33 on 1/07/23.  There are more than 10 drinks ordered in the previous 15 minutes (There have been 11 in total), so prep time is calculated as 23 minutes ((4 drinks X 2 minutes) + 15 minutes additional) and estimated pickup time is calculated as 14:01:33.
+
+![Pickup Time Add 15 Minutes](docs/features/google-sheet-pickup-time-example-add-fifteen.png)
+
+
 
 
 
