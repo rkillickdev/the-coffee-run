@@ -297,6 +297,103 @@ This example below shows that the order was submitted at 13:38:33 on 1/07/23.  T
 
 ![Send Data Sales Details](docs/features/google-sheets-send-data-sales.png)
 
+| Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
+| ------- | ---------------- | ----------------- | --------- |
+|         |
+| Validation for user input 'what would you like to do next?': **Enter 1 - 2 here** | Error handled and feedback message displayed to user | Attempt input of  "w" "!" "empty" "0" "3" | Pass |
+
+![Completed Order Next Steps](docs/features/coffee-run-finalised-order-invalid-code.png)
+
+| Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
+| ------- | ---------------- | ----------------- | --------- |
+|         |
+| Validation for user input 'what would you like to do next?': **Enter 1 - 2 here** | Input validated, Display summary of completed order by calling the function view_order("completed") | Input "2" | Pass |
+
+![View Completed Order Summary](docs/features/coffee-run-finalised-order-summary.png)
+
+ Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
+| ------- | ---------------- | ----------------- | --------- |
+|         |
+| Validation for user input 'what would you like to do next?': **Enter 1 - 2 here** | Input validated, call main function to direct user back to the main menu | Input "1" | Pass |
+
+![Return To Main Menu After Order Complete](docs/features/coffee-run-main-menu.png)
+
+<br>
+
+**Cancel Order**
+
+<br>
+
+| Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
+| ------- | ---------------- | ----------------- | --------- |
+|         |
+| Validation for user input: **Enter 1 - 6 here:** | Input validated, call the function clear_order and main to return to main menu | Input "6" | Pass |
+
+<br>
+
+**View Existing Order**
+
+<br>
+
+| Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
+| ------- | ---------------- | ----------------- | --------- |
+|         |
+| Validation for user input: **Enter 1-4 here** | Input validated, call the function view_completed(pull_menu("orders")), user input prompt for order reference displayed | Input "2" | Pass |
+
+![Input Order Reference](docs/features/coffee-run-existing-order-enter-ref.png)
+
+| Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
+| ------- | ---------------- | ----------------- | --------- |
+|         |
+| Validation for user input: **Enter a reference here:** | Error handled and feedback message displayed to user | Attempt input of "t" "!" "empty" "0" "1000" | Pass |
+
+![Order Reference Validation](docs/features/cofee-run-invalid-order-ref.png)
+
+| Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
+| ------- | ---------------- | ----------------- | --------- |
+|         |
+| Validation for user input: **Enter a reference here:** | Input validated, Order details displayed | input "179" | Pass |
+
+![Existing Order Pending](docs/features/coffee-run-existing-order-pending.png)
+
+<br>
+
+**Admin View**
+
+<br>
+
+| Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
+| ------- | ---------------- | ----------------- | --------- |
+|         |
+| Validation for user input: **Enter 1-4 here** | Input validated, call the function admin_stats with an argument of 10 to view sales analysis for the past 10 days | input "3" | Pass |
+
+![Admin View](docs/features/coffee-run-admin-view.png)
+
+As you can see below, the function admin_stats filters sales for the past 10 days and uses this data to provide insight to the business owner.  In the spreadsheet below I have slected all rows for dates between 01/07/2023 and 22/06/2023 manually and you can see that the sum total of all coffees sold over this period (240) is the same figure reached by the admin_stats function.
+
+![Google Sheets Sales Total](docs/features/google-sheets-total-drinks.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
