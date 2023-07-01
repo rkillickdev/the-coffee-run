@@ -283,6 +283,22 @@ This example below shows that the order was submitted at 13:38:33 on 1/07/23.  T
 
 ![Pickup Time Add 15 Minutes](docs/features/google-sheet-pickup-time-example-add-fifteen.png)
 
+| Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
+| ------- | ---------------- | ----------------- | --------- |
+|         |
+| Orders sheet of database updated when 'Complete Order' selected: **Enter 1 - 6 here:** | calls the function send_data(order_details, "orders") and order details are appeneded as a row in the google sheet "orders" | Input "5" | Pass |
+
+![Send Data Order Details](docs/features/google-sheets-send-data-order.png)
+
+| Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
+| ------- | ---------------- | ----------------- | --------- |
+|         |
+| Sales sheet of database updated when 'Complete Order' selected: **Enter 1 - 6 here:** | calls the function send_data(sales, "sales") and sales details for the order are appeneded as a row in the google sheet "sales" | Input "5" | Pass |
+
+![Send Data Sales Details](docs/features/google-sheets-send-data-sales.png)
+
+
+
 
 
 
