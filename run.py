@@ -142,8 +142,7 @@ class Order:
         # I read the following article for adding minutes to datetime:
         # https://thispointer.com/how-to-add-minutes-to-datetime-in-python/
 
-        
-        now_string = self.date + self.time 
+        now_string = self.date + self.time
         time_now = datetime.strptime(now_string, "%d/%m/%Y%H:%M:%S")
         duration = timedelta(minutes=self.prep_time)
         pickup_time = time_now + duration
@@ -151,7 +150,6 @@ class Order:
         pickup_date_string = pickup_time.strftime("%d/%m/%Y")
         self.pickup = pickup_time_string
         self.pickup_date = pickup_date_string
-
 
     def complete_order(self):
         """
@@ -719,7 +717,7 @@ def view_order(selection="", message=""):
         print(
             "The total cost of your order is currently: £ "
             f"{colored(user_order.total_price,'cyan',attrs=['bold'])}\n"
-            )
+        )
         print("Your order currently contains the following:\n")
     else:
         print(
@@ -727,7 +725,7 @@ def view_order(selection="", message=""):
             f"{colored(user_order.order_ref,'cyan',attrs=['bold'])}"
             " The total price will be: £ "
             f"{colored(user_order.total_price,'cyan',attrs=['bold'])}\n"
-            )
+        )
 
     # Turn the user_order items list into a single dictionary.
     # Used the following article to learn about this:
@@ -1147,5 +1145,3 @@ main()
 
 # print(now)
 # print(tomorrow)
-
-
