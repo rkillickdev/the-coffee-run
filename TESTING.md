@@ -1,7 +1,5 @@
 # **Testing**
 
-## **Automated Testing**
-
 <br>
 
 ## **Manual Testing**

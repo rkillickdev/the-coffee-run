@@ -516,6 +516,32 @@ The following steps were followed to deploy the app to Heroku:
 
 <br>
 
+## **Automated Testing**
+
+<br>
+
+### **PEP8 Validation:**
+
+<br>
+
+I passed my run.py file through the [Code Institute Python Linter](https://pep8ci.herokuapp.com/) and no errors are found:
+
+<br>
+
+![CI Python Linter Validation](docs/validation/pep8/coffee-run-ci-python-linter-all-clear.png)
+
+<br>
+
+Towards the end of the project, I installed the tool [Black](https://www.freecodecamp.org/news/auto-format-your-python-code-with-black/) and ran this on my run.py file to make sure everything was formatted correctly and following best practices.
+
+## **Manual Testing**
+
+<br>
+
+For documentation about the manual testing proceedure I followed for this project, please follow this link to the [TESTING.md file](https://github.com/rkillickdev/the-coffee-run/blob/main/TESTING.md)
+
+<br>
+
 ## **Bugs**
 
 <br>
