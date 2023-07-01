@@ -183,7 +183,7 @@ The following steps have been taken to test the fuctionality of the app features
 |         |
 | Validation for user input: **Enter a number here:** | Error handled and feedback message displayed to user | Attempt input of "f" "empty" "0" "9" | Pass |
 
-![Edit Quantities Validation](docs/features/coffee-run-edit-quantities-invalid-code.png)
+![Item To Edit Validation](docs/features/coffee-run-edit-quantities-invalid-code.png)
 
 | Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
 | ------- | ---------------- | ----------------- | --------- |
@@ -191,6 +191,37 @@ The following steps have been taken to test the fuctionality of the app features
 | Validation for user input: **Enter a number here:** | Input validated, prompt user for new quantity | Input "1" "2" "3" | Pass |
 
 ![Input Updated Quantity](docs/features/coffee-run-update-quantity.png)
+
+| Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
+| ------- | ---------------- | ----------------- | --------- |
+|         |
+| Validation for user input: **Please select a quantity between 1 and 5** | Error handled and feedback message displayed to user | Attempt input of "g" "empty" "0" | Pass |
+
+![Item Quantity Update Validation](docs/features/coffee-run-quantity-validate-non-numeric.png)
+
+| Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
+| ------- | ---------------- | ----------------- | --------- |
+|         |
+| Validation for user input: **Please select a quantity between 1 and 5** | Error handled and feedback message displayed to user | Attempt input of "3" "4" "5" "6" | Pass |
+
+![Item Quantity Update Total Drinks Exceeded](docs/features/coffee-run-updated-quantity-exceeds-limit.png)
+
+| Feature Tested | Expected Outcome | Testing Performed | Pass/Fail |
+| ------- | ---------------- | ----------------- | --------- |
+|         |
+| Validation for user input: **Please select a quantity between 1 and 5** | Input validated, Updated order summary and user input prompt displayed to return to options menu | Input "1" | Pass |
+
+![Edited Order Summary](docs/features/coffee-run-edit-item-updated-summary.png)
+
+
+
+
+
+
+
+
+
+
 
 
 
