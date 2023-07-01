@@ -559,7 +559,7 @@ def date_range(days):
     for x in range(days):
         date = now - timedelta(days=x)
         date_string = date.strftime("%d/%m/%Y")
-        dates_list.append(date_string) 
+        dates_list.append(date_string)
     return dates_list
 
 
