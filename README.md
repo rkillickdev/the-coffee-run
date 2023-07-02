@@ -119,7 +119,7 @@ ___
 
 <br>
 
-![Flow Chart displaying stages and logic of the program](docs/flow-charts/the-coffee-run-flowchart.png)
+![Flow Chart displaying stages and logic of the program](docs/flow-charts/coffee-run-flow-chart-logic.png)
 
 ## **Features**
 
