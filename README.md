@@ -82,6 +82,10 @@ Along with a reduction in overcrowding at peak times, the cafe owner also hopes 
 ## **SCOPE**
 ___
 
+### **Features**
+
+<br>
+
 In order to satisfy the goals outlined in the project strategy, I will implement the following features:
 
 * Allow user to enter username details so messages can be personalised throughout the order.
@@ -98,14 +102,15 @@ In order to satisfy the goals outlined in the project strategy, I will implement
 
 <br>
 
-Future implementations that are not within the scope of this project but could be added at a later date to enhance the user experience would be:
+### **Future Implementations**
+
+<br>
+
+Functionality that is not within the scope of this project, but that could be added at a later date to enhance the user experience would be:
 
 * The ability for the user to pay for the order using the app, to make the pickup process even smoother and quicker.
-
 * The ability for users to create an account where they can accrue loyalty points for each coffee order and redeem them when sufficient total reached.
-
 * Admin View can only be accessed with username and password login
-
 * Increase options for the business owner in Admin View to manipulate the data in ways that are most useful to them.  More functions could be written to analyse and display the data as required.
 
 <br>
@@ -115,13 +120,13 @@ ___
 
 <br>
 
-## **Flow Charts**
+## **Python Logic Flow Chart**
 
 <br>
 
 ![Flow Chart displaying stages and logic of the program](docs/flow-charts/coffee-run-flow-chart-logic.png)
 
-## **Features**
+## **App Functionality & Features**
 
 <br>
 
