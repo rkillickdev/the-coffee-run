@@ -115,7 +115,7 @@ ___
 
 <br>
 
-## **Main Menu**
+### **Main Menu**
 
 <br>
 
@@ -129,7 +129,7 @@ Users are prompted to enter a number between 1 and 4 which correspond with the m
 
 ![Main Menu Validation](docs/features/coffee-run-main-menu-validation.png)
 
-## **Order Coffee**
+### **Order Coffee**
 
 <br>
 
@@ -183,7 +183,7 @@ To view their next options, users are prompted to enter 'm'.  If an invalid char
 
 <br>
 
-## **Order Options**
+#### **Order Options**
 
 <br>
 
@@ -195,7 +195,7 @@ If the code input the user does not pass validation, the following feedback is d
 
 ![Order Options Code Invalid](docs/features/coffee-run-order-option-invalid.png)
 
-### **Option 1: Add an item to order**
+#### **Option 1: Add an item to order**
 
 <br>
 
@@ -203,7 +203,7 @@ If this is selected, the user will cycle back over the 'Order Coffee' steps outl
 
 ![Max Drinks Total Reached](docs/features/coffee-run-max-drinks-total-reached.png)
 
-### **Option 2: Remove an item from order**
+#### **Option 2: Remove an item from order**
 
 <br>
 
@@ -221,7 +221,7 @@ If the user enters a valid code corresponding to an item in their order, this wi
 
 If the user were to remove all items from the order, on removing the final item, they would be directed back to the Main Menu display.
 
-### **Option 3: Edit Quantities**
+#### **Option 3: Edit Quantities**
 
 <br>
 
@@ -245,7 +245,7 @@ Once the user has edited the quantity of the item with a valid value, a summary 
 
 ![Edited Item Updated Summary](docs/features/coffee-run-edit-item-updated-summary.png)
 
-### **Option 4: View Current Order**
+#### **Option 4: View Current Order**
 
 <br>
 
@@ -253,7 +253,7 @@ At any point during the order process, the user can choose to view their current
 
 ![View Current Order](docs/features/coffee-run-view-current-order.png)
 
-### **Option 5: Finalise Order**
+#### **Option 5: Finalise Order**
 
 <br>
 
@@ -269,7 +269,7 @@ Choosing option 1 will direct the user back to the main menu and choosing option
 
 ![Finalised Order Summary](docs/features/coffee-run-finalised-order-summary.png)
 
-## **View Existing Order**
+### **View Existing Order**
 
 <br>
 
@@ -289,7 +289,7 @@ When an existing order is called, the current time is checked against the estima
 
 ![Existing Order Ready](docs/features/coffee-run-existing-order-ready.png)
 
-## **Admin View**
+### **Admin View**
 
 <br>
 
@@ -299,7 +299,7 @@ When selecting this option, the user is presented with some key stats that have 
 
 ![Admin View](docs/features/coffee-run-admin-view.png)
 
-## **Quit App**
+### **Quit App**
 
 <br>
 
@@ -309,11 +309,11 @@ Once the user has done everything they want to do, they can quit the app by sele
 
 <br>
 
-# **Database**
+## **Database**
 
 Data is stored in a google sheets document and accessed by the app using the Google Drive and Google Sheets APIs.  The spreadsheet can be viwed here.  The spreadsheet consists of the following sheets:
 
-## **Coffee**
+### **Coffee**
 
 <br>
 
@@ -322,7 +322,7 @@ This stores the coffee menu items and associated prices.  The Business owner cou
 ![Coffee Sheet](docs/features/google-sheets-coffee.png)
 
 
-## **Milk**
+### **Milk**
 
 <br>
 
@@ -331,7 +331,7 @@ This stores the milk menu options and associated prices:
 ![Milk Sheet](docs/features/google-sheets-milk.png)
 
 
-## **Orders**
+### **Orders**
 
 <br>
 
@@ -339,13 +339,41 @@ Once an order has been submitted on the app, it is appended as a row on the orde
 
 ![Orders Sheet](docs/features/google-sheets-orders.png)
 
-## **Sales**
+### **Sales**
 
 <br>
 
 As an order is submitted, the elements of the order are broken down into sales data which is then appened as a row in the sales sheet:
 
 ![Sales Sheet](docs/features/google-sheets-sales.png)
+
+
+<br>
+
+## **Typography**
+
+<br>
+
+Consistent colour schemes have been used throughout the app, to provide an intuitive user experience and ensure that key information is highlighted.  Green text informs the user that an input value is required, red text flags user input errors and provides feedback to the user about how they can input a valid value.  Key information such as total price, order reference and pickup time are highlighted with the colour cyan and also made bold.
+
+<br>
+
+## **Imagery**
+
+This project is deployed on Heroku and uses the Code Institute template to run the app in the mock terminal.  I made some ammendments to the default html and css files to personalise the app and also help the user understand immediately the purpose of the site:  
+
+![Deployed Site Landing Page](docs/colour-palette/coffee-run-deployed-site.png)
+
+The following background image has been added to the css class 'body' in the layout.html file:
+
+![Deployed Site Background Image](assets/images/coffee-art.webp)
+
+I also centered the 'Run Program' button and changed the colour to fit better with the background image being used.  I uploaded the coffee art background image to the [coolors website](https://coolors.co/) and used the palette generator tool to create a complimentary palette.  I chose #C26F31 'Copper' as the colour for the button:
+
+![Background Image Colour Palette](docs/colour-palette/coffee-run-colour-palette.png)
+
+
+
 
 
 
