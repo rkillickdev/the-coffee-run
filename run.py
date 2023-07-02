@@ -540,18 +540,18 @@ def get_sales_data(dates):
     sales_data = data[1:]
     requested_data = []
     most_recent = []
-    
+
     for row in sales_data:
         if row[9] in list_of_dates:
             requested_data.append(row)
 
     # If there is no sales data available for the specified date
     # range, by default the last 20 entries on the "sales" sheet
-    # will be appended to the requested_data list.        
+    # will be appended to the requested_data list.
     if not requested_data:
         most_recent = sales_data[-20:]
         for row in most_recent:
-            requested_data.append(row)       
+            requested_data.append(row)
 
     requested_data.insert(0, headers)
 
