@@ -2,6 +2,12 @@
 
 The Coffee Run App has been developed as part of the Code Institute Diploma in Full Stack Software Development (Portfolio Project #3 - Python Essentials).  The app targets people on a busy schedule who want the ability to order their coffee in advance and pick up at a designated time.
 
+<br>
+
+![Deployed Site View](docs/devices/coffee-run-deployed-mockup.png)
+
+<br>
+
 ## **CONTENTS**
 
 * [User Experience (UX)](#user-experience-ux)
@@ -376,54 +382,7 @@ I also added the following favicon in the head element of the layout.html file, 
 
 ![Favicon Image](docs/features/plastic-takeaway-coffee-icon.jpg)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<br>
 
 # **Technologies Used**
 
@@ -449,6 +408,7 @@ Python was used to create this project.
 * TinyPNG - For compression of image files to improve website performance.
 * Birme - For resizing and re-formatting images to make them suitable for use on the website.
 * Favicon.ico & App Icon Generator - for creating the 16x16px ico favicon.
+* [Techsini](https://techsini.com/multi-mockup/index.php) - For generating an image of the deployed app on devices 
 
 * gspread - Used to access and update Google Sheets via an API
 * google.oauth2.service_account - Credentials Class imported from this which then uses the creds.json file.
