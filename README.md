@@ -48,7 +48,7 @@ The client for this project is a fictional coffee shop although this scenario co
 
 The aim of the project is to therefore develop an app that can be used by customers to order their takeaway coffee in advance and be provided a specific pickup time.  This should improve the customer experience and remove one element of stress from their daily commute. Another target user for the app will be those doing the office 'coffee run', who normally place quite large orders with various different types of coffee.  The ability to order in advance means there will not be a long wait for the customer when arriving at the cafe as their order will be ready to take away. 
 
-Along with a reduction in overcrowding at peak times, the cafe owner also hopes that the data collected from the app will provide a valuable insight for the business. They hope analysis of this data will help to build a profile of the busiest times of the day/ week and allow them to schedule staffing appropiately so sufficient baristas are on shift to manage the demand.  The app will also provide the business with sales data, which they can use to inform them in stock buying decisions for coffee beans and milk.  
+Along with a reduction in overcrowding at peak times, the cafe owner also hopes that the data collected from the app will provide a valuable insight for the business. They hope analysis of this data will help to build a profile of the busiest times of the day and allow them to schedule staffing appropriately so sufficient baristas are on shift to manage the demand.  The app will also provide the business with sales data, which they can use to inform them in stock buying decisions for coffee beans and milk.  
 
 <br>
 
@@ -64,7 +64,7 @@ Along with a reduction in overcrowding at peak times, the cafe owner also hopes 
 * As the client, I want to collect data from orders made via the app to make future business decisions.
 * As the client, I want all user input to be validated and errors handled gracefully.
 * As the client, I want to ensure a good user experience by making the app easy to use and intuitive. 
-* As the client, I want to keep the user informed througout the ordering process by providing feedback at each stage.
+* As the client, I want to keep the user informed throughout the ordering process by providing feedback at each stage.
 
 <br>
 
@@ -72,7 +72,7 @@ Along with a reduction in overcrowding at peak times, the cafe owner also hopes 
 
 <br>
 
-* As the user, I want to view all avaialble coffee & milk options to make my choice.
+* As the user, I want to view all available coffee & milk options to make my choice.
 * As the user, I want to order my coffee quickly and for the experience to be intuitive.
 * As the user, I want to be provided clear information about when my order will be ready to pickup.
 * As the user, I want to be able to view my order details and pickup time once the order has been placed. 
@@ -136,7 +136,7 @@ ___
 
 ![Main Menu](docs/features/coffee-run-main-menu.png)
 
-When loading the app, users land on the main menu page so they can immediately access the service they need.  The large 'Coffee Run' title at the top was created using the Pyfiglet module and let's the user know that they have come to the right place to order coffee.
+When loading the app, users land on the main menu page so they can immediately access the service they need.  The large 'Coffee Run' title at the top was created using the Pyfiglet module and lets the user know that they have come to the right place to order coffee.
 
 4 options are provided.  Number 1 allows the user to start the process of ordering their coffee.  I have given this option priority, as this is the main reason why most users will access the app.  Number 2 allows the user to access details of an order that has already been submitted.  Number 3 is an admin view designed for the owner of the coffee shop so they can access information about sales based on the data collected by the app.  Option 4 gives the user an opportunity to quit the app.  I have only made this option available at this level of the program, as this is where users return once an order has been submitted.
 
@@ -240,7 +240,7 @@ If the user were to remove all items from the order, on removing the final item,
 
 <br>
 
-If the user chooses to edit the quantity of an item in the order, they are presented with the following summary of their order and prompted to select the itme they would like to edit:
+If the user chooses to edit the quantity of an item in the order, they are presented with the following summary of their order and prompted to select the item they would like to edit:
 
 ![Edit Quantities Select Item](docs/features/coffee-run-edit-quantities-select-item.png)
 
@@ -252,11 +252,11 @@ The user is then prompted to enter the quantity that they would like of the item
 
 ![Edit Enter New Quantity](docs/features/coffee-run-edit-enter-new-quantity.png)
 
-If the user attempts to enter an ammended quantity that would take the drinks total of the order over 5, they are presented with the following feedback:
+If the user attempts to enter an amended quantity that would take the drinks total of the order over 5, they are presented with the following feedback:
 
 ![Quanity Invalid Exceeds Item Limit](docs/features/coffee-run-quantity-validate-exceeds-item-total.png)
 
-Once the user has edited the quantity of the item with a valid value, a summary of the order displaying the ammended quantity and ammended price is shown, along with a prompt to return to the Order Options menu by entering 'm':
+Once the user has edited the quantity of the item with a valid value, a summary of the order displaying the amended quantity and amended price is shown, along with a prompt to return to the Order Options menu by entering 'm':
 
 ![Edited Item Updated Summary](docs/features/coffee-run-edit-item-updated-summary.png)
 
@@ -272,7 +272,7 @@ At any point during the order process, the user can choose to view their current
 
 <br>
 
-Selecting option 5 takes the user to a page providing them with a personalised message to let them know that their order has been submitted. Key details of the order are also provided including their unique order reference number, the total amount due for the order on pickup, and the esitmated pickup time:
+Selecting option 5 takes the user to a page providing them with a personalised message to let them know that their order has been submitted. Key details of the order are also provided including their unique order reference number, the total amount due for the order on pickup, and the estimated pickup time:
 
 ![Finalised Order View](docs/features/coffee-run-finalise-order.png)
 
@@ -326,7 +326,7 @@ Once the user has done everything they want to do, they can quit the app by sele
 
 ## **Database**
 
-Data is stored in a google sheets document and accessed by the app using the Google Drive and Google Sheets APIs.  The spreadsheet can be viwed here.  The spreadsheet consists of the following sheets:
+Data is stored in a google sheets document and accessed by the app using the Google Drive and Google Sheets APIs.  The spreadsheet can be viewed here.  The spreadsheet consists of the following sheets:
 
 ### **Coffee**
 
@@ -358,7 +358,7 @@ Once an order has been submitted on the app, it is appended as a row on the orde
 
 <br>
 
-As an order is submitted, the elements of the order are broken down into sales data which is then appened as a row in the sales sheet:
+As an order is submitted, the elements of the order are broken down into sales data which is then appended as a row in the sales sheet:
 
 ![Sales Sheet](docs/features/google-sheets-sales.png)
 
@@ -375,7 +375,7 @@ Consistent colour schemes have been used throughout the app, to provide an intui
 
 ## **Imagery**
 
-This project is deployed on Heroku and uses the Code Institute template to run the app in the mock terminal.  I made some ammendments to the default html and css files to personalise the app and also help the user understand immediately the purpose of the site:  
+This project is deployed on Heroku and uses the Code Institute template to run the app in the mock terminal.  I made some amendments to the default html and css files to personalise the app and also help the user understand immediately the purpose of the site:  
 
 ![Deployed Site Landing Page](docs/colour-palette/coffee-run-deployed-site.png)
 
@@ -383,7 +383,7 @@ The following background image has been added to the css class 'body' in the lay
 
 ![Deployed Site Background Image](assets/images/coffee-art.webp)
 
-I also centered the 'Run Program' button and changed the colour to fit better with the background image being used.  I uploaded the coffee art background image to the [coolors website](https://coolors.co/) and used the palette generator tool to create a complimentary palette.  I chose #C26F31 'Copper' as the colour for the button:
+I also centred the 'Run Program' button and changed the colour to fit better with the background image being used.  I uploaded the coffee art background image to the [coolors website](https://coolors.co/) and used the palette generator tool to create a complimentary palette.  I chose #C26F31 'Copper' as the colour for the button:
 
 ![Background Image Colour Palette](docs/colour-palette/coffee-run-colour-palette.png)
 
@@ -439,7 +439,7 @@ Python was used to create this project.
 
 <br>
 
-Before starting the deployment proceedure, I created a list of requirements in gitpod, by entering the folowing command in the terminal:
+Before starting the deployment procedure, I created a list of requirements in gitpod, by entering the following command in the terminal:
 
 ```
 pip3 freeze > requirements.txt
@@ -543,7 +543,7 @@ Towards the end of the project, I installed the tool [Black](https://www.freecod
 
 <br>
 
-I used the [W3C](https://validator.w3.org/) Markup Validation Service to validate the layout.html page as I made a few ammendments to personalise the deployed app.  This passed with no errors or warnings:
+I used the [W3C](https://validator.w3.org/) Markup Validation Service to validate the layout.html page as I made a few amendments to personalise the deployed app.  This passed with no errors or warnings:
 
 ![layout.html validation pass](docs/validation/html/coffee-run-layout-html-validation.png)
 
@@ -557,7 +557,7 @@ I used the [W3C jigsaw](https://jigsaw.w3.org/css-validator/) CSS Validation Ser
 
 <br>
 
-For documentation about the manual testing proceedure I followed for this project, please follow this link to the [TESTING.md file](https://github.com/rkillickdev/the-coffee-run/blob/main/TESTING.md)
+For documentation about the manual testing procedure I followed for this project, please follow this link to the [TESTING.md file](https://github.com/rkillickdev/the-coffee-run/blob/main/TESTING.md)
 
 <br>
 
@@ -597,7 +597,7 @@ summary = f"{item[3]} X {item[0]} with {item[1]} milk"
 
 **3.**  Quantity Error Handling:
 
-During testing I relaised that it was possible to enter the value zero as a quantity.  To fix this, I added the following line of code in the function validate_data:
+During testing I realised that it was possible to enter the value zero as a quantity.  To fix this, I added the following line of code in the function validate_data:
 
 ```python
 if user_input.isalpha() or int(user_input) < 1:
@@ -607,13 +607,13 @@ This means that user input will not be validated if they enter a character or a 
 
 **4.**  Main Menu Error Handling:
 
-I noticed during testing that error handling for invalid codes in the main menu was not working as expected.  On investigation, I realised that the validate_function was attemptig to compare integers against strings and throwing an error.  I solved this by converting the list of keys to validate against from a list of integers to a list of strings in the function input options:
+I noticed during testing that error handling for invalid codes in the main menu was not working as expected.  On investigation, I realised that the validate_function was attempting to compare integers against strings and throwing an error.  I solved this by converting the list of keys to validate against from a list of integers to a list of strings in the function input options:
 
 ```python
 keys_as_strings = [str(x) for x in keys]
 ```
 
-**5.**  Edit Quantities Exceeds Max drinks alllowed:
+**5.**  Edit Quantities Exceeds Max drinks allowed:
 
 I experienced a bug where if there was more than one item in the order and you tried to edit the quantity, it was possible to enter a number that would take the order drinks total over the maximum of 5 allowed.  I used the following code below to check whether user input + user_order.total_drinks exceeded the max allowed.  (Please note, when this snapshot was taken I was still allowing 10 drinks per order before eventually changing to 5 in the final version):
 
@@ -621,11 +621,11 @@ I experienced a bug where if there was more than one item in the order and you t
 elif step == "edit" and int(user_input) > 10 or int(user_input) + user_order.total_drinks > 10:
 ```
 
-However, on further testing, I realised that the value for user_order.total_drinks was still taking into account the quantity for the item that the user was trying to edit.  As you can see in the image below, I should have been able to ammend the flat white order from 8 to 3:
+However, on further testing, I realised that the value for user_order.total_drinks was still taking into account the quantity for the item that the user was trying to edit.  As you can see in the image below, I should have been able to amend the flat white order from 8 to 3:
 
 ![Edit Quantities Bug](docs/bugs/edit-quantities-bug.png)
 
-I therefore needed to set the quantity value to zero for the item being edited and then recalculate drinks total by calling get_drinks_total method on the user_order instance of Order.  When the updated quantity is entered by the user, the item being edited has a quantity value of zero rather than it’s existing quantity.  I achieved this by adding the following code in the input_options function:
+I therefore needed to set the quantity value to zero for the item being edited and then recalculate drinks total by calling get_drinks_total method on the user_order instance of Order.  When the updated quantity is entered by the user, the item being edited has a quantity value of zero rather than its existing quantity.  I achieved this by adding the following code in the input_options function:
 
 ```python
 elif option == "edit":
@@ -651,7 +651,7 @@ I realised during testing that if a user submitted an order and then returned to
 
 **8.**  Order Summary Table Incorrect Column Order:
 
-When printing the order summary to the terminal using tabulate, when only 1 item is present in the order, the price colum displays before unit price even therefore not adhering to the order they appear in the item dictionary (in the screenshot below I have printed the dictionary to the terminal to demonstarte this):
+When printing the order summary to the terminal using tabulate, when only 1 item is present in the order, the price column displays before unit price even therefore not adhering to the order they appear in the item dictionary (in the screenshot below I have printed the dictionary to the terminal to demonstrate this):
 
 ![Tabulate Column Order Incorrect](docs/bugs/view-order-columns-incorrect.png)
 
@@ -676,7 +676,7 @@ if present_datetime < pickup_datetime:
 
 But initially the variables present_datetime and pickup_datetime only stored the time.  When adding date, this functionality  began to work correctly.
 
-In reality there would need to be time boundaries of when the app could be used or perhaps some code written to inform the user that if their order is placed after 6pm, pickup time is 7am the next day.  But for the purpose of this project, I wanted to make ordering avaialble at any time of day so the full functionality of the app can be experienced without limitation.
+In reality there would need to be time boundaries for when the app could be used or perhaps some code written to inform the user that if their order is placed after 6pm, pickup time is 7am the next day.  But for the purpose of this project, I wanted to make ordering available at any time of day so the full functionality of the app can be experienced without limitation.
 
 <br>
 
