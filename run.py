@@ -263,7 +263,7 @@ def main_menu_steps(user_choice):
     elif user_choice == 2:
         view_completed(pull_menu("orders"))
     elif user_choice == 3:
-        admin_stats(10)
+        admin_stats(2)
     elif user_choice == 4:
         quit_app()
 
@@ -538,11 +538,22 @@ def get_sales_data(dates):
     data = sales.get_all_values()
     headers = data[0]
     sales_data = data[1:]
-    requested_data = [headers]
-
+    requested_data = []
+    most_recent = []
+    
     for row in sales_data:
         if row[9] in list_of_dates:
             requested_data.append(row)
+
+    # If there is no sales data available for the specified date
+    # range, by default the last 20 entries on the "sales" sheet
+    # will be appended to the requested_data list.        
+    if not requested_data:
+        most_recent = sales_data[-20:]
+        for row in most_recent:
+            requested_data.append(row)       
+
+    requested_data.insert(0, headers)
 
     return requested_data
 
