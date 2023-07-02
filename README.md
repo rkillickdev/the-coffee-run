@@ -567,26 +567,6 @@ For documentation about the manual testing proceedure I followed for this projec
 
 ### **Known Bugs:**
 
-<br>
-
-**1.**  Order Summary Table Incorrect Column Order:
-
-When printing the order summary to the terminal using tabulate, when only 1 item is present in the order, the price colum displays before unit price even therefore not adhering to the order they appear in the item dictionary (in the screenshot below I have printed the dictionary to the terminal to demonstarte this):
-
-![Tabulate Column Order Incorrect](docs/bugs/view-order-columns-incorrect.png)
-
-However, once a second item is added and the table is updated, the columns now appear in the correct order:
-
-![Tabulate Column Order Correct](docs/bugs/view-order-columns-correct.png)
-
-<br>
-
-**2.**  Pickup Status:
-
-Currently, if the order time is on one side of midnight and pickup time the other side, the order will be labelled as 'Ready'.  This is because current time is found to be greater than pickup time.  In reality there would need to be some code written to inform the user that if order placed after 6pm, pickup time is 7am the next day.
-
-<br>
-
 ### **Solved Bugs:**
 
 <br>
@@ -669,6 +649,36 @@ I realised during testing that if a user submitted an order and then returned to
 
 ![Duplicate Order Bug](docs/bugs/cofee-run-bug-duplicate-order-number%20.png)
 
+**8.**  Order Summary Table Incorrect Column Order:
+
+When printing the order summary to the terminal using tabulate, when only 1 item is present in the order, the price colum displays before unit price even therefore not adhering to the order they appear in the item dictionary (in the screenshot below I have printed the dictionary to the terminal to demonstarte this):
+
+![Tabulate Column Order Incorrect](docs/bugs/view-order-columns-incorrect.png)
+
+However, once a second item is added and the table is updated, the columns now appear in the correct order:
+
+![Tabulate Column Order Correct](docs/bugs/view-order-columns-correct.png)
+
+This bug was solved when I ended up renaming the columns.  For the 1st item, columns were being displayed in alphabetical order.  I actually wanted to label my columns differently and it happened that the new names fell in the correct alphabetical order, but a better solution should be investigated during future development.
+
+**9.**  Pickup Status:
+
+I noticed that if the order time was on one side of midnight and pickup time the other side, the order was  labelled as 'Ready'.  This is because current time is found to be greater than pickup time. I solved this by updating the variables present_datetime and pickup_datetime defined in the function view_completed.  I already had the following code in place to compare these two variables:
+
+```python
+if present_datetime < pickup_datetime:
+                print(
+                    f"Your coffee will be ready to pickup at"
+                    f" {colored(order[7],'cyan',attrs=['bold'])}"
+                    f" on {colored(order[8],'cyan',attrs=['bold'])}\n"
+                )
+```
+
+But initially the variables present_datetime and pickup_datetime only stored the time.  When adding date, this functionality  began to work correctly.
+
+In reality there would need to be time boundaries of when the app could be used or perhaps some code written to inform the user that if their order is placed after 6pm, pickup time is 7am the next day.  But for the purpose of this project, I wanted to make ordering avaialble at any time of day so the full functionality of the app can be experienced without limitation.
+
+<br>
 
 # **Credits**
 
