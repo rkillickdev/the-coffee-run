@@ -8,6 +8,10 @@ The Coffee Run App has been developed as part of the Code Institute Diploma in F
 
 <br>
 
+[View the deployed app on Heroku](https://the-coffee-run.herokuapp.com/)
+
+<br>
+
 ## **CONTENTS**
 
 * [User Experience (UX)](#user-experience-ux)
