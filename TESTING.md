@@ -10,6 +10,27 @@
 
 <br>
 
+| Goals | How are goals achieved? |
+| --- | --- | 
+| **Client** |     
+|        | 
+| I want to reduce queues building up inside/outside the coffee shop and maximise the number of customers that can get their coffee before catching their train. | The app achieves this by providing the user with the ability to assemble, edit and submit their coffee order remotely without the need to queue at the shop.  If payment functionality was added to the app in future implementations, this would further reduce the amount of time customers would need to spend in the shop while collecting their order. |
+| I want to collect data from orders made via the app to make future business decisions. | The app achieves this by collating sales data for each order submitted and providing the business owner with an Admin View section where this data is manipulated and analysed to provide helpful statistics which can aid future business decisions.  For example, the information currently provided in the Admin View could help the business owner to increase stock of regular milk and reduce future buying of almond milk.  Future implementations could include many different functions to manipulate this sales data. For example order times and dates could be analysed to provide the business owner with statistics on the busiest times of day and help to ensure appropiate staffing levels throughout the week. |
+| I want all user input to be validated and errors handled gracefully. | Validation of user input has been implemented throughout the app, ensuring that the user can only progress to the next step once their input has passed validation.  If their input cannot be validated, the user is alerted to their error and provided with useful feedback about how to progress by entering a valid value. |
+| I want to ensure a good user experience by making the app easy to use and intuitive. |. The app achieves this by presenting menu options in table format.  This ensures that information is displayed in an easily digestible manner so it is clear to the user at each stage the choice they must make.  The app has been designed with the limitations of the deployed site in mind, so information displayed to the user will always fit in the terminal window without the need to scroll.  The ability to 'view order' from the options menu ensures that the user can always check items in their order before deciding to finalise and submit.  Colour coding of text in the app helps to make the user experience intuitive. Required inputs are highlighted green, input errors are flagged in red text and key pieces of information are highlighted in bold cyan text. |
+| I want to keep the user informed througout the ordering process by providing feedback at each stage. | Validation of user input and error handling is designed to provide a positive user experience by keeping the user informed throughout the order process. | Bespoke messages containing the user name at each stage gives the user a more personal experience and keeps them informed about their choices / what they must do next. The 'current order' summary view contains an updated total price for the order, so users can keep track of this as they add, remove and edit items. |
+|        |                                                  
+| **User Goals** |         
+|        |
+| I want to view all avaialble coffee & milk options to make my choice. | This is achieved by displaying both menus in an easy to read tabular format, that includes price information to help the user make their decision, |
+| I want to order my coffee quickly and for the experience to be intuitive. | This is achieved by presenting information to the user in a logical order and always keeping them informed about the next step throughout the ordering process.  Navigation is kept simple by never having too many levels of menu to negotiate.  They are never more than a couple steps away from returning to the main menu. |
+| I want to be provided clear information about when my order will be ready to pickup. | This is achieved by displaying key information to the user once they have finalised their order, including pickup time and date.  A function has been used to try and accurately predict how long an order will take to prep, based on the number of other orders placed in the last 15 minutes.  This could be tweaked by the business owner to keep estimated pickup times as accurate as possible to ensure good user experience. |
+| I want to be able to view my order details and pickup time once the order has been placed. | This is achieved by offering a 'View Existing Order' option to the user, accessed with their unique order reference number.  All key details of the order are displayed including pickup time.  If the pickup time has passed, the order status is displayed as 'READY'. |
+
+
+
+
+
 ### **Full Testing:**
 
 <br>

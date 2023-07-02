@@ -51,11 +51,9 @@ Along with a reduction in overcrowding at peak times, the cafe owner also hopes 
 <br>
 
 * As the client, I want to reduce queues building up inside/outside the coffee shop and maximise the number of customers that can get their coffee before catching their train.
-* As the client, I want to ensure a high quality coffee experience even during the busiest times.
 * As the client, I want to collect data from orders made via the app to make future business decisions.
-* As the client, I want to collect data which gives an overview of daily coffee sales to ensure appropriate levels of stock are ordered.
-* As the client, I want all user input to be validated
-* As the client, I want to ensure a good user experience by making the app easy to use and intuitive 
+* As the client, I want all user input to be validated and errors handled gracefully.
+* As the client, I want to ensure a good user experience by making the app easy to use and intuitive. 
 * As the client, I want to keep the user informed througout the ordering process by providing feedback at each stage.
 
 <br>
