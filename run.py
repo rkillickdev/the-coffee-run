@@ -9,6 +9,8 @@ from termcolor import colored, cprint
 from pyfiglet import Figlet
 from collections import OrderedDict
 
+# Code for implementing Google Sheets API modified from the
+# Code Institute Love Sandwiches walk through project.
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
