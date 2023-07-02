@@ -263,7 +263,7 @@ def main_menu_steps(user_choice):
     elif user_choice == 2:
         view_completed(pull_menu("orders"))
     elif user_choice == 3:
-        admin_stats(2)
+        admin_stats(10)
     elif user_choice == 4:
         quit_app()
 
