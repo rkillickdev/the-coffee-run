@@ -720,11 +720,6 @@ Initial Inspiration when planning the project and coming up with an idea, came f
 
 [Inspiration from Code Institute Home Library Project, for html updates to enhance visual aspect of app](https://github.com/alexkisielewicz/home-library-app)
 
-
-
-
-## **Content**
-
 <br>
 
 ## **Media**
@@ -735,8 +730,9 @@ Initial Inspiration when planning the project and coming up with an idea, came f
 
 <br>
 
-<br>
-
 ## **Acknowledgements**
 
 <br>
+
+* To my family for supporting me through this journey!
+* To my my Code Institute Mentor Can Sucullu for his help, advice and feedback during our mentoring sessions.
