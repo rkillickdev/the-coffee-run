@@ -372,6 +372,14 @@ I also centered the 'Run Program' button and changed the colour to fit better wi
 
 ![Background Image Colour Palette](docs/colour-palette/coffee-run-colour-palette.png)
 
+I also added the following favicon in the head element of the layout.html file, to establish branding for the site:
+
+![Favicon Image](docs/features/plastic-takeaway-coffee-icon.jpg)
+
+
+
+
+
 
 
 
