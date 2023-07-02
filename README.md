@@ -528,6 +528,22 @@ I passed my run.py file through the [Code Institute Python Linter](https://pep8c
 
 Towards the end of the project, I installed the tool [Black](https://www.freecodecamp.org/news/auto-format-your-python-code-with-black/) and ran this on my run.py file to make sure everything was formatted correctly and following best practices.
 
+<br>
+
+### **W3C Validator:**
+
+<br>
+
+I used the [W3C](https://validator.w3.org/) Markup Validation Service to validate the layout.html page as I made a few ammendments to personalise the deployed app.  This passed with no errors or warnings:
+
+![layout.html validation pass](docs/validation/html/coffee-run-layout-html-validation.png)
+
+<br>
+
+I used the [W3C jigsaw](https://jigsaw.w3.org/css-validator/) CSS Validation Service to validate the css included in the head of the layout.html file as I had made some additions to personalise the deployed app. It passed with no errors:
+
+![layout.html css validation pass](docs/validation/css/coffee-run-layout-css-validation.png)
+
 ## **Manual Testing**
 
 <br>
