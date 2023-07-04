@@ -263,7 +263,7 @@ def main_menu_steps(user_choice):
     elif user_choice == 2:
         view_completed(pull_menu("orders"))
     elif user_choice == 3:
-        admin_stats(10)
+        admin_stats(0)
     elif user_choice == 4:
         quit_app()
 
@@ -524,7 +524,7 @@ def validate_drinks(user_input, step):
     return True
 
 
-def get_sales_data(dates):
+def get_sales_data(dates=[]):
     """
     Converts sales figures from worksheet to lists of integers.
     Takes a list of dates as an argument and iterates over each
@@ -540,6 +540,7 @@ def get_sales_data(dates):
     sales_data = data[1:]
     requested_data = []
     most_recent = []
+    availability = True
 
     for row in sales_data:
         if row[9] in list_of_dates:
@@ -552,10 +553,11 @@ def get_sales_data(dates):
         most_recent = sales_data[-20:]
         for row in most_recent:
             requested_data.append(row)
+        availability = False
 
     requested_data.insert(0, headers)
 
-    return requested_data
+    return [requested_data, availability]
 
 
 def date_range(days):
@@ -583,7 +585,8 @@ def get_sales_totals(time_span):
     The total sales for each column is then calculated.
     """
 
-    data = get_sales_data(date_range(time_span))
+    sales_data_return = get_sales_data(date_range(time_span))
+    data = sales_data_return[0]
 
     headers = data[0][:8]
     units = data[1:]
