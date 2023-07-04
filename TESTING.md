@@ -392,6 +392,15 @@ As you can see below, the function admin_stats filters sales for the past 10 day
 
 ![Google Sheets Sales Total](docs/features/google-sheets-total-drinks.png)
 
+| Functionality Tested | Expected Outcome | Testing Performed | Pass/Fail |
+| ------- | ---------------- | ----------------- | --------- |
+|         |
+| Test to catch if no data is available for the requested time range | If no data available, the get_sales_data function returns false and will return data for the last 20 orders.  The printed message in admin view will say "Total number of coffees sold **recently** "   | Call the function admin_stats with an argument of 0 | Pass |
+
+![Admin View Requested Data Not Available](docs/features/coffee-run-requested-data-unavailable.png)
+
+
+
 <br>
 
 **Quit App**
