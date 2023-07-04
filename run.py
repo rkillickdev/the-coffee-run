@@ -554,7 +554,6 @@ def get_sales_data(dates=[]):
         most_recent = sales_data[-20:]
         for row in most_recent:
             requested_data.append(row)
-    
 
     requested_data.insert(0, headers)
 
@@ -588,7 +587,7 @@ def get_sales_totals(time_span):
 
     sales_data_return = get_sales_data(date_range(time_span))
     data = sales_data_return[0]
-    requested_available = sales_data_return[1] 
+    requested_available = sales_data_return[1]
 
     headers = data[0][:8]
     units = data[1:]
@@ -636,7 +635,7 @@ def admin_stats(days):
     popular coffee and milk.
     """
     os.system("cls" if os.name == "nt" else "clear")
- 
+
     sales_data = get_sales_totals(days)
     requested_data_available = sales_data[2]
     coffee = sales_data[0]
@@ -655,7 +654,6 @@ def admin_stats(days):
             f"Total number of coffees sold recently"
             f" : {colored(coffee_sales, 'cyan', attrs=['bold'])}\n"
         )
-
 
     print(tabulate(coffee, headers="firstrow", tablefmt="fancy_grid") + "\n")
 
