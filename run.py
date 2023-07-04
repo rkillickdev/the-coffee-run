@@ -263,7 +263,7 @@ def main_menu_steps(user_choice):
     elif user_choice == 2:
         view_completed(pull_menu("orders"))
     elif user_choice == 3:
-        admin_stats(0)
+        admin_stats(10)
     elif user_choice == 4:
         quit_app()
 
@@ -636,23 +636,26 @@ def admin_stats(days):
     popular coffee and milk.
     """
     os.system("cls" if os.name == "nt" else "clear")
-
-    # available_data = get_sales_data()
-    # requested_available = available_data[1]
-    # print(requested_available) 
+ 
     sales_data = get_sales_totals(days)
     requested_data_available = sales_data[2]
-    print(requested_data_available)
     coffee = sales_data[0]
     coffee_sales = sum(coffee[1])
     milk = sales_data[1]
     top_coffee = most_popular(coffee)
     top_milk = most_popular(milk)
 
-    print(
-        f"Total number of coffees sold in the past {days} days"
-        f" : {colored(coffee_sales, 'cyan', attrs=['bold'])}\n"
-    )
+    if requested_data_available:
+        print(
+            f"Total number of coffees sold in the past {days} days"
+            f" : {colored(coffee_sales, 'cyan', attrs=['bold'])}\n"
+        )
+    else:
+        print(
+            f"Total number of coffees sold recently"
+            f" : {colored(coffee_sales, 'cyan', attrs=['bold'])}\n"
+        )
+
 
     print(tabulate(coffee, headers="firstrow", tablefmt="fancy_grid") + "\n")
 
