@@ -326,7 +326,7 @@ Once the user has done everything they want to do, they can quit the app by sele
 
 ## **Database**
 
-Data is stored in a google sheets document and accessed by the app using the Google Drive and Google Sheets APIs.  The spreadsheet can be viewed here.  The spreadsheet consists of the following sheets:
+Data is stored in a google sheets document and accessed by the app using the Google Drive and Google Sheets APIs.  The spreadsheet can be viewed [here](https://docs.google.com/spreadsheets/d/1xP6diVy29WpZ_O2dBV_bloRFv9dYs0kOkFteq5djAqs/edit?usp=sharing).  The spreadsheet consists of the following sheets:
 
 ### **Coffee**
 
