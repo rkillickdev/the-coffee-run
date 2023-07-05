@@ -831,7 +831,7 @@ def input_options(keys, option):
     If editing the quantity of an item, the quantity value is set to zero,
     before re-entering the desired quantity.  The quantity and price values are
     then updated in the item dictionary.  The view_order function is then
-    called displaying a summary of the order with ammended quantity and price.
+    called displaying a summary of the order with amended quantity and price.
     """
 
     os.system("cls" if os.name == "nt" else "clear")
@@ -942,7 +942,7 @@ def items_to_string():
 def submit_order():
     """
     Class methods called on the instance of Order 'user_order'.
-    A list of order details collated  from the user_order attributes which
+    A list of order details collated from the user_order attributes which
     are then sent to the google sheet called "orders".
     Print statements using f string literals are used to communicate key
     information from the order to the user.
@@ -1027,7 +1027,7 @@ def quit_app():
 
 def clear_order():
     """
-    Updates the attributes items, total_drinks, name and ordedr_ref for the
+    Updates the attributes items, total_drinks, name and order_ref for the
     class instance of Order called user_order.
     """
     user_order.items = []
