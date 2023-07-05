@@ -20,17 +20,21 @@ The Coffee Run App has been developed as part of the Code Institute Diploma in F
         * [User Stories](#user-stories)
     * [Scope](#scope)
     * [Design](#design)
+        * [Python Logic Flow Chart](#python-logic-flow-chart)
+        * [App Functionality and Features](#app-functionality-and-features)
+        * [Database](#database)
 * [Technologies Used](#technologies-used)
     * [Languages Used](#languages-used)
     * [Frameworks, Libraries and Programs Used](#frameworks-libraries-and-programs-used)
 * [Deployment and Local Development](#deployment-and-local-development)
 * [Testing](#testing)
+    * [Automated Testing](#automated-testing)
+    * [Manual Testing](#manual-testing)
 * [Bugs](#bugs)
     * [Known Bugs](#known-bugs)
     * [Solved Bugs](#solved-bugs)
 * [Credits](#credits)
-    * [Code Used](#code-used)
-    * [Content](#content)
+    * [Code Used and Referenced](#code-used-and-referenced)
     * [Media](#media)
     * [Acknowledgements](#acknowledgements)
 
@@ -126,7 +130,7 @@ ___
 
 ![Flow Chart displaying stages and logic of the program](docs/flow-charts/coffee-run-flow-chart-logic.png)
 
-## **App Functionality & Features**
+## **App Functionality and Features**
 
 <br>
 
@@ -557,7 +561,7 @@ I used the [W3C jigsaw](https://jigsaw.w3.org/css-validator/) CSS Validation Ser
 
 <br>
 
-For documentation about the manual testing procedure I followed for this project, please follow this link to the [TESTING.md file](https://github.com/rkillickdev/the-coffee-run/blob/main/TESTING.md)
+Please follow this link to the [TESTING.md file](https://github.com/rkillickdev/the-coffee-run/blob/main/TESTING.md), for documentation about the manual testing procedure I followed for this project.
 
 <br>
 
@@ -566,6 +570,12 @@ For documentation about the manual testing procedure I followed for this project
 <br>
 
 ### **Known Bugs:**
+
+<br>
+
+There are currently no known bugs.
+
+<br>
 
 ### **Solved Bugs:**
 
@@ -682,43 +692,43 @@ In reality there would need to be time boundaries for when the app could be used
 
 # **Credits**
 
-## **Code Used / Referenced**
+## **Code Used and Referenced**
 
 <br>
 
-Code for setting up the Google Sheets API so the app could add and manipulate data stored in the google sheets doc, was adapted from the Code Institute [Love Sandwiches](https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/tree/master) walk through project.
+* Code for setting up the Google Sheets API so the app could add and manipulate data stored in the google sheets doc, was adapted from the Code Institute [Love Sandwiches](https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/tree/master) walk through project.
 
-Initial Inspiration when planning the project and coming up with an idea, came from the [American Pizza Project](https://github.com/useriasminna/american_pizza_order_system) which was provided as an example project by Code Institute.
+* Initial Inspiration when planning the project and coming up with an idea, came from the [American Pizza Project](https://github.com/useriasminna/american_pizza_order_system) which was provided as an example project by Code Institute.
 
-[Clearing the screen in the terminal](https://code-institute-room.slack.com/archives/C027C3S3TEU/p1634300241255100?thread_ts=1634300071.255000&cid=C027C3S3TEU)
+* [Clearing the screen in the terminal](https://code-institute-room.slack.com/archives/C027C3S3TEU/p1634300241255100?thread_ts=1634300071.255000&cid=C027C3S3TEU)
 
-[Using Tabulate in Python](https://www.askpython.com/python-modules/tabulate-tables-in-python)
+* [Using Tabulate in Python](https://www.askpython.com/python-modules/tabulate-tables-in-python)
 
-[Getting values from dictionaries in Python](https://www.codingem.com/python-dict-get-method-vs-square-brackets/)
+* [Getting values from dictionaries in Python](https://www.codingem.com/python-dict-get-method-vs-square-brackets/)
 
-[Adding two lists to a dictionary in Python](https://pythonhow.com/how/convert-two-lists-into-a-dictionary/#:~:text=You%20can%20use%20the%20zip,values%20into%20a%20single%20iterable.)
+* [Adding two lists to a dictionary in Python](https://pythonhow.com/how/convert-two-lists-into-a-dictionary/#:~:text=You%20can%20use%20the%20zip,values%20into%20a%20single%20iterable.)
 
-[Accessing Dictionary Keys](https://www.learnbyexample.org/python-nested-dictionary/#:~:text='%3A%20''%7D%7D-,Access%20Nested%20Dictionary%20Items,key%20in%20multiple%20square%20brackets.&text=If%20you%20refer%20to%20a,What%20is%20this%3F&text=To%20avoid%20such%20exception%2C%20you,special%20dictionary%20get()%20method)
+* [Accessing Dictionary Keys](https://www.learnbyexample.org/python-nested-dictionary/#:~:text='%3A%20''%7D%7D-,Access%20Nested%20Dictionary%20Items,key%20in%20multiple%20square%20brackets.&text=If%20you%20refer%20to%20a,What%20is%20this%3F&text=To%20avoid%20such%20exception%2C%20you,special%20dictionary%20get()%20method)
 
-[Iterating over multiple lists](https://learnpython.com/blog/loop-over-multiple-lists/#:~:text=Using%20the%20zip%20Function%20to,more%20lists%20side%20by%20side.)
+* [Iterating over multiple lists](https://learnpython.com/blog/loop-over-multiple-lists/#:~:text=Using%20the%20zip%20Function%20to,more%20lists%20side%20by%20side.)
 
-[Checking if a string only contains letters](https://careerkarma.com/blog/python-isalpha-isnumeric-isalnum/#:~:text=isalnum()%20is%20a%20built,method%20returns%20the%20value%20False%20.)
+* [Checking if a string only contains letters](https://careerkarma.com/blog/python-isalpha-isnumeric-isalnum/#:~:text=isalnum()%20is%20a%20built,method%20returns%20the%20value%20False%20.)
 
-[Breaking up long lines of code](https://www.pythonmorsels.com/breaking-long-lines-code-python/)
+* [Breaking up long lines of code](https://www.pythonmorsels.com/breaking-long-lines-code-python/)
 
-[Changing font colour in the terminal](https://towardsdatascience.com/prettify-your-terminal-text-with-termcolor-and-pyfiglet-880de83fda6b)
+* [Changing font colour in the terminal](https://towardsdatascience.com/prettify-your-terminal-text-with-termcolor-and-pyfiglet-880de83fda6b)
 
-[Using sum and zip to get sales totals function](https://sparkbyexamples.com/python/python-add-two-lists/?expand_article=1)
+* [Using sum and zip to get sales totals function](https://sparkbyexamples.com/python/python-add-two-lists/?expand_article=1)
 
-[Getting past 10 days dates](https://www.pythonprogramming.in/getting-the-date-of-7-days-ago-from-current-date-in-python.html)
+* [Getting past 10 days dates](https://www.pythonprogramming.in/getting-the-date-of-7-days-ago-from-current-date-in-python.html)
 
-[Converting a list of integers into a list of strings](https://blog.finxter.com/how-to-convert-an-integer-list-to-a-string-list-in-python/)
+* [Converting a list of integers into a list of strings](https://blog.finxter.com/how-to-convert-an-integer-list-to-a-string-list-in-python/)
 
-[Learning how to use Datetime](https://www.freecodecamp.org/news/how-to-get-the-current-time-in-python-with-datetime/#:~:text=To%20get%20the%20current%20time%20in%20particular%2C%20you%20can%20use,hours%2C%20minutes%2C%20and%20seconds.)
+* [Learning how to use Datetime](https://www.freecodecamp.org/news/how-to-get-the-current-time-in-python-with-datetime/#:~:text=To%20get%20the%20current%20time%20in%20particular%2C%20you%20can%20use,hours%2C%20minutes%2C%20and%20seconds.)
 
-[Reference list of pytz timezones](https://gist.github.com/heyalexej/8bf688fd67d7199be4a1682b3eec7568)
+* [Reference list of pytz timezones](https://gist.github.com/heyalexej/8bf688fd67d7199be4a1682b3eec7568)
 
-[Inspiration from Code Institute Home Library Project, for html updates to enhance visual aspect of app](https://github.com/alexkisielewicz/home-library-app)
+* [Inspiration from Code Institute Home Library Project, for html updates to enhance visual aspect of app](https://github.com/alexkisielewicz/home-library-app)
 
 <br>
 
