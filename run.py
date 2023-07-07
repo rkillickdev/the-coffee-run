@@ -702,22 +702,25 @@ def get_recent():
     """
     orders = access_google_sheet("orders")
     total_drinks = orders.col_values(5)
+    date = orders.col_values(6)
     time = orders.col_values(7)
     drinks = total_drinks[-15:]
+    order_dates = date[-15:]
     order_times = time[-15:]
 
     # I used the following article to learn about manipulating datetime:
     # https://www.dataquest.io/blog/python-datetime-tutorial/
     now = get_datetime()
-    current_time = now.strftime("%H:%M:%S")
-    current = datetime.strptime(current_time, "%H:%M:%S")
+    current_time = now.strftime("%d/%m/%Y%H:%M:%S")
+    current = datetime.strptime(current_time, "%d/%m/%Y%H:%M:%S")
     recent = []
     total_recent = 0
 
     # Iterates over order times and calculates difference between current time.
-    for order, time in zip(drinks, order_times):
+    for order, date, time in zip(drinks, order_dates, order_times):
         max_time = timedelta(minutes=15)
-        past = datetime.strptime(time, "%H:%M:%S")
+        past_string = date + time
+        past = datetime.strptime(past_string, "%d/%m/%Y%H:%M:%S")
         difference = current - past
 
         # Appends total drinks placed in last 15 minutes to recent list
@@ -1159,3 +1162,4 @@ def main():
 user_order = Order()
 
 main()
+
