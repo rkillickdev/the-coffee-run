@@ -1033,6 +1033,7 @@ def quit_app():
         colored("Thanks for stopping by, see you again soon!\n", "cyan"),
         end="\r",
     )
+    sys.exit()
 
 
 def clear_order():
