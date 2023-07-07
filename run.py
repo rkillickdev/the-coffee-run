@@ -386,8 +386,14 @@ def access_google_sheet(sheet):
     Accesses the google sheet passed as the argument 'sheet'
     """
 
-    gs_data = SHEET.worksheet(sheet)
-    return gs_data
+    try:
+        gs_data = SHEET.worksheet(sheet)
+        return gs_data
+
+    except:
+        print(f"{colored(f'Sorry, there was a problem gathering data','red')}")
+        print(f"\n{colored(f'Please try again later.', 'red')}\n")
+        
 
 
 def get_menu_choice(data):
@@ -1162,4 +1168,3 @@ def main():
 user_order = Order()
 
 main()
-
