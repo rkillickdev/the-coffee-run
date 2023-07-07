@@ -390,7 +390,7 @@ def access_google_sheet(sheet):
         gs_data = SHEET.worksheet(sheet)
         return gs_data
 
-    except:
+    except Exception as error:
         print(f"{colored(f'Sorry, there was a problem gathering data','red')}")
         print(f"\n{colored(f'Please try again later.', 'red')}\n")
 
