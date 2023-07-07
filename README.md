@@ -688,6 +688,21 @@ But initially the variables present_datetime and pickup_datetime only stored the
 
 In reality there would need to be time boundaries for when the app could be used or perhaps some code written to inform the user that if their order is placed after 6pm, pickup time is 7am the next day.  But for the purpose of this project, I wanted to make ordering available at any time of day so the full functionality of the app can be experienced without limitation.
 
+**10.** During testing I realised that estimated prep time was not being calculated correctly, based on the number of recent orders.  I traced this to the get_recent function and realised when comparing the current and past, only time was being taken into account.  I therefore amended this function to also iterate over order date as shown in the code below:
+
+```python
+for order, date, time in zip(drinks, order_dates, order_times):
+        max_time = timedelta(minutes=15)
+        past_string = date + time
+        past = datetime.strptime(past_string, "%d/%m/%Y%H:%M:%S")
+        difference = current - past
+```
+
+Once fixed, you can see from the screen shot below that pickup times are now calcualted correctly.  Order 191 is placed first with no other drinks placed in the past 15 minutes, so 5 drinks is estimated to take 10 minutes to prepare. Order 192 takes into account these other 5 drinks, adding 10 minutes of additional prep time so the total prep time for this 4 drink order is 18 minutes. Order 193 is for 1 drink but there are 9 other drinks placed in the past 15 minutes so prep time is calculated at 11 minutes.  And finally order 194 is only for 1 drink, but because there are 10 other drinks ordered in the past 15 minutes, an additional 15 minutes is added to the prep time which gives a total of 17 minutes.
+
+![Pickup Time Bug Fix](docs/bugs/incorrect-prep-time-bug.png)
+
+
 <br>
 
 # **Credits**
