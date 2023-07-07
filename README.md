@@ -573,7 +573,11 @@ Please follow this link to the [TESTING.md file](https://github.com/rkillickdev/
 
 <br>
 
-There are currently no known bugs.
+**1.**
+
+I encountered a bug a couple of times while testing the deployed app, that I have not been able to reproduce consistently.  On quitting the app, a quantity input option was displayed:
+
+![Quit App Known Bug](docs/bugs/quit-app-bug-displaying-input-option.png)
 
 <br>
 
