@@ -688,7 +688,9 @@ But initially the variables present_datetime and pickup_datetime only stored the
 
 In reality there would need to be time boundaries for when the app could be used or perhaps some code written to inform the user that if their order is placed after 6pm, pickup time is 7am the next day.  But for the purpose of this project, I wanted to make ordering available at any time of day so the full functionality of the app can be experienced without limitation.
 
-**10.** During testing I realised that estimated prep time was not being calculated correctly, based on the number of recent orders.  I traced this to the get_recent function and realised when comparing the current and past, only time was being taken into account.  I therefore amended this function to also iterate over order date as shown in the code below:
+**10.**  Prep Time Calculation 
+
+During testing I realised that estimated prep time was not being calculated correctly, based on the number of recent orders.  I traced this to the get_recent function and realised when comparing the current and past, only time was being taken into account.  I therefore amended this function to also iterate over order date as shown in the code below:
 
 ```python
 for order, date, time in zip(drinks, order_dates, order_times):
@@ -702,6 +704,19 @@ Once fixed, you can see from the screen shot below that pickup times are now cal
 
 ![Pickup Time Bug Fix](docs/bugs/incorrect-prep-time-bug.png)
 
+**10.**  Existing Order Error
+
+When attempting to view older existing orders, the following error was thrown:
+
+![Old Existing Orders Bug](docs/bugs/existing-order-pickup-time-missing-bug.png)
+
+I realised that the data stored in the "orders" sheet did not have a pickup time value for orders 1 - 50, as this feature had not been implemented when these orders were input.
+
+![Google Sheets pickup time missing](docs/bugs/google-sheets-missing-pickup-times-bug.png)
+
+To fix this, I entered pickup time values for these first 50 orders on the "orders" sheet, and as you can see below, details are now displayed correctly if you attempt to view any of these past orders:
+
+![Old Existing Orders Bug Fixed](docs/bugs/existing-orders-bug-fixed.png)
 
 <br>
 
