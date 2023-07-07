@@ -366,8 +366,51 @@ As an order is submitted, the elements of the order are broken down into sales d
 
 ![Sales Sheet](docs/features/google-sheets-sales.png)
 
+<br>
+
+## **Error Handling**
 
 <br>
+
+* As outlined in the [App Functionality and Features](#app-functionality-and-features) section, all user inputs are validated and any errors handled in a graceful manner so the user stays informed about the problem and feedback is offered to help the user correct their error.
+
+* I am using an API to communicate with Google Sheets which stores data for the app.  It was therefore necessary to implement error handling for this aspect, so any API calls that fail to execute or return data are handled gracefully and users are notified in an obvious way.  To do this, I included a try/except block in the function access_google_sheet which is responsible for returning data from the worksheet:
+
+```python
+try:
+    gs_data = SHEET.worksheet(sheet)
+    return gs_data
+
+except Exception as error:
+    print(f"{colored(f'There was a problem gathering data.','red')}")
+    print(f"\n{colored(f'Sorry, please try again later.', 'red')}\n")
+    sys.exit()
+```
+
+To test whether this was working, I searched for each instance in the code where the access_google_sheet function is called and modified the call to an invalid sheet id.  Below is an example of some modified code where the 'sheet' argument passed to the function ia an invalid sheet name "order": 
+
+```python
+def get_orders():
+    """
+    Pulls data from "orders" sheet and returns the data without the headers
+    as orders_list.
+    """
+
+    orders = access_google_sheet("order")
+    data = orders.get_all_values()
+    orders_list = data[1:]
+    return orders_list
+```
+
+The resulting error message displayed to the user can be seen below:
+
+![api-call-error-handling](docs/features/coffee-run-api-error-handling.png)
+
+I also tested this error handling on the deployed app, by temporarily changing the sheet names in the Google Worksheet, to check that the error would be handled in the expected way.
+
+
+
+
 
 ## **Typography**
 
