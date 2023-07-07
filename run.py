@@ -393,7 +393,6 @@ def access_google_sheet(sheet):
     except:
         print(f"{colored(f'Sorry, there was a problem gathering data','red')}")
         print(f"\n{colored(f'Please try again later.', 'red')}\n")
-        
 
 
 def get_menu_choice(data):
