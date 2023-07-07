@@ -2,6 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 import pandas as pd
 import os
+import sys
 from tabulate import tabulate
 from datetime import datetime, timedelta, timezone
 import pytz
@@ -391,8 +392,9 @@ def access_google_sheet(sheet):
         return gs_data
 
     except Exception as error:
-        print(f"{colored(f'Sorry, there was a problem gathering data','red')}")
-        print(f"\n{colored(f'Please try again later.', 'red')}\n")
+        print(f"{colored(f'There was a problem gathering data.','red')}")
+        print(f"\n{colored(f'Sorry, please try again later.', 'red')}\n")
+        sys.exit()
 
 
 def get_menu_choice(data):
