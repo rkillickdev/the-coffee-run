@@ -1143,7 +1143,7 @@ def send_data(data, sheet_name):
     Receives a list to be inserted into a worksheet.
     Updates the specified worksheet with the data provided.
     """
-    worksheet_to_update = SHEET.worksheet(sheet_name)
+    worksheet_to_update = access_google_sheet(sheet_name)
     worksheet_to_update.append_row(data)
 
 
