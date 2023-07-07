@@ -623,6 +623,8 @@ I encountered a bug a couple of times while testing the deployed app, that I hav
 
 ![Quit App Known Bug](docs/bugs/quit-app-bug-displaying-input-option.png)
 
+I have since added the sys.exit() command at the end of the quit_app function and I have not experienced the bug since doing this.
+
 <br>
 
 ### **Solved Bugs:**
