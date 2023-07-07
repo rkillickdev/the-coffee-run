@@ -427,6 +427,7 @@ Python was used to create this project.
 * google.oauth2.service_account - Credentials Class imported from this which then uses the creds.json file.
 * pandas - Used to turn dictionaries to dataframes
 * os - This module was imported so I could use the clear terminal command.
+* sys - This module was imported to use the exit command sys.exit() to terminate the app.
 * tabulate -function imported from the tabulate module to display data in table format.
 * datetime, timedelta & timezone imported from datetime module - This was used to get current time and date and also work out differences between current time and pickup time.
 * pytz - for setting current time to the desired timezone.
