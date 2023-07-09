@@ -455,15 +455,15 @@ Python was used to create this project.
 <br>
 
 * Git -  Version control.
-* GitHub - All files for the website stored and saved in a repository.
+* [GitHub](https://github.com/) - All files for the website stored and saved in a repository.
 * Gitpod - IDE used to write the code.
-* LucidChart -For creating a flow diagram
-* Heroku - For deployment of the project.
-* PEP8 CI Python Linter
-* Black - Python Auto Formatter
-* TinyPNG - For compression of image files to improve website performance.
-* Birme - For resizing and re-formatting images to make them suitable for use on the website.
-* Favicon.ico & App Icon Generator - for creating the 16x16px ico favicon.
+* [LucidChart](https://www.lucidchart.com/pages/) -For creating a flow diagram
+* [Heroku](https://dashboard.heroku.com/apps) - For deployment of the project.
+* [PEP8](https://pep8ci.herokuapp.com/) CI Python Linter
+* [Black](https://www.freecodecamp.org/news/auto-format-your-python-code-with-black/) - Python Auto Formatter
+* [TinyPNG](https://tinypng.com/) - For compression of image files to improve website performance.
+* [Birme](https://www.birme.net/?target_width=425&target_height=450&auto_focal=false&image_format=jpeg&quality_jpeg=100&quality_webp=100) - For resizing and re-formatting images to make them suitable for use on the website.
+* [Favicon.ico & App Icon Generator](https://www.favicon-generator.org/) - for creating the 16x16px ico favicon.
 * [Techsini](https://techsini.com/multi-mockup/index.php) - For generating an image of the deployed app on devices 
 
 <br>
@@ -473,17 +473,28 @@ Python was used to create this project.
 <br>
 
 * [gspread](https://docs.gspread.org/en/latest/) - This is a Python API for Google Sheets and is used within the app to access and update data stored in various sheets across the master worksheet "the_coffee_run".
-* [google.oauth2.service_account](https://google-auth.readthedocs.io/en/master/reference/google.oauth2.service_account.html) - From this module, the Credentials Class has been imported which then uses the creds.json file.
-* [pandas](https://pandas.pydata.org/) - This is a python library that is used to analyse data. I imported the library so I could turn dictionaries into dataframes and then display the data stored in table format for the user.
-* [os](https://docs.python.org/3/library/os.html) - This module provides a way of using operating system dependent functionality.  This was imported so I could use the clear terminal command when calling certain functions.  The purpose of this was to allow me to always keep the information displayed to the user within the boundaries of the terminal display, without the need to scroll. 
-* [sys](https://docs.python.org/3/library/sys.html) - This module was imported to use the exit command sys.exit() to terminate the app when calling the quit_app function.  I have also used this command when handling API errors.
-* [tabulate](https://pypi.org/project/tabulate/) -This library provides the ability to 'pretty-print' tabular data in Python.  I imported the tabulate function from this library to display menus and summaries in table format, to ensure that users are presented with information in a clear, easy to understand way and therefore make navigation of the app intuitive.
-* [datetime, timedelta & timezone imported from datetime module](https://docs.python.org/3/library/datetime.html) - These were used throughout the app to get current time and date.  It was necessary to use this functionality when calculating order prep time as information on recently placed orders was required.  It was also used to calculate the differences between current time and pickup time when establishing whether an order is ready to pickup.  
-* [pytz](https://pypi.org/project/pytz/) - This library was used for setting current time to the desired timezone.
-* [colored & cprint imported from termcolor module](https://pypi.org/project/termcolor/) - This module was imported to change font colours in the terminal display, as a way of differentiating types of information for the user.
-* [figlet imported from pyfiglet module](https://pypi.org/project/pyfiglet/0.7/) - I used this module to display 'Coffee Run' on the title page in a larger more interesting font.
-* [OrderedDict imported from the collections module](https://docs.python.org/3/library/collections.html) I imported the collections module to make use of ordered dictionaries, a dictionary subclass that remembers the order entries were added.
 
+* [google.oauth2.service_account](https://google-auth.readthedocs.io/en/master/reference/google.oauth2.service_account.html) - From this module, the Credentials Class has been imported which then uses the creds.json file.
+
+* [pandas](https://pandas.pydata.org/) - This is a python library that is used to analyse data. I imported the library so I could turn dictionaries into dataframes and then display the data stored in table format for the user.
+
+* [os](https://docs.python.org/3/library/os.html) - This module provides a way of using operating system dependent functionality.  This was imported so I could use the clear terminal command when calling certain functions.  The purpose of this was to allow me to always keep the information displayed to the user within the boundaries of the terminal display, without the need to scroll.
+
+* [sys](https://docs.python.org/3/library/sys.html) - This module was imported to use the exit command sys.exit() to terminate the app when calling the quit_app function.  I have also used this command when handling API errors.
+
+* [tabulate](https://pypi.org/project/tabulate/) - This library provides the ability to 'pretty-print' tabular data in Python.  I imported the tabulate function from this library to display menus and summaries in table format, to ensure that users are presented with information in a clear, easy to understand way and therefore make navigation of the app intuitive.
+
+* [datetime, timedelta & timezone imported from datetime module](https://docs.python.org/3/library/datetime.html) - These were used throughout the app to get current time and date.  It was necessary to use this functionality when calculating order prep time as information on recently placed orders was required.  It was also used to calculate the differences between current time and pickup time when establishing whether an order is ready to pickup.
+
+* [pytz](https://pypi.org/project/pytz/) - This library was used for setting current time to the desired timezone.
+
+* [colored & cprint imported from termcolor module](https://pypi.org/project/termcolor/) - This module was imported to change font colours in the terminal display, as a way of differentiating types of information for the user.
+
+* [figlet imported from pyfiglet module](https://pypi.org/project/pyfiglet/0.7/) - I used this module to display 'Coffee Run' on the title page in a larger more interesting font.
+
+* [OrderedDict imported from the collections module](https://docs.python.org/3/library/collections.html) - I imported the collections module to make use of ordered dictionaries, a dictionary subclass that remembers the order entries were added.
+
+<br>
 
 # **Deployment and Local Development**
 
