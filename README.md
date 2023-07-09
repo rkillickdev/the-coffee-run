@@ -450,7 +450,7 @@ Python was used to create this project.
 
 <br>
 
-## **Frameworks, Libraries and Programs Used**
+## **Programs Used**
 
 <br>
 
@@ -466,17 +466,23 @@ Python was used to create this project.
 * Favicon.ico & App Icon Generator - for creating the 16x16px ico favicon.
 * [Techsini](https://techsini.com/multi-mockup/index.php) - For generating an image of the deployed app on devices 
 
-* gspread - Used to access and update Google Sheets via an API
-* google.oauth2.service_account - Credentials Class imported from this which then uses the creds.json file.
-* pandas - Used to turn dictionaries to dataframes
-* os - This module was imported so I could use the clear terminal command.
-* sys - This module was imported to use the exit command sys.exit() to terminate the app.
-* tabulate -function imported from the tabulate module to display data in table format.
-* datetime, timedelta & timezone imported from datetime module - This was used to get current time and date and also work out differences between current time and pickup time.
-* pytz - for setting current time to the desired timezone.
-* colored & cprint imported from termcolor module - This was used change font colours in order to differentiate types of information for the user.
-* figlet imported from pyfiglet module - This was used to display 'Coffee Run' on the title page in a larger more interesting font.
-* OrderedDict imported from collections - To make use of ordered dictionaries.
+<br>
+
+## **Frameworks & Libraries used**
+
+<br>
+
+* [gspread](https://docs.gspread.org/en/latest/) - This is a Python API for Google Sheets and is used within the app to access and update data stored in various sheets across the master worksheet "the_coffee_run".
+* [google.oauth2.service_account](https://google-auth.readthedocs.io/en/master/reference/google.oauth2.service_account.html) - From this module, the Credentials Class has been imported which then uses the creds.json file.
+* [pandas](https://pandas.pydata.org/) - This is a python library that is used to analyse data. I imported the library so I could turn dictionaries into dataframes and then display the data stored in table format for the user.
+* [os](https://docs.python.org/3/library/os.html) - This module provides a way of using operating system dependent functionality.  This was imported so I could use the clear terminal command when calling certain functions.  The purpose of this was to allow me to always keep the information displayed to the user within the boundaries of the terminal display, without the need to scroll. 
+* [sys](https://docs.python.org/3/library/sys.html) - This module was imported to use the exit command sys.exit() to terminate the app when calling the quit_app function.  I have also used this command when handling API errors.
+* [tabulate](https://pypi.org/project/tabulate/) -This library provides the ability to 'pretty-print' tabular data in Python.  I imported the tabulate function from this library to display menus and summaries in table format, to ensure that users are presented with information in a clear, easy to understand way and therefore make navigation of the app intuitive.
+* [datetime, timedelta & timezone imported from datetime module](https://docs.python.org/3/library/datetime.html) - These were used throughout the app to get current time and date.  It was necessary to use this functionality when calculating order prep time as information on recently placed orders was required.  It was also used to calculate the differences between current time and pickup time when establishing whether an order is ready to pickup.  
+* [pytz](https://pypi.org/project/pytz/) - This library was used for setting current time to the desired timezone.
+* [colored & cprint imported from termcolor module](https://pypi.org/project/termcolor/) - This module was imported to change font colours in the terminal display, as a way of differentiating types of information for the user.
+* [figlet imported from pyfiglet module](https://pypi.org/project/pyfiglet/0.7/) - I used this module to display 'Coffee Run' on the title page in a larger more interesting font.
+* [OrderedDict imported from the collections module](https://docs.python.org/3/library/collections.html) I imported the collections module to make use of ordered dictionaries, a dictionary subclass that remembers the order entries were added.
 
 
 # **Deployment and Local Development**
