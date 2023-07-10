@@ -23,9 +23,13 @@ The Coffee Run App has been developed as part of the Code Institute Diploma in F
         * [Python Logic Flow Chart](#python-logic-flow-chart)
         * [App Functionality and Features](#app-functionality-and-features)
         * [Database](#database)
+        * [Error Handling](#error-handling)
+        * [Typography](#typography)
+        * [Imagery](#imagery)
 * [Technologies Used](#technologies-used)
     * [Languages Used](#languages-used)
-    * [Frameworks, Libraries and Programs Used](#frameworks-libraries-and-programs-used)
+    * [Programs Used](#programs-used)
+    * [Frameworks and Libraries used](#frameworks-and-libraries-used)
 * [Deployment and Local Development](#deployment-and-local-development)
 * [Testing](#testing)
     * [Automated Testing](#automated-testing)
@@ -468,7 +472,7 @@ Python was used to create this project.
 
 <br>
 
-## **Frameworks & Libraries used**
+## **Frameworks and Libraries used**
 
 <br>
 
