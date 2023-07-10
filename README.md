@@ -10,6 +10,8 @@ The Coffee Run App has been developed as part of the Code Institute Diploma in F
 
 [View the deployed app on Heroku](https://the-coffee-run.herokuapp.com/)
 
+[View the Google Sheets worksheet for the app here](https://docs.google.com/spreadsheets/d/1xP6diVy29WpZ_O2dBV_bloRFv9dYs0kOkFteq5djAqs/edit?usp=sharing)
+
 <br>
 
 ## **CONTENTS**
@@ -412,9 +414,7 @@ The resulting error message displayed to the user can be seen below:
 
 I also tested this error handling on the deployed app, by temporarily changing the sheet names in the Google Worksheet, to check that the error would be handled in the expected way.
 
-
-
-
+<br>
 
 ## **Typography**
 
