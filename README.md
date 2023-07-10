@@ -150,7 +150,7 @@ When loading the app, users land on the main menu page so they can immediately a
 
 4 options are provided.  Number 1 allows the user to start the process of ordering their coffee.  I have given this option priority, as this is the main reason why most users will access the app.  Number 2 allows the user to access details of an order that has already been submitted.  Number 3 is an admin view designed for the owner of the coffee shop so they can access information about sales based on the data collected by the app.  Option 4 gives the user an opportunity to quit the app.  I have only made this option available at this level of the program, as this is where users return once an order has been submitted.
 
-Users are prompted to enter a number between 1 and 4 which correspond with the menu options.  User input here must pass validation here before progressing to the next step.  If a non valid number or any character is entered by the user, feedback is displayed to the user in the form of the following message:
+Users are prompted to enter a number between 1 and 4 which correspond with the menu options.  User input here must pass validation before progressing to the next step.  If a non valid number or any character is entered by the user, feedback is displayed to the user in the form of the following message:
 
 ![Main Menu Validation](docs/features/coffee-run-main-menu-validation.png)
 
@@ -216,7 +216,7 @@ The user is presented with 6 options of how they can proceed and are prompted to
 
 ![Order Options](docs/features/coffee-run-order-options.png)
 
-If the code input the user does not pass validation, the following feedback is displayed:
+If the code input by the user does not pass validation, the following feedback is displayed:
 
 ![Order Options Code Invalid](docs/features/coffee-run-order-option-invalid.png)
 
@@ -224,7 +224,7 @@ If the code input the user does not pass validation, the following feedback is d
 
 <br>
 
-If this is selected, the user will cycle back over the 'Order Coffee' steps outlined above.  In total they can enter 5 drinks to their order.  If at any time they quantity they select pushes total drinks over 5, they will be given feedback and prompted to enter a different quantity. If they are unable to add any more drinks to their order because they have reached the maximum of 5, the following will be displayed:
+If this is selected, the user will cycle back over the 'Order Coffee' steps outlined above.  In total they can enter 5 drinks to their order.  If at any time the quantity they select pushes total drinks over 5, they will be given feedback and prompted to enter a different quantity. If they are unable to add any more drinks to their order because they have reached the maximum of 5, the following will be displayed:
 
 ![Max Drinks Total Reached](docs/features/coffee-run-max-drinks-total-reached.png)
 
@@ -302,7 +302,7 @@ Users of the app can view the details and status of an existing order if they ha
 
 ![Enter Existing Order Reference](docs/features/coffee-run-existing-order-enter-ref.png)
 
-The order reference provided by the user, is checked against the list or order references stored in the "orders" sheet on the google sheets doc the_coffee_run.  If it cannot be matched, the following feedback is displayed:
+The order reference provided by the user, is checked against the list of order references stored in the "orders" sheet on the google sheets doc the_coffee_run.  If it cannot be matched, the following feedback is displayed:
 
 ![Invalid Order Reference](docs/features/cofee-run-invalid-order-ref.png)
 
@@ -532,7 +532,7 @@ The following steps were followed to deploy the app to Heroku:
 
 ![Heroku Add Config Var](docs/deployment/heroku-add-config-var.png)
 
-6.  From my Gitpod workspace, I went to my creds.json file which has been listed in the .gitignore file, copied the entire contents of this file and pasted it in the config var value field.  The click 'Add'.
+6.  From my Gitpod workspace, I went to my creds.json file which has been listed in the .gitignore file, copied the entire contents of this file and pasted it in the config var value field.  Then click 'Add'.
 7.  Add another config var, this time with the Key set to PORT and the value 8000.
 8.  From the 'Buildpacks' section click on the 'Add buildpack' button.
 
@@ -684,7 +684,7 @@ During testing I realised that it was possible to enter the value zero as a quan
 if user_input.isalpha() or int(user_input) < 1:
 ```
 
-This means that user input will not be validated if they enter a character or a number that is less than 1.  Users are prevented from entering a quantity over 10 by the validate_drinks function.
+This means that user input will not be validated if they enter a character or a number that is less than 1.  Users are prevented from entering a quantity over 5 by the validate_drinks function.
 
 **4.**  Main Menu Error Handling:
 
@@ -718,7 +718,7 @@ updated_quantity = coffee_quantity("edit")
 
 **6.**  Current Time 1 Hour behind London time:
 
-AS the coffee shop is based in London, I wanted to make sure that order times were based on the correct timezone.  To solve this, I imported the pytz module and passed in ‘Europe/London’ as an argument:
+As the coffee shop is based in London, I wanted to make sure that order times were based on the correct timezone.  To solve this, I imported the pytz module and passed in ‘Europe/London’ as an argument:
 
 ```python
 now = datetime.now(pytz.timezone("Europe/London"))
@@ -732,7 +732,7 @@ I realised during testing that if a user submitted an order and then returned to
 
 **8.**  Order Summary Table Incorrect Column Order:
 
-When printing the order summary to the terminal using tabulate, when only 1 item is present in the order, the price column displays before unit price even therefore not adhering to the order they appear in the item dictionary (in the screenshot below I have printed the dictionary to the terminal to demonstrate this):
+When printing the order summary to the terminal using tabulate, when only 1 item is present in the order, the price column displays before unit price therefore not adhering to the order they appear in the item dictionary (in the screenshot below I have printed the dictionary to the terminal to demonstrate this):
 
 ![Tabulate Column Order Incorrect](docs/bugs/view-order-columns-incorrect.png)
 
@@ -771,7 +771,7 @@ for order, date, time in zip(drinks, order_dates, order_times):
         difference = current - past
 ```
 
-Once fixed, you can see from the screen shot below that pickup times are now calcualted correctly.  Order 191 is placed first with no other drinks placed in the past 15 minutes, so 5 drinks is estimated to take 10 minutes to prepare. Order 192 takes into account these other 5 drinks, adding 10 minutes of additional prep time so the total prep time for this 4 drink order is 18 minutes. Order 193 is for 1 drink but there are 9 other drinks placed in the past 15 minutes so prep time is calculated at 11 minutes.  And finally order 194 is only for 1 drink, but because there are 10 other drinks ordered in the past 15 minutes, an additional 15 minutes is added to the prep time which gives a total of 17 minutes.
+Once fixed, you can see from the screen shot below that pickup times are now calculated correctly.  Order 191 is placed first with no other drinks placed in the past 15 minutes, so 5 drinks is estimated to take 10 minutes to prepare. Order 192 takes into account these other 5 drinks, adding 10 minutes of additional prep time so the total prep time for this 4 drink order is 18 minutes. Order 193 is for 1 drink but there are 9 other drinks placed in the past 15 minutes so prep time is calculated at 12 minutes.  And finally order 194 is only for 1 drink, but because there are 10 other drinks ordered in the past 15 minutes, an additional 15 minutes is added to the prep time which gives a total of 17 minutes.
 
 ![Pickup Time Bug Fix](docs/bugs/incorrect-prep-time-bug.png)
 
@@ -846,4 +846,4 @@ To fix this, I entered pickup time values for these first 50 orders on the "orde
 <br>
 
 * To my family for supporting me through this journey!
-* To my my Code Institute Mentor Can Sucullu for his help, advice and feedback during our mentoring sessions.
+* To my Code Institute Mentor Can Sucullu for his help, advice and feedback during our mentoring sessions.
