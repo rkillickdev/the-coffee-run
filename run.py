@@ -866,7 +866,7 @@ def input_options(keys, option):
         if not user_order.items:
             clear_order()
             main()
-            
+
         else:
             view_order("choices")
 
