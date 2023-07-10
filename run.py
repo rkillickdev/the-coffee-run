@@ -864,7 +864,9 @@ def input_options(keys, option):
         update_order_dict()
         user_order.get_order_total()
         if not user_order.items:
+            clear_order()
             main()
+            
         else:
             view_order("choices")
 
