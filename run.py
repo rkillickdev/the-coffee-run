@@ -384,7 +384,8 @@ def pull_menu(ingredient):
 
 def access_google_sheet(sheet):
     """
-    Accesses the google sheet passed as the argument 'sheet'
+    Accesses the google sheet passed as the argument 'sheet'.
+    Raises an exception if the sheet cannot be accessed.
     """
 
     try:
@@ -1123,7 +1124,7 @@ def view_completed(sheet_data):
 def sales_data():
     """
     Compile and return a sales list with the quantity of each type of
-    coffe and milk in the order.
+    coffee and milk in the order.
     """
 
     fw_sales = user_order.get_quantity("Coffee", "Flat White", get_keys())
